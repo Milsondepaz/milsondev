@@ -10,18 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping
 public class Principal {
 
-    private String address= "Favendo GmbH, Kirschäckerstraße 25, 96052 Bamberg, Germany";
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("address", address);
         return "index";
     }
 
-    @GetMapping("/locale")
-    public String changeLocale(@RequestParam String language, Model model) {
-        model.addAttribute("address", address);
-        return "index";
-    }
+
 
 }
