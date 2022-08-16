@@ -1,7 +1,12 @@
 package com.milsondev.milsondev.dtos;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.Instant;
 
+@Getter
+@Setter
 public class ArticleDto {
 
     private String title;

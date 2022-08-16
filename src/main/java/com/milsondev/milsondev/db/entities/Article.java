@@ -21,29 +21,29 @@ public class Article {
     private Long id;
 
     @NotBlank(message = "Title is mandatory")
-    @Column(name = "title", columnDefinition = "VARCHAR(255)", unique = true, nullable = false)
+    @Column(name = "title",  unique = true, nullable = false, columnDefinition = "TEXT")
     private String title;
 
-    @Column(name = "short_desc", columnDefinition = "VARCHAR(255)", unique = true, nullable = false)
+    @Column(name = "short_desc",  unique = true, nullable = false, columnDefinition = "TEXT")
     private String shortDescription;
 
-    @Column(name = "description", columnDefinition = "VARCHAR(255)", unique = true, nullable = false)
+    @Column(name = "description",  unique = true, nullable = false, columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "github_link", columnDefinition = "VARCHAR(255)", unique = true, nullable = false)
+    @Column(name = "github_link", unique = true, columnDefinition = "TEXT")
     private String githubLink;
 
-    @Column(name = "gitlab_link", columnDefinition = "VARCHAR(255)", unique = true, nullable = false)
+    @Column(name = "gitlab_link", unique = true, columnDefinition = "TEXT")
     private String gitLabLink;
 
-    @Column(name = "youtube_link", columnDefinition = "VARCHAR(255)", unique = true, nullable = false)
+    @Column(name = "youtube_link", unique = true, columnDefinition = "TEXT")
     private String youtubeLink;
 
-    @Column(name = "live_link", columnDefinition = "VARCHAR(255)", unique = true, nullable = false)
+    @Column(name = "live_link", unique = true, columnDefinition = "TEXT")
     private String liveLink;
 
     @Column(name = "created_on", updatable = false, nullable = false)
-    private Instant createdOn = Instant.now();
+    private Instant createdOn;
 
     @Column(name = "updated_on")
     private Instant updatedOn;
