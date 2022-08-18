@@ -6,13 +6,13 @@ import com.milsondev.milsondev.db.repository.ArticleRepository;
 import com.milsondev.milsondev.dtos.ArticleDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class ServiceArticle {
+public class ArticleService {
 
     private ArticleRepository repository;
     private Converter converter;
 
     @Autowired
-    public ServiceArticle(ArticleRepository repository, Converter converter) {
+    public ArticleService(ArticleRepository repository, Converter converter) {
         this.repository = repository;
         this.converter = converter;
     }
