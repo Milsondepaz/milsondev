@@ -1,6 +1,6 @@
 package com.milsondev.milsondev.controller;
 
-import com.milsondev.milsondev.dtos.User;
+import com.milsondev.milsondev.dtos.UserDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +33,10 @@ public class Principal {
         return "login";
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ModelAndView login(@ModelAttribute("user") User user) {
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ModelAndView login(@ModelAttribute("user") UserDTO user) {
+
+        int x = 0;
         System.out.println(user.toString());
         return new ModelAndView("index");
     }

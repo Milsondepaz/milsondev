@@ -2,6 +2,7 @@ package com.milsondev.milsondev.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
@@ -10,7 +11,9 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NotBlank
 @ToString
-public class User {
+@NoArgsConstructor
+public class UserDTO {
     private String userName;
+    private String email;
     private String password;
 }

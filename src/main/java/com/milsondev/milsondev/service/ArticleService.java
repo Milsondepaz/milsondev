@@ -1,25 +1,22 @@
 package com.milsondev.milsondev.service;
 
-import com.milsondev.milsondev.convert.Converter;
 import com.milsondev.milsondev.db.entities.Article;
 import com.milsondev.milsondev.db.repository.ArticleRepository;
-import com.milsondev.milsondev.dtos.ArticleDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ArticleService {
 
     private ArticleRepository repository;
-    private Converter converter;
 
     @Autowired
-    public ArticleService(ArticleRepository repository, Converter converter) {
+    public ArticleService(ArticleRepository repository) {
         this.repository = repository;
-        this.converter = converter;
     }
 
-    public ArticleDto saveArticle(ArticleDto articleDto){
-        Article article = repository.save(converter.convert(articleDto));
-        return converter.convert(article);
+    public boolean saveArticle(Article articleDto){
+        //Article article = repository.save(converter.convert(articleDto));
+        //return converter.convert(article);
+        return  false;
     }
 
 
