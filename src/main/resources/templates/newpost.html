@@ -23,19 +23,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
 
-
-    <!-- Include Bootstrap CSS and Javascript Files
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    -->
-
 </head>
 <body>
-
-<!-- style="padding-left: 15%" -->
-
-<!-- init nav-bar-->
 
 <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" style="background-color: #737373">
     <div class="container">
@@ -80,10 +69,8 @@
 </nav>
 <!-- end nav-bar-->
 
-
-
 <!-- start about -->
-<section layout:fragment="conteudo" style=" margin-bottom: 2%">
+<section layout:fragment="conteudo" style=" margin-bottom: 12%">
     <div class="container" style="text-align: right; margin-top: 14%">
         <h5>Welcome, <a href="/profile" th:text="${userName}"></a></h5>
             <a href="/admin" class="col-md-1" style="text-align: right; margin-right: 1%" >Back</a>
@@ -93,7 +80,7 @@
 
     <div class=" container panel panel-default" style=" margin-top: 2%">
         <div class="panel-heading" style="background-color: silver;">
-            <h4 class="panel-title aw-titulo-panel" style="background-color: silver; padding-bottom: 2%; padding-top: 1%; margin-left: 1%;">Profile Information...</h4>
+            <h4 class="panel-title aw-titulo-panel" style="background-color: silver; padding-bottom: 2%; padding-top: 1%; margin-left: 1%;">Edit area...</h4>
         </div>
         <div class="panel-heading" th:replace="mensagemok"></div>
         <div class="panel-heading" th:replace="mensagemerro"></div>
@@ -103,98 +90,74 @@
             <form action="#" th:action="@{/update_user}" method="post" th:object="${user}">
                 <div class="container">
                 <div class="row">
-                <div class="col-md-6 mt-5">
+                <div class="col mt-5">
                 <div class="card">
                         <article class="card-body">
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Ful Name</label>
-                                        <input type="text" class="form-control" name="fullName" placeholder="Full Name" th:field="*{fullName}">
+                                    <div class="col">
+                                        <label>Title</label>
+                                        <input type="text" class="form-control" name="title" placeholder="Title of Article, Post or Blog" >
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6 mb-2 mt-2">
-                                        <label>User Name</label>
-                                        <input type="text" class="form-control" name="userName" placeholder="User Name" th:field="*{userName}">
-                                    </div>
-                                    <div class="col-md-6 mb-2 mt-2">
-                                        <label>E-mail</label>
-                                        <input type="email" class="form-control" name="email" placeholder="E-mail" th:field="*{email}">
+                                    <div class="col mt-2">
+                                        <label>Tags</label>
+                                        <input type="text" class="form-control" name="tags" placeholder="Tags" >
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Phone Number</label>
-                                        <input type="text" class="form-control" name="phone" placeholder="Phone Number" th:field="*{phone}">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Address</label>
-                                        <input type="text" class="form-control" name="location" placeholder="Address" th:field="*{location}">
+                                    <div class="col-md-12 mt-4">
+                                        <div class="">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Add content</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-6 mb-2 mt-2">
-                                        <label>Password</label>
-                                        <input type="password" class="form-control" name="password" placeholder="*********" th:field="*{password}">
-                                    </div>
-                                    <div class="col-md-6 mb-2 mt-2">
-                                        <label>Confirm Password</label>
-                                        <input type="password" class="form-control" name="confirm_password" placeholder="*********" th:field="*{password}">
+
+                                <!-- start modal -->
+
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Write a content...</h5>
+                                                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label class="col-form-label">Chose:</label>
+                                                        <select id="cars" name="cars">
+                                                            <option value="volvo">Title</option>
+                                                            <option value="saab">Link for image</option>
+                                                            <option value="fiat">Peace of code</option>
+                                                            <option value="audi">Paragraph</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="message-text" class="col-form-label">Message:</label>
+                                                        <textarea class="form-control" id="message-text"></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn btn-primary">Add</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
+                                <!-- end modal -->
+
+
                             </div>
                     </article>
                 </div>
                 </div>
 
-                    <div class="col-md-6 mt-5">
-                        <div class="card">
-                            <article class="card-body">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label>LinkedIn</label>
-                                            <input type="text" class="form-control" name="linkedinLink" placeholder="LinkedIn" th:field="*{linkedinLink}">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12 mt-2">
-                                            <label>Git Hub</label>
-                                            <input type="text" class="form-control" name="githubLink" placeholder="Git Hub" th:field="*{githubLink}">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12 mt-2">
-                                            <label>Git Lab</label>
-                                            <input type="text" class="form-control" name="gitlabLink" placeholder="Git Lab" th:field="*{gitlabLink}">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12 mt-2">
-                                            <label>YouTube</label>
-                                            <input type="text" class="form-control" name="youtubeLink" placeholder="YouTube" th:field="*{youtubeLink}">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12 mt-2">
-                                            <label>Instagram</label>
-                                            <input type="text" class="form-control" name="instagramLink" placeholder="Instagram" th:field="*{instagramLink}">
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                        <div class="">
-                            <button type="submit" class="btn btn-primary" style="width: 178px; margin-left: 5%;">Save</button>
-                        </div>
                     </div>
                 </div>
             </form>

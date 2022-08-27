@@ -19,23 +19,19 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String shortName;
 
     private String title;
-
-    private String shortDescription;
 
     private String description;
 
     private String githubLink;
 
-    private String gitLabLink;
-
     private String youtubeLink;
 
-    private String liveLink;
+    private String keyWords;
 
-    private Instant createdOn;
-
-    private Instant updatedOn;
-
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
 }

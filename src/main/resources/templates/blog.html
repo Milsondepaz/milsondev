@@ -39,7 +39,6 @@
 
 <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" style="background-color: #737373">
     <div class="container">
-
         <!-- init ma-log -->
         <div class="container" style="padding-left: 15%">
             <div class="hover01 column">
@@ -57,17 +56,6 @@
                 <li class="nav-item">
                     <a class="nav-link js-scroll active" href="/" style="font-weight: bold; font-size: 110%;">HOME</a>
                 </li>
-
-                <!--
-                <li class="nav-item">
-                    <a class="nav-link js-scroll" href="#about" style="font-weight: bold; font-size: 110%;">ABOUT</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link js-scroll" href="#blog" style="color:font-weight: bold; font-size: 110%;">BLOG</a>
-                </li>
-                -->
-
                 <li class="nav-item" style="margin-left:25%; bold; font-size: 110%;">
                     <a class="nav-link js-scroll" href="#bolsas">BOLSAS</a>
                 </li>
@@ -93,85 +81,14 @@
 <!-- end nav-bar-->
 
 
-<!-- start about -->
-<section layout:fragment="conteudo" style=" margin-bottom: 11%">
-    <div class="container" style="text-align: right; margin-top: 15%">
-        <h5>Welcome, <a href="/profile" th:text="${userName}"></a></h5>
-            <a href="/" class="col-md-1" style="text-align: right; margin-right: 1%" >Back</a>
-            <a href="/logout" class="col-md-1" style="text-align: right;">Logout</a>
-    </div>
+<!-- content here -->
+<section id="content" style="padding-top:14%; padding-bottom:8%; background-color:#DCDCDC;">
 
-    <div class=" container panel panel-default" style=" margin-top: 2%">
-        <div class="panel-heading" style="background-color: silver;">
-            <h4 class="panel-title aw-titulo-panel" style="background-color: silver; padding-bottom: 2%; padding-top: 1%; margin-left: 1%;">Posts...</h4>
-        </div>
-        <div class="" style="margin-bottom: 2%; text-align: left;">
-            <a class="mt-4 text-left" href="/newpost">
-                <button type="submit" class="btn btn-primary" style="width: 178px;">New</button>
-            </a>
-        </div>
-        <div class="panel-body" >
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                        <th class ="text-center col-md-1">#</th>
-                        <th>Title</th>
-                        <th class ="text-center col-md-2">Create/Update on</th>
-                        <th class ="col-md-1"></th>     <!-- open-->
-                        <th class ="col-md-1"></th>     <!-- edit-->
-                        <th class ="col-md-1"></th>     <!-- disable-->
-                        <th class ="col-md-1"></th>     <!-- delete-->
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each = "article: ${articleList}">
-                        <td class ="text-center col-md-1" th:text="${article.id}"></td>
-                        <td th:text="${article.title}"></td>
 
-                        <!--
-                        <td class ="text-center" th:text="${{titulo.dataVencimento}}"></td>
-                        <td class ="text-right" th:text="|€ ${{titulo.valor}}|"></td>
-                        <td class="text-center" th:attr="data-role=${titulo.codigo}">
-                                    <span class="label" th:text="${titulo.status.descricao}"
-                                          th:classappend="${titulo.isPendente() ? 'label-danger' : 'label-success'}">
-                                    </span>
-                        </td>
-
-                        <td class="text-center">
-
-                            <a class="btn btn-link btn-xs" th:href="@{/{codigo}(codigo = ${titulo.codigo})}"
-                               title="Editar" rel="tooltip" data-placement="top">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </a>
-
-                            <a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoModal"
-                               th:attr="data-codigo=${titulo.codigo}, data-descricao=${titulo.descricao}"
-                               title="Excluir" rel="tooltip" data-placement="top">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </a>
-
-                            <a class="btn btn-link btn-xs js-atualizar-status" th:if="${titulo.isPendente()}"
-                               title="Receber" rel="tooltip" data-placement="top"
-                               th:attr="data-codigo=${titulo.codigo}"
-                               th:href="@{receber/{codigo}(codigo=${titulo.codigo})}">
-                                <span class="glyphicon glyphicon-check"></span>
-                            </a>
-                            -->
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="6" th:if= "${#lists.isEmpty(articleList)}">You still have no post in your Blog.</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!--<div th:replace="DialogoConfirmacaoExclusao"></div> -->
-    </div>
 </section>
-<!-- termina aqui about -->
+<!-- content end here -->
+
+
 
 
 <footer class="site-footer fixed-bottom">
