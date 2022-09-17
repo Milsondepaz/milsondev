@@ -11,11 +11,13 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.thymeleaf.expression.Lists;
 
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -38,16 +40,17 @@ public class Principal {
     }
 
     @GetMapping("/")
-    public ModelAndView index( ) {
+    public ModelAndView index(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
+                              @RequestParam(value = "size", required = false, defaultValue = "3") int size, Model model ) {
         ModelAndView mv = new ModelAndView("index");
         mv.addObject("user", user);
-        mv.addObject("articleList", articleList);
+        mv.addObject("articleList", articleService.getPage(pageNumber, size));
         return mv;
     }
 
     @GetMapping("/logout")
-    public ModelAndView logout( ) {
-        return index( );
+    public String logout( ) {
+        return "redirect:/";
     }
 
     @GetMapping("/newpost")
@@ -93,9 +96,28 @@ public class Principal {
         return "login";
     }
 
-    @GetMapping("/blog")
-    public String blog(Model model) {
-        return "blog";
+    @RequestMapping(value = "/blog", method = RequestMethod.GET)
+    public ModelAndView blog(@ModelAttribute("article") Article article, RedirectAttributes attributes) {
+        Article article2 = articleService.getArticleByHtmlPage (article.getPage()).get();
+        ModelAndView mv = new ModelAndView(article2.getPath()+article2.getPage());
+        mv.addObject("article", article2);
+        mv.addObject("title", article2.getTitle());
+        mv.addObject("author", "milsondev");
+        mv.addObject("createdUpdateOn", article.getFormatedDate());
+        mv.addObject("viewed", article2.getNumbersOfViews());
+        article2.setNumbersOfViews(article2.getNumbersOfViews() + 1);
+        articleService.articleUpdateNumbersOfViews(article2);
+        List<String> listTag = new ArrayList<>(Arrays.asList("custom login", "securty ", "spring boot", "spring security", "template", "thymeleaf"));
+        mv.addObject("listTag", listTag);
+
+
+
+
+
+
+
+
+        return mv;
     }
 
     @GetMapping("/admin")
