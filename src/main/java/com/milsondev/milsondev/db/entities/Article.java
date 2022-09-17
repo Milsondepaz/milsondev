@@ -7,6 +7,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Locale;
+import java.util.Random;
 import javax.validation.constraints.*;
 
 
@@ -42,6 +43,14 @@ public class Article {
     private String path;
 
     private Instant createdUpdateOn = Instant.now();
+
+    private String formatedDate =  getFormatedDate();
+
+    Random r = new Random();
+
+    private int views = r.nextInt(25);
+    private int likes =  r.nextInt(25);
+
 
     private int numbersOfViews;
 

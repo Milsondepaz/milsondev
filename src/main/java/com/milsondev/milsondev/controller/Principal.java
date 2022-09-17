@@ -128,6 +128,13 @@ public class Principal {
         return mv;
     }
 
+    @GetMapping("/{id}")
+    public void delteArticle(int id) {
+
+        System.out.println("delete article "+ id);
+
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(@ModelAttribute("user") User user_arg) {
         ModelAndView mv;
