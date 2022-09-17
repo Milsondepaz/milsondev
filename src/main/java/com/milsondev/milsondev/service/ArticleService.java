@@ -1,7 +1,6 @@
 package com.milsondev.milsondev.service;
 
 import com.milsondev.milsondev.db.entities.Article;
-import com.milsondev.milsondev.db.entities.User;
 import com.milsondev.milsondev.db.entities.paging.Paged;
 import com.milsondev.milsondev.db.entities.paging.Paging;
 import com.milsondev.milsondev.db.repository.ArticleRepository;
@@ -9,14 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.data.domain.Sort;
 
 
 @Service
@@ -88,10 +85,21 @@ public class ArticleService {
 
     }
 
-    public List<Article> getArticleList() {
+    public List<Article> getPageableArticleList() {
         Pageable firstPageWithTreeElements = PageRequest.of(0, 3);
         return repository.findAll(firstPageWithTreeElements).toList();
     }
+
+    public List<Article> getArticleList() {
+        return repository.findAll();
+    }
+
+    public void deleteArticleById(long id){
+        repository.deleteById(id);
+    }
+
+
+
 
     public boolean saveArticle(Article articleDto){
         //Article article = repository.save(converter.convert(articleDto));

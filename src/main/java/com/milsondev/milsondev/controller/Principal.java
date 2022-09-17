@@ -11,7 +11,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.thymeleaf.expression.Lists;
 
 
 import javax.annotation.PostConstruct;
@@ -19,6 +18,7 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping
@@ -31,17 +31,15 @@ public class Principal {
     UserService userService;
 
     private User user = new User();
-    private List <Article> articleList = new ArrayList<>() ;
 
     @PostConstruct
     public void init(){
-        articleList = articleService.getArticleList();
         user = userService.getUser().get();
     }
 
     @GetMapping("/")
     public ModelAndView index(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
-                              @RequestParam(value = "size", required = false, defaultValue = "3") int size, Model model ) {
+                              @RequestParam(value = "size", required = false, defaultValue = "4") int size, Model model ) {
         ModelAndView mv = new ModelAndView("index");
         mv.addObject("user", user);
         mv.addObject("articleList", articleService.getPage(pageNumber, size));
@@ -123,16 +121,35 @@ public class Principal {
     @GetMapping("/admin")
     public ModelAndView admin(Model model) {
         ModelAndView mv = new ModelAndView("admin");
-        mv.addObject("articleList", articleList);
+        mv.addObject("articleList", articleService.getArticleList());
         mv.addObject("userName", user.getUserName());
         return mv;
     }
 
-    @GetMapping("/{id}")
-    public void delteArticle(int id) {
+    @RequestMapping(value = "/article/{page}", method = RequestMethod.GET)
+    public ModelAndView openArticle(@PathVariable String page, RedirectAttributes attributes) {
+        Article article = articleService.getArticleByHtmlPage(page).get();
 
-        System.out.println("delete article "+ id);
+        ModelAndView mv = new ModelAndView(article.getPath()+page);
 
+        mv.addObject("article", article);
+        mv.addObject("title", article.getTitle());
+        mv.addObject("author", "milsondev");
+        mv.addObject("createdUpdateOn", article.getFormatedDate());
+        mv.addObject("viewed", article.getNumbersOfViews());
+        mv.addObject("listTag", Arrays.asList("custom login", "securty ", "spring boot", "spring security", "template", "thymeleaf"));
+
+        article.setNumbersOfViews(article.getNumbersOfViews() + 1);
+        articleService.articleUpdateNumbersOfViews(article);
+
+        return mv;
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String delteArticle(@PathVariable long id) {
+        articleService.deleteArticleById(id);
+
+        return "redirect:/admin";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -140,7 +157,7 @@ public class Principal {
         ModelAndView mv;
         if(user_arg.getUserName().equals("milsona") && user_arg.getPassword().equals("12345")){
             mv = new ModelAndView("admin");
-            mv.addObject("articleList", articleList);
+            mv.addObject("articleList", articleService.getArticleList());
             mv.addObject("userName", user_arg.getUserName());
             return mv;
         }

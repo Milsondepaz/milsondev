@@ -103,7 +103,7 @@
 
     <div class=" container panel panel-default" style=" margin-top: 2%">
         <div class="panel-heading" style="background-color: silver;">
-            <h4 class="panel-title aw-titulo-panel" style="background-color: silver; padding-bottom: 2%; padding-top: 1%; margin-left: 1%;">Posts...</h4>
+            <h4 class="panel-title aw-titulo-panel" style="background-color: silver; padding-bottom: 2%; padding-top: 1%; margin-left: 1%;">Articles...</h4>
         </div>
         <div class="" style="margin-bottom: 2%; text-align: left;">
             <a class="mt-4 text-left" href="/newpost">
@@ -128,7 +128,13 @@
                     <tbody>
                     <tr th:each = "article: ${articleList}">
                         <td class ="text-center col-md-1" th:text="${article.id}"></td>
-                        <td th:text="${article.title}"></td>
+
+                        <td>
+                            <a class="" th:href="@{article/{page}(page=${article.page})}" target="_blank">
+                                <div style="text-align: left"><span th:text="${article.title}"> </span></div>
+                            </a>
+                        </td>
+
                         <td class ="text-center col-md-1" th:text="${article.formatedDate}"></td>
                         <td class ="text-center col-md-1" th:text="${article.views}"></td>
                         <td class ="text-center col-md-1" th:text="${article.likes}"></td>
