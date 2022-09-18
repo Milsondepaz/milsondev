@@ -145,6 +145,12 @@ public class Principal {
         return mv;
     }
 
+    @RequestMapping(value = "/enable_disable/{id}", method = RequestMethod.GET)
+    public String enableDisable(@PathVariable long id) {
+        articleService.changeStateOfArticle(id);
+        return "redirect:/admin";
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String delteArticle(@PathVariable long id) {
         articleService.deleteArticleById(id);

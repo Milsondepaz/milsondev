@@ -46,6 +46,8 @@ public class Article {
 
     private String formatedDate =  getFormatedDate();
 
+    private boolean enable = true;
+
     Random r = new Random();
 
     private int views = r.nextInt(25);

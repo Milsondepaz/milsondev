@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -98,6 +100,23 @@ public class ArticleService {
         repository.deleteById(id);
     }
 
+    public void changeStateOfArticle (long id) {
+        Article article = repository.findById(id).get();
+
+        boolean valor = article.isEnable();
+
+        if (article.isEnable() == false){
+            article.setEnable(true);
+        } else {
+            article.setEnable(false);
+        }
+
+        repository.save(article);
+
+        valor = article.isEnable();
+
+    }
+
 
 
 
@@ -127,6 +146,10 @@ public class ArticleService {
     public Paged<Article> getPage(int pageNumber, int size) {
         PageRequest request = PageRequest.of(pageNumber - 1, size);
         Page<Article> articlePage = repository.findAll(request);
+
+        // ja tem q vir filtrado do banco
+
+
         return new Paged<>(articlePage, Paging.of(articlePage.getTotalPages(), pageNumber, size));
     }
 

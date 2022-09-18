@@ -92,7 +92,6 @@
 </nav>
 <!-- end nav-bar-->
 
-
 <!-- start about -->
 <section layout:fragment="conteudo" style=" margin-bottom: 11%">
     <div class="container" style="text-align: right; margin-top: 15%">
@@ -128,19 +127,26 @@
                     <tbody>
                     <tr th:each = "article: ${articleList}">
                         <td class ="text-center col-md-1" th:text="${article.id}"></td>
-
                         <td>
                             <a class="" th:href="@{article/{page}(page=${article.page})}" target="_blank">
                                 <div style="text-align: left"><span th:text="${article.title}"> </span></div>
                             </a>
                         </td>
-
                         <td class ="text-center col-md-1" th:text="${article.formatedDate}"></td>
                         <td class ="text-center col-md-1" th:text="${article.views}"></td>
                         <td class ="text-center col-md-1" th:text="${article.likes}"></td>
 
                         <td class ="text-center col-md-1">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <a class="btn btn-link btn-xs" th:href="@{enable_disable/{id}(id=${article.id})}" >
+                                <svg th:if="${article.enable}"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-toggle2-on" viewBox="0 0 16 16">
+                                    <path d="M7 5H3a3 3 0 0 0 0 6h4a4.995 4.995 0 0 1-.584-1H3a2 2 0 1 1 0-4h3.416c.156-.357.352-.692.584-1z"/>
+                                    <path d="M16 8A5 5 0 1 1 6 8a5 5 0 0 1 10 0z"/>
+                                </svg>
+                                <svg th:unless="${article.enable}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-toggle2-off" viewBox="0 0 16 16">
+                                    <path d="M9 11c.628-.836 1-1.874 1-3a4.978 4.978 0 0 0-1-3h4a3 3 0 1 1 0 6H9z"/>
+                                    <path d="M5 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0 1A5 5 0 1 0 5 3a5 5 0 0 0 0 10z"/>
+                                </svg>
+                            </a>
                         </td>
 
                         <td class ="text-center col-md-1">
@@ -150,9 +156,7 @@
                             </svg>
                             </a>
                         </td>
-
                         <!-- class="btn btn-link btn-xs" th:href="@{/{codigo}(codigo = ${titulo.codigo})}" -->
-
                         <td class ="text-center col-md-1">
                             <a class="btn btn-link btn-xs" th:href="@{/{id}(id=${article.id})}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -161,7 +165,6 @@
                             </svg>
                             </a>
                         </td>
-
                         <!--
                         <td class ="text-center" th:text="${{titulo.dataVencimento}}"></td>
                         <td class ="text-right" th:text="|€ ${{titulo.valor}}|"></td>
@@ -170,19 +173,16 @@
                                           th:classappend="${titulo.isPendente() ? 'label-danger' : 'label-success'}">
                                     </span>
                         </td>
-
                         <td class="text-center">
                             <a class="btn btn-link btn-xs" th:href="@{/{codigo}(codigo = ${titulo.codigo})}"
                                title="Editar" rel="tooltip" data-placement="top">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
-
                             <a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoModal"
                                th:attr="data-codigo=${titulo.codigo}, data-descricao=${titulo.descricao}"
                                title="Excluir" rel="tooltip" data-placement="top">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
-
                             <a class="btn btn-link btn-xs js-atualizar-status" th:if="${titulo.isPendente()}"
                                title="Receber" rel="tooltip" data-placement="top"
                                th:attr="data-codigo=${titulo.codigo}"
@@ -190,7 +190,6 @@
                                 <span class="glyphicon glyphicon-check"></span>
                             </a>
                             -->
-
                         </td>
                     </tr>
                     <tr>
@@ -241,16 +240,9 @@
         </div>
     </div>
 </footer>
-
 <!-- Bootstrap core JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-
 <!-- Third party plugin JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-
-
-
-
-
 </body>
