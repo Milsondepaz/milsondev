@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <title>Milson Antonio - Java Software Engineer</title>
     <meta charset="UTF-8">
@@ -14,7 +15,10 @@
 
     <link th:href="@{/styles/navbar.css}" rel="stylesheet" />
 
-    <link th:href="@{/styles/articlecards.css}" rel="stylesheet" />
+    <!--<link th:href="@{/styles/articlecards.css}" rel="stylesheet" />-->
+
+    <link th:href="@{/styles/card.css}" rel="stylesheet" />
+
 
     <script type="text/javascript" th:src="@{/js/typewritereffect.js}"></script>
 
@@ -42,7 +46,7 @@
         <!-- init ma-log -->
         <div class="container" style="padding-left: 15%">
             <div class="hover01 column">
-                <a class="navbar-brand js-scroll" href="index.html">
+                <a class="navbar-brand js-scroll" href="/">
                     <figure>
                         <img src="img/ma-logo.png">
                     </figure>
@@ -61,11 +65,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link js-scroll" href="#blog" style="color:font-weight: bold; font-size: 110%;">BLOG</a>
-                </li>
-
-                <li class="nav-item" style="margin-left:25%; bold; font-size: 110%;">
-                    <a class="nav-link js-scroll" href="#bolsas">BOLSAS</a>
+                    <a class="nav-link js-scroll" href="#articles" style="color:font-weight: bold; font-size: 110%;">ARTICLES</a>
                 </li>
             </ul>
         </div>
@@ -87,25 +87,20 @@
     <!-- end of flag language -->
 </nav>
 
-
+<!--
+https://www.bootdey.com/bootstrap-themes
+-->
 
 <!-- end nav-bar-->
 
 
 <div id="home" class="container-fluid" style="background-color: #737373">
-
-    <!--
-    <div class="container" style="padding-top: 15%;">
-        <h1 style="text-align:center; color:white; font-size: 500%;">MILSONDEV_</h1>
-    </div>
-    -->
-
     <!-- start animation -->
-    <div class="container" style="padding-top: 15%;">
+    <div class="container" style="padding-top: 12%;">
     <p class="intro-subtitle">
         <h1 class="typewrite"
             data-period="3000"
-            data-type='[ "MILSONDEV_", "JAVA_", "SPRING BOOT_"]'
+            data-type='[ "JAVA_", "SPRING BOOT_", "THYMELEAF"]'
             style="text-align:center; color:white; font-size: 250%;">
       </h1>
     </div>
@@ -121,7 +116,7 @@
                 <img src="img/springboot-logo.png" style="width:40%;">
             </div>
             <div class="col-xs-6 col-sm-4" style="padding-top:4%">
-                <img src="img/reactjs-logo.png" style="width:40%;">
+                <img src="img/thymeleaf.png" style="width:40%;">
             </div>
         </div>
     </div>
@@ -148,37 +143,34 @@
 
                                 <div class="col-sm-6 col-md-7" style="padding-top:4%">
                                     <div class="about-info">
-                                        <p><span class="title-s" style="font-weight: bold;">Email: </span> <span>milson.milson@outlook.com</span></p>
-                                        <p><span class="title-s" style="font-weight: bold;">Phone: </span> <span>(+49) 1521 2816 680</span></p>
-                                        <p><span class="title-s" style="font-weight: bold;">Area: </span> <span>Germany, Bayern - Bamberg</span></p>
+                                        <p><span class="title-s" style="font-weight: bold;">Email: </span> <span th:text="${user.email}"></span></p>
+                                        <p><span class="title-s" style="font-weight: bold;">Phone: </span> <span th:text="${user.phone}"></span></p>
+                                        <p><span class="title-s" style="font-weight: bold;">Area: </span> <span th:text="${user.location}"></span></p>
                                     </div>
 
                                     <!-- start images -->
                                     <div class="container" style=" text-align: left; margin-top: 30px; width:90%; padding-right: 28%" >
                                         <div class="row">
                                             <div class="col">
-                                                <a href="https://github.com/Milsondepaz?tab=repositories" target="_blank">
+                                                <a th:href="${user.githubLink}"  target="_blank">
                                                     <img src="img/github.png" style="width:60%;">
                                                 </a>
                                             </div>
                                             <div class="col">
-                                                <a href="https://gitlab.com/milsondev" target="_blank">
+                                                <a th:href="${user.gitlabLink}" target="_blank">
                                                     <img src="img/gitlab.png" style="width:60%;">
                                                 </a>
                                             </div>
                                             <div class="col">
-                                                <a href="https://www.linkedin.com/in/milson-ant%C3%B3nio/" target="_blank">
+                                                <a th:href="${user.linkedinLink}"  target="_blank">
                                                     <img src="img/linkedin.png" style="width:60%;">
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- end images -->
-
                                 </div>
                             </div>
-
-
                         </div>
 
                         <div class="col-md-6">
@@ -186,15 +178,9 @@
                                 <div class="title-box-2">
                                     <h2 class="title-left">About me</h2>
                                 </div>
-                                <p style="text-align: justify">
-                                    Hello, my name is Milson!</p>
-                                <p style="text-align: justify">I'm Software Engineer and I enjoy working with Java and Spring ecosystem, I find it as perfect match technologies. I'm  BsC in Computer Science at <a href="https://www.furb.br" target="_blank">FURB</a> in Brazil
-                                    and studied Masters in Computer Engineering at <a href="https://www.ujaen.es" target="_blank">Universidad de Jaén</a>, in Spain.
-                                    I use my blog as a hobby to share subjects, articles and projects related to Programming and IoT stuff.
-                                </p>
-                                <p style="text-align: justify">
-                                    I also have another site with academic focus, I go after Universities, International Office looking for academic opportunities, like scholarships to share with students around the world.
-                                </p>
+                                <p style="text-align: justify" th:text="#{about.first}"></p>
+                                <p style="text-align: justify" th:text="#{about.second}"></p>
+                                <p style="text-align: justify" th:text="#{about.third}"></p>
                             </div>
                         </div>
                     </div>
@@ -207,9 +193,7 @@
 <!-- termina aqui about -->
 
 <!-- imagem 1-->
-<div class="container-fluid" style="  background-image: url('img/protoboard.jpg'); height:100%;">
-
-</br>
+<div class="container-fluid" style="background-color: #737373">
     </br>
     </br>
     </br>
@@ -217,8 +201,6 @@
     </br>
     </br>
     </br>
-
-
 </div>
 <!-- imagem 1 -->
 
@@ -226,222 +208,83 @@
 
 </div>
 
-<!-- start Projects -->
-<section class="page-section portfolio" id="blog" style="padding-top:2%; padding-bottom:2%; background-color:#DCDCDC;">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="title-box text-center">
-                    <h3 class="title-a" style="font-weight: bold; font-size: 300%;">
-                        BLOG
-                    </h3>
-                    <div class="line-mf"></div>
-                </div>
+<section class="" id="articles" style="background-color:#DCDCDC;">
+    <div class="container" style="padding-top:2%; padding-bottom:2%; background-color:#DCDCDC;">
+        <div class="col-sm-12">
+            <div class="title-box text-center">
+                <h3 class="title-a" style="font-weight: bold; font-size: 300%;">ARTICLES</h3>
             </div>
         </div>
-
-        <div class="box-shadow-full" style="overflow: auto; max-height: 700px; ">
-            <div class="col">
-                <li class="d-flex no-block card-body">
-                    <div class="col">
-                        <div id="accordion">
-                            <!-- begin simulaor-->
-                            <div class="card">
-                                <div class="card-header" id="headingSimulator">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSimulator"
-                                                aria-expanded="true" aria-controls="collapseSimulator">
-                                            Simulator for Transport Management of Containerized Port Cargo
-                                        </button>
-                                    </h5>
+    <div class="col">
+        <tr th:each="article : ${articleList.page}">
+            <div class="mt-1">
+                <div class="bgc-white my-2 py-3 shadow-sm">
+                        <div style="text-align: left; margin-left:5%; margin-bottom:1%">
+                            <a class="" th:href="@{article/{page}(page=${article.page})}">
+                                <div>
+                                    <h4 th:text="${article.title}"></h4>
                                 </div>
-                                <div id="collapseSimulator" class="collapse show" aria-labelledby="headingSimulator"
-                                     data-parent="#accordion">
-                                    <div class="card-body" style="text-align: justify">
-                                        <h6>Key Words: #Java #JavaSE #Threads #Concurrency #DesignPatterns</h6>
-                                        Desktop application, developed with Java 8, thats simulates the traffic and transport of containers in a port environment.
-                                        In the real world, these types of vehicles are mostly autonomous, only remotely controlled when necessary. It was an assignment by the Düsseldorf-based company called TBA Groups.
-                                        <div class="row" style="text-align: center; padding-top: 2%;">
-                                            <!--
-                                            <div class="col">
-                                              <a href="https://www.ujaen.es" target="_blank">
-                                                <img src="img/web.png">
-                                                <p>Online Application...</p>
-                                              </a>
-                                            </div> -->
-                                            <div class="col">
-                                                <a href="https://github.com/Milsondepaz/tbagroup-milson" target="_blank">
-                                                    <img src="img/github.png">
-                                                    <p>Go to GitHub Repository...</p>
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a href="https://youtu.be/73tzcFTnhSI" target="_blank">
-                                                    <img src="img/youtube.png">
-                                                    <p>Watch on Youtube...</p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                            </a>
+                        </div>
+
+                        <div class="row align-items-center">
+                            <div class="col-4 col-md-2">
+                                <div class="text-secondary-d1 text-120"; style="margin-left:60%;">
+                                    <span class="text-180" th:text="${article.id}"></span>
                                 </div>
                             </div>
-                            <!-- end simulator-->
 
-
-                            <!--begin fruitShop-->
-                            <div class="card">
-                                <div class="card-header" id="headingFruitShop">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFruitShop"
-                                                aria-expanded="false" aria-controls="collapseFruitShop">
-                                            Fruit Shop (Java 8/Srping Boot + PostgreSQL + Thymeleaf )
-                                        </button>
-                                    </h5>
-                                </div>
-                                <div id="collapseFruitShop" class="collapse" aria-labelledby="headingFruitShop"
-                                     data-parent="#accordion">
-                                    <div class="card-body" style="text-align: justify">
-                                        <h6>Key Words: #Java #JavaSE #SrpingBoot #Thymeleaf #SpringDataJPA #PostgreSQL</h6>
-                                        <div class="row" style="text-align: center; padding-top: 2%;">
-                                            <div class="col">
-                                                <a href="https://cinemofruitshop.herokuapp.com/" target="_blank">
-                                                    <img src="img/web.png">
-                                                    <p>Online Application...</p>
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a href="https://github.com/Milsondepaz/cinemofruitshop" target="_blank">
-                                                    <img src="img/github.png">
-                                                    <p>Go to GitHub Repository...</p>
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a href="https://youtu.be/er7pSuhFsmo" target="_blank">
-                                                    <img src="img/youtube.png">
-                                                    <p>Watch on Youtube...</p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end fruitShop-->
-
-                            <!--begin cobranca-->
-                            <div class="card">
-                                <div class="card-header" id="headingCobranca">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseCobranca"
-                                                aria-expanded="false" aria-controls="collapseCobranca">
-                                            Account and Billing Control System
-                                        </button>
-                                    </h5>
-                                </div>
-                                <div id="collapseCobranca" class="collapse" aria-labelledby="headingCobranca"
-                                     data-parent="#accordion">
-                                    <div class="card-body" style="text-align: justify">
-                                        <h6>Key Words: #Java #JavaEE #JavaSE #SrpingBoot Thymeleaf #SpringDataJPA #PostgreSQL #Heroku</h6>
-                                        <div class="row" style="text-align: center; padding-top: 2%;">
-                                            <div class="col">
-                                                <a href="https://cobranca-milson.herokuapp.com/" target="_blank">
-                                                    <img src="img/web.png">
-                                                    <p>Online Application...</p>
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a href="https://github.com/Milsondepaz/cobranca" target="_blank">
-                                                    <img src="img/github.png">
-                                                    <p>Go to GitHub Repository...</p>
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a href="https://youtu.be/EAmblRh06YM" target="_blank">
-                                                    <img src="img/youtube.png">
-                                                    <p>Watch on Youtube...</p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col-8 col-md-9">
+                                <p style="text-align: justify" th:text="#{about.third}"></p>
                             </div>
                         </div>
                     </div>
-                </li>
-
             </div>
+        </tr>
+    </div>
 
-            <!-- START Pagination -->
-            <nav aria-label="Page navigation">
-                <ul class="pagination pagination-reset justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                            <i class="zmdi zmdi-long-arrow-left"></i>
-                        </a>
+        <!-- pagination 2 -->
+        <nav aria-label="Page navigation" class="paging justify-content-center" >
+            <ul class="pagination justify-content-center" th:if="${articleList.page.totalPages > 1}">
+                <li class="page-item" th:classappend="${!articleList.paging.isPrevEnabled()? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{'/?pageNumber=' + ${articleList.paging.pageNumber - 1}}"
+                       tabindex="-1">Previous</a>
+                </li>
+                <th:block th:each="item : ${articleList.paging.getItems()}">
+                    <li class="page-item" th:classappend="${item.index == articleList.paging.pageNumber? 'active' : ''}"
+                        th:if="${item.pageItemType.name() == 'PAGE'}">
+                        <a class="page-link" th:href="@{'/?pageNumber=' + ${item.index}}"
+                           th:text="${item.index}"></a>
                     </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item d-none d-md-inline-block"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item d-none d-md-inline-block"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">...</a></li>
-                    <li class="page-item"><a class="page-link" href="#">8</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="zmdi zmdi-long-arrow-right"></i>
-                        </a>
+                    <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+                        <a class="page-link" href="#">...</a>
                     </li>
-                </ul>
-            </nav>
-            <!-- END Pagination -->
-        </div>
+                </th:block>
+                <li class="page-item" th:classappend="${!articleList.paging.isNextEnabled()? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{'/?pageNumber=' + ${articleList.paging.pageNumber + 1}}">Next</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- finish pagination 2 -->
     </div>
 </section>
-<!-- end Projects -->
 
 
-<footer class="site-footer">
+<footer class="site-footer" style="background-color:#26272b;">
     </div>
     <hr>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-sm-6 col-xs-12">
-                <p class="copyright-text">Thanks for visiting - Milson</p>
+    <div class="container" style="text-align:center">
+            <div class="text-center" style="text-align:center; margin-top:4%; margin-bottom:2%">
+                <H6 class="copyright-text">Thanks for visiting - Milson</H6>
+                <img src="img/coracao.png">
             </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <ul class="social-icons">
-
-                    <li><a class="hover01 column" href="#">
-                        <figure>
-                            <img src="img/linkedin.png">
-                        </figure>
-                    </a></li>
-
-                    <li><a class="hover01 column" href="#">
-                        <figure>
-                            <img src="img/youtube.png">
-                        </figure>
-                    </a></li>
-
-                    <li><a class="hover01 column" href="#">
-                        <figure>
-                            <img src="img/instagram.png">
-                        </figure>
-                    </a></li>
-
-                </ul>
-            </div>
-        </div>
     </div>
 </footer>
 
 <!-- Bootstrap core JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-
 <!-- Third party plugin JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-
-
-
-
-
 </body>

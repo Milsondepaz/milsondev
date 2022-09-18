@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+     xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <title>Milson Antonio - Java Software Engineer</title>
     <meta charset="UTF-8">
@@ -42,7 +43,7 @@
         <!-- init ma-log -->
         <div class="container" style="padding-left: 15%">
             <div class="hover01 column">
-                <a class="navbar-brand js-scroll" href="index.html">
+                <a class="navbar-brand js-scroll" href="/">
                     <figure>
                         <img src="img/ma-logo.png">
                     </figure>
@@ -54,16 +55,8 @@
         <div class="navbar-collapse collapse justify-content-end">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll active" href="#home" style="font-weight: bold; font-size: 110%;">HOME</a>
+                    <a class="nav-link js-scroll active" href="/" style="font-weight: bold; font-size: 110%;">HOME</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll" href="#about" style="font-weight: bold; font-size: 110%;">ABOUT</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link js-scroll" href="#blog" style="color:font-weight: bold; font-size: 110%;">BLOG</a>
-                </li>
-
                 <li class="nav-item" style="margin-left:25%; bold; font-size: 110%;">
                     <a class="nav-link js-scroll" href="#bolsas">BOLSAS</a>
                 </li>
@@ -84,90 +77,133 @@
             </a>
         </div>
     </div>
-    <!-- end of flag language -->
 </nav>
 <!-- end nav-bar-->
 
 
-<!-- start about -->
-<section id="about" class="about-mf sect-pt4 route" style="padding-top:17%; padding-bottom:10%; background-color:#DCDCDC;">
-    <div class="container">
-        <div class="card">
-            <div class="card-body" style="padding:4%">
-            <div class="col-sm-12">
-                <div class="box-shadow-full">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="row">
 
-                                <div class="col-sm-6 col-md-5">
-                                    <div class="about-img">
-                                        <img src="img/milson.png" class="img-fluid rounded b-shadow-a">
+<!-- start about -->
+<section layout:fragment="conteudo" style=" margin-bottom: 2%">
+    <div class="container" style="text-align: right; margin-top: 14%">
+        <h5>Welcome, <a href="/profile" th:text="${userName}"></a></h5>
+            <a href="/admin" class="col-md-1" style="text-align: right; margin-right: 1%" >Back</a>
+            <a href="/logout" class="col-md-1" style="text-align: right;">Logout</a>
+    </div>
+
+
+    <div class=" container panel panel-default" style=" margin-top: 2%">
+        <div class="panel-heading" style="background-color: silver;">
+            <h4 class="panel-title aw-titulo-panel" style="background-color: silver; padding-bottom: 2%; padding-top: 1%; margin-left: 1%;">Profile Information...</h4>
+        </div>
+        <div class="panel-heading" th:replace="mensagemok"></div>
+        <div class="panel-heading" th:replace="mensagemerro"></div>
+
+
+        <div class="container">
+            <form action="#" th:action="@{/update_user}" method="post" th:object="${user}">
+                <div class="container">
+                <div class="row">
+                <div class="col-md-6 mt-5">
+                <div class="card">
+                        <article class="card-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Ful Name</label>
+                                        <input type="text" class="form-control" name="fullName" placeholder="Full Name" th:field="*{fullName}">
                                     </div>
                                 </div>
-
-                                <div class="col-sm-6 col-md-7" style="padding-top:4%">
-                                    <div class="about-info">
-                                        <p><span class="title-s" style="font-weight: bold;">Email: </span> <span>milson.milson@outlook.com</span></p>
-                                        <p><span class="title-s" style="font-weight: bold;">Phone: </span> <span>(+49) 1521 2816 680</span></p>
-                                        <p><span class="title-s" style="font-weight: bold;">Area: </span> <span>Germany, Bayern - Bamberg</span></p>
+                                <div class="row">
+                                    <div class="col-md-6 mb-2 mt-2">
+                                        <label>User Name</label>
+                                        <input type="text" class="form-control" name="userName" placeholder="User Name" th:field="*{userName}">
                                     </div>
+                                    <div class="col-md-6 mb-2 mt-2">
+                                        <label>E-mail</label>
+                                        <input type="email" class="form-control" name="email" placeholder="E-mail" th:field="*{email}">
+                                    </div>
+                                </div>
+                            </div>
 
-                                    <!-- start images -->
-                                    <div class="container" style=" text-align: left; margin-top: 30px; width:90%; padding-right: 28%" >
-                                        <div class="row">
-                                            <div class="col">
-                                                <a href="https://github.com/Milsondepaz?tab=repositories" target="_blank">
-                                                    <img src="img/github.png" style="width:60%;">
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a href="https://gitlab.com/milsondev" target="_blank">
-                                                    <img src="img/gitlab.png" style="width:60%;">
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a href="https://www.linkedin.com/in/milson-ant%C3%B3nio/" target="_blank">
-                                                    <img src="img/linkedin.png" style="width:60%;">
-                                                </a>
-                                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Phone Number</label>
+                                        <input type="text" class="form-control" name="phone" placeholder="Phone Number" th:field="*{phone}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Address</label>
+                                        <input type="text" class="form-control" name="location" placeholder="Address" th:field="*{location}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6 mb-2 mt-2">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control" name="password" placeholder="*********" th:field="*{password}">
+                                    </div>
+                                    <div class="col-md-6 mb-2 mt-2">
+                                        <label>Confirm Password</label>
+                                        <input type="password" class="form-control" name="confirm_password" placeholder="*********" th:field="*{password}">
+                                    </div>
+                                </div>
+                            </div>
+                    </article>
+                </div>
+                </div>
+
+                    <div class="col-md-6 mt-5">
+                        <div class="card">
+                            <article class="card-body">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>LinkedIn</label>
+                                            <input type="text" class="form-control" name="linkedinLink" placeholder="LinkedIn" th:field="*{linkedinLink}">
                                         </div>
                                     </div>
-                                    <!-- end images -->
-
+                                    <div class="row">
+                                        <div class="col-md-12 mt-2">
+                                            <label>Git Hub</label>
+                                            <input type="text" class="form-control" name="githubLink" placeholder="Git Hub" th:field="*{githubLink}">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 mt-2">
+                                            <label>Git Lab</label>
+                                            <input type="text" class="form-control" name="gitlabLink" placeholder="Git Lab" th:field="*{gitlabLink}">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 mt-2">
+                                            <label>YouTube</label>
+                                            <input type="text" class="form-control" name="youtubeLink" placeholder="YouTube" th:field="*{youtubeLink}">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 mt-2">
+                                            <label>Instagram</label>
+                                            <input type="text" class="form-control" name="instagramLink" placeholder="Instagram" th:field="*{instagramLink}">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-
-
+                            </article>
                         </div>
-
-                        <div class="col-md-6">
-                            <div class="about-me pt-4 pt-md-0" style="padding-bottom: 1%">
-                                <div class="title-box-2">
-                                    <h2 class="title-left">About me</h2>
-                                </div>
-                                <p style="text-align: justify">
-                                    Hello, my name is Milson!</p>
-                                <p style="text-align: justify">I'm Software Engineer and I enjoy working with Java and Spring ecosystem, I find it as perfect match technologies. I'm  BsC in Computer Science at <a href="https://www.furb.br" target="_blank">FURB</a> in Brazil
-                                    and studied Masters in Computer Engineering at <a href="https://www.ujaen.es" target="_blank">Universidad de Jaén</a>, in Spain.
-                                    I use my blog as a hobby to share subjects, articles and projects related to Programming and IoT stuff.
-                                </p>
-                                <p style="text-align: justify">
-                                    I also have another site with academic focus, I go after Universities, International Office looking for academic opportunities, like scholarships to share with students around the world.
-                                </p>
-                            </div>
+                    </div>
+                        <div class="">
+                            <button type="submit" class="btn btn-primary" style="width: 178px; margin-left: 5%;">Save</button>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
-    </div>
 </section>
-<!-- termina aqui about -->
 
-
-<footer class="site-footer fixed-bottom">
+<!-- fixed-bottom-->
+<footer class="site-footer">
     </div>
     <hr>
     </div>
@@ -209,9 +245,5 @@
 
 <!-- Third party plugin JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-
-
-
-
 
 </body>

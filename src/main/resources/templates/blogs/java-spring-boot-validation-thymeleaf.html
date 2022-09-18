@@ -4,7 +4,7 @@
      xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Milson Antonio - Java Software Engineer</title>
+    <title th:text="${title}"></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css} "/>
@@ -39,13 +39,12 @@
 
 <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" style="background-color: #737373">
     <div class="container">
-
         <!-- init ma-log -->
         <div class="container" style="padding-left: 15%">
             <div class="hover01 column">
                 <a class="navbar-brand js-scroll" href="/">
                     <figure>
-                        <img src="img/ma-logo.png">
+                        <img src="../img/ma-logo.png">
                     </figure>
                 </a>
             </div>
@@ -57,20 +56,6 @@
                 <li class="nav-item">
                     <a class="nav-link js-scroll active" href="/" style="font-weight: bold; font-size: 110%;">HOME</a>
                 </li>
-
-                <!--
-                <li class="nav-item">
-                    <a class="nav-link js-scroll" href="#about" style="font-weight: bold; font-size: 110%;">ABOUT</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link js-scroll" href="#blog" style="color:font-weight: bold; font-size: 110%;">BLOG</a>
-                </li>
-                -->
-
-                <li class="nav-item" style="margin-left:25%; bold; font-size: 110%;">
-                    <a class="nav-link js-scroll" href="#bolsas">BOLSAS</a>
-                </li>
             </ul>
         </div>
     </div>
@@ -79,12 +64,12 @@
     <div class="languages" style="padding-right: 1%; padding-left: 10%;">
         <div class="flag-deutsch">
             <a href="#home">
-                <img src="img/deutsch.png">
+                <img src="../img/deutsch.png">
             </a>
         </div>
         <div class="flag-usa">
             <a href="#home">
-                <img src="img/usa.png">
+                <img src="../img/usa.png">
             </a>
         </div>
     </div>
@@ -93,77 +78,55 @@
 <!-- end nav-bar-->
 
 
-<!-- start about -->
-<section id="about" style="padding-top:14%; padding-bottom:8%; background-color:#DCDCDC;">
+<!-- content here -->
+<section id="content" style="padding-top:14%; ">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div class="card my-3">
-                    <form action="#" th:action="@{/login}" method="post" th:object="${user}" class="card-body cardbody-color p-lg-5">
-                        <div class="text-center">
-                            <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
-                                 width="150px" alt="profile">
-                        </div>
-                        <div class="mb-4">
-                            <label>User Name</label>
-                            <input type="text" class="form-control" name="userName" placeholder="User Name">
-                        </div>
-                        <div class="mb-4">
-                            <label>Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="**********">
-                        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <h1 th:text="${title}"></h1>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-1">
+                        <img src="../img/milson.png" width= "100" height="100"; style="border-radius: 50%; border:1px groove #545565;">
+                </div>
 
-                        <div class="mt-4 text-center">
-                            <button type="submit" class="btn btn-primary" style="width: 178px;"> Login  </button>
-                        </div>
-                    </form>
+                <div class="col-sm-6 col-md-7" style="margin-top:1%; margin-left:1%; margin-bottom:2%">
+                    <small>By <a href="#" th:text="${author}"></a> </small>
+                   <div class="">
+                       <small>Viewed: <span th:text="${viewed}" style=" font-weight: bold; "></span>
+                           | Last updated: <span th:text="${createdUpdateOn}" style=" font-weight: bold; "></span>
+                       </small>
+                   </div>
+
+                        <small class="">Tags:
+                        <tr th:each="tag : ${listTag}">
+                            <a href="#" th:text="${tag}" style="margin-right:2%;" >
+                            </a>
+                        </tr>
+                    </small>
                 </div>
             </div>
         </div>
+        <hr>
     </div>
-
 
 
 
 
 </section>
-<!-- termina aqui about -->
+<!-- content end here -->
 
 
 
 
-<footer class="site-footer fixed-bottom">
+<footer class="site-footer fixed-bottom" style="background-color:#26272b; position: fixed; width: 100%; margin-bottom: 0px;">
     </div>
     <hr>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-sm-6 col-xs-12">
-                <p class="copyright-text">Thanks for visiting - Milson</p>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <ul class="social-icons">
-
-                    <li><a class="hover01 column" href="#">
-                        <figure>
-                            <img src="img/linkedin.png">
-                        </figure>
-                    </a></li>
-
-                    <li><a class="hover01 column" href="#">
-                        <figure>
-                            <img src="img/youtube.png">
-                        </figure>
-                    </a></li>
-
-                    <li><a class="hover01 column" href="#">
-                        <figure>
-                            <img src="img/instagram.png">
-                        </figure>
-                    </a></li>
-
-                </ul>
-            </div>
+    <div class="container" style="text-align:center">
+        <div class="text-center" style="text-align:center; margin-top:4%; margin-bottom:2%">
+            <H6 class="copyright-text">Thanks for visiting - Milson</H6>
+            <img src="../img/coracao.png">
         </div>
     </div>
 </footer>

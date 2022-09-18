@@ -3,6 +3,11 @@ package com.milsondev.milsondev.db.entities;
 import lombok.*;
 import javax.persistence.*;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Locale;
+import java.util.Random;
 import javax.validation.constraints.*;
 
 
@@ -19,33 +24,50 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String shortName;
 
-    @NotBlank(message = "Title is mandatory")
-    @Column(name = "title",  unique = true, nullable = false, columnDefinition = "TEXT")
+    private String author;
+
     private String title;
 
-    @Column(name = "short_desc",  unique = true, nullable = false, columnDefinition = "TEXT")
-    private String shortDescription;
-
-    @Column(name = "description",  unique = true, nullable = false, columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "github_link", unique = true, columnDefinition = "TEXT")
     private String githubLink;
 
-    @Column(name = "gitlab_link", unique = true, columnDefinition = "TEXT")
-    private String gitLabLink;
-
-    @Column(name = "youtube_link", unique = true, columnDefinition = "TEXT")
     private String youtubeLink;
 
-    @Column(name = "live_link", unique = true, columnDefinition = "TEXT")
-    private String liveLink;
+    private String keyWords;
 
-    @Column(name = "created_on", updatable = false, nullable = false)
-    private Instant createdOn;
+    private String page;
 
-    @Column(name = "updated_on")
-    private Instant updatedOn;
+    private String path;
 
+    private Instant createdUpdateOn = Instant.now();
+
+    private String formatedDate =  getFormatedDate();
+
+    private boolean enable = true;
+
+    Random r = new Random();
+
+    private int views = r.nextInt(25);
+    private int likes =  r.nextInt(25);
+
+
+    private int numbersOfViews;
+
+    public String getFormatedDate(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime( FormatStyle.SHORT )
+                .withLocale( Locale.getDefault() )
+                .withZone( ZoneId.systemDefault() );
+
+        Instant instant = getCreatedUpdateOn();
+       return formatter.format( instant );
+    }
+
+
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
 }

@@ -4,7 +4,7 @@
      xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Milson Antonio - Java Software Engineer</title>
+    <title th:text="${title}"></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css} "/>
@@ -39,7 +39,6 @@
 
 <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" style="background-color: #737373">
     <div class="container">
-
         <!-- init ma-log -->
         <div class="container" style="padding-left: 15%">
             <div class="hover01 column">
@@ -57,17 +56,6 @@
                 <li class="nav-item">
                     <a class="nav-link js-scroll active" href="/" style="font-weight: bold; font-size: 110%;">HOME</a>
                 </li>
-
-                <!--
-                <li class="nav-item">
-                    <a class="nav-link js-scroll" href="#about" style="font-weight: bold; font-size: 110%;">ABOUT</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link js-scroll" href="#blog" style="color:font-weight: bold; font-size: 110%;">BLOG</a>
-                </li>
-                -->
-
                 <li class="nav-item" style="margin-left:25%; bold; font-size: 110%;">
                     <a class="nav-link js-scroll" href="#bolsas">BOLSAS</a>
                 </li>
@@ -93,41 +81,12 @@
 <!-- end nav-bar-->
 
 
-<!-- start about -->
-<section id="about" style="padding-top:14%; padding-bottom:8%; background-color:#DCDCDC;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div class="card my-3">
-                    <form action="#" th:action="@{/login}" method="post" th:object="${user}" class="card-body cardbody-color p-lg-5">
-                        <div class="text-center">
-                            <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
-                                 width="150px" alt="profile">
-                        </div>
-                        <div class="mb-4">
-                            <label>User Name</label>
-                            <input type="text" class="form-control" name="userName" placeholder="User Name">
-                        </div>
-                        <div class="mb-4">
-                            <label>Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="**********">
-                        </div>
-
-                        <div class="mt-4 text-center">
-                            <button type="submit" class="btn btn-primary" style="width: 178px;"> Login  </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
+<!-- content here -->
+<section id="content" style="padding-top:14%; padding-bottom:8%; background-color:#DCDCDC;">
 
 
 </section>
-<!-- termina aqui about -->
+<!-- content end here -->
 
 
 

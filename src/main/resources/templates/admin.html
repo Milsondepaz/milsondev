@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Milson Antonio - Java Software Engineer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css} "/>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet" />
+    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/6.1.0/css/all.css} "/>
+
+    <link th:href="@{/styles/imagemalogoefect.css}" rel="stylesheet" />
+
+    <link th:href="@{/styles/navbar.css}" rel="stylesheet" />
+
+    <link th:href="@{/styles/articlecards.css}" rel="stylesheet" />
+
+    <script type="text/javascript" th:src="@{/js/typewritereffect.js}"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
+
+
+    <!-- Include Bootstrap CSS and Javascript Files
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    -->
+
+</head>
+<body>
+
+<!-- style="padding-left: 15%" -->
+
+<!-- init nav-bar-->
+
+<nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" style="background-color: #737373">
+    <div class="container">
+
+        <!-- init ma-log -->
+        <div class="container" style="padding-left: 15%">
+            <div class="hover01 column">
+                <a class="navbar-brand js-scroll" href="/">
+                    <figure>
+                        <img src="img/ma-logo.png">
+                    </figure>
+                </a>
+            </div>
+        </div>
+        <!-- end ma-log -->
+
+        <div class="navbar-collapse collapse justify-content-end">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll active" href="/" style="font-weight: bold; font-size: 110%;">HOME</a>
+                </li>
+
+                <!--
+                <li class="nav-item">
+                    <a class="nav-link js-scroll" href="#about" style="font-weight: bold; font-size: 110%;">ABOUT</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link js-scroll" href="#blog" style="color:font-weight: bold; font-size: 110%;">BLOG</a>
+                </li>
+                -->
+
+                <li class="nav-item" style="margin-left:25%; bold; font-size: 110%;">
+                    <a class="nav-link js-scroll" href="#bolsas">BOLSAS</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- init flag language  -->
+    <div class="languages" style="padding-right: 1%; padding-left: 10%;">
+        <div class="flag-deutsch">
+            <a href="#home">
+                <img src="img/deutsch.png">
+            </a>
+        </div>
+        <div class="flag-usa">
+            <a href="#home">
+                <img src="img/usa.png">
+            </a>
+        </div>
+    </div>
+    <!-- end of flag language -->
+</nav>
+<!-- end nav-bar-->
+
+<!-- start about -->
+<section layout:fragment="conteudo" style=" margin-bottom: 11%">
+    <div class="container" style="text-align: right; margin-top: 15%">
+        <h5>Welcome, <a href="/profile" th:text="${userName}"></a></h5>
+            <a href="/" class="col-md-1" style="text-align: right; margin-right: 1%" >Back</a>
+            <a href="/logout" class="col-md-1" style="text-align: right;">Logout</a>
+    </div>
+
+    <div class=" container panel panel-default" style=" margin-top: 2%">
+        <div class="panel-heading" style="background-color: silver;">
+            <h4 class="panel-title aw-titulo-panel" style="background-color: silver; padding-bottom: 2%; padding-top: 1%; margin-left: 1%;">Articles...</h4>
+        </div>
+        <div class="" style="margin-bottom: 2%; text-align: left;">
+            <a class="mt-4 text-left" href="/newpost">
+                <button type="submit" class="btn btn-primary" style="width: 178px;">New</button>
+            </a>
+        </div>
+        <div class="panel-body" >
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th class ="text-center col-md-1">#</th>
+                        <th>Title</th>
+                        <th class ="text-center col-md-2">Create/Update on</th>
+                        <th class ="text-center col-md-1">Views</th>     <!-- open-->
+                        <th class ="text-center col-md-1">Likes</th>     <!-- edit-->
+                        <th class ="text-center col-md-1">Enable/Disable</th>     <!-- disable-->
+                        <th class ="text-center col-md-1">Edit</th>     <!-- delete-->
+                        <th class ="text-center col-md-1">Delete</th>     <!-- delete-->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each = "article: ${articleList}">
+                        <td class ="text-center col-md-1" th:text="${article.id}"></td>
+                        <td>
+                            <a class="" th:href="@{article/{page}(page=${article.page})}" target="_blank">
+                                <div style="text-align: left"><span th:text="${article.title}"> </span></div>
+                            </a>
+                        </td>
+                        <td class ="text-center col-md-1" th:text="${article.formatedDate}"></td>
+                        <td class ="text-center col-md-1" th:text="${article.views}"></td>
+                        <td class ="text-center col-md-1" th:text="${article.likes}"></td>
+
+                        <td class ="text-center col-md-1">
+                            <a class="btn btn-link btn-xs" th:href="@{enable_disable/{id}(id=${article.id})}" >
+                                <svg th:if="${article.enable}"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-toggle2-on" viewBox="0 0 16 16">
+                                    <path d="M7 5H3a3 3 0 0 0 0 6h4a4.995 4.995 0 0 1-.584-1H3a2 2 0 1 1 0-4h3.416c.156-.357.352-.692.584-1z"/>
+                                    <path d="M16 8A5 5 0 1 1 6 8a5 5 0 0 1 10 0z"/>
+                                </svg>
+                                <svg th:unless="${article.enable}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-toggle2-off" viewBox="0 0 16 16">
+                                    <path d="M9 11c.628-.836 1-1.874 1-3a4.978 4.978 0 0 0-1-3h4a3 3 0 1 1 0 6H9z"/>
+                                    <path d="M5 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0 1A5 5 0 1 0 5 3a5 5 0 0 0 0 10z"/>
+                                </svg>
+                            </a>
+                        </td>
+
+                        <td class ="text-center col-md-1">
+                            <a class="btn btn-link btn-xs" href="#edit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                            </svg>
+                            </a>
+                        </td>
+                        <!-- class="btn btn-link btn-xs" th:href="@{/{codigo}(codigo = ${titulo.codigo})}" -->
+                        <td class ="text-center col-md-1">
+                            <a class="btn btn-link btn-xs" th:href="@{/{id}(id=${article.id})}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                            </svg>
+                            </a>
+                        </td>
+                        <!--
+                        <td class ="text-center" th:text="${{titulo.dataVencimento}}"></td>
+                        <td class ="text-right" th:text="|€ ${{titulo.valor}}|"></td>
+                        <td class="text-center" th:attr="data-role=${titulo.codigo}">
+                                    <span class="label" th:text="${titulo.status.descricao}"
+                                          th:classappend="${titulo.isPendente() ? 'label-danger' : 'label-success'}">
+                                    </span>
+                        </td>
+                        <td class="text-center">
+                            <a class="btn btn-link btn-xs" th:href="@{/{codigo}(codigo = ${titulo.codigo})}"
+                               title="Editar" rel="tooltip" data-placement="top">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                            <a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoModal"
+                               th:attr="data-codigo=${titulo.codigo}, data-descricao=${titulo.descricao}"
+                               title="Excluir" rel="tooltip" data-placement="top">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                            <a class="btn btn-link btn-xs js-atualizar-status" th:if="${titulo.isPendente()}"
+                               title="Receber" rel="tooltip" data-placement="top"
+                               th:attr="data-codigo=${titulo.codigo}"
+                               th:href="@{receber/{codigo}(codigo=${titulo.codigo})}">
+                                <span class="glyphicon glyphicon-check"></span>
+                            </a>
+                            -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" th:if= "${#lists.isEmpty(articleList)}">You still have no post in your Blog.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--<div th:replace="DialogoConfirmacaoExclusao"></div> -->
+    </div>
+</section>
+<!-- termina aqui about -->
+
+
+<footer class="site-footer fixed-bottom">
+    </div>
+    <hr>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <p class="copyright-text">Thanks for visiting - Milson</p>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <ul class="social-icons">
+
+                    <li><a class="hover01 column" href="#">
+                        <figure>
+                            <img src="img/linkedin.png">
+                        </figure>
+                    </a></li>
+
+                    <li><a class="hover01 column" href="#">
+                        <figure>
+                            <img src="img/youtube.png">
+                        </figure>
+                    </a></li>
+
+                    <li><a class="hover01 column" href="#">
+                        <figure>
+                            <img src="img/instagram.png">
+                        </figure>
+                    </a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+<!-- Third party plugin JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+</body>

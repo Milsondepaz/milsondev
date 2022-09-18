@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Milson Antonio - Java Software Engineer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css} "/>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet" />
+    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/6.1.0/css/all.css} "/>
+
+    <link th:href="@{/styles/imagemalogoefect.css}" rel="stylesheet" />
+
+    <link th:href="@{/styles/navbar.css}" rel="stylesheet" />
+
+    <link th:href="@{/styles/articlecards.css}" rel="stylesheet" />
+
+    <script type="text/javascript" th:src="@{/js/typewritereffect.js}"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
+
+</head>
+<body>
+
+<nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" style="background-color: #737373">
+    <div class="container">
+
+        <!-- init ma-log -->
+        <div class="container" style="padding-left: 15%">
+            <div class="hover01 column">
+                <a class="navbar-brand js-scroll" href="/">
+                    <figure>
+                        <img src="img/ma-logo.png">
+                    </figure>
+                </a>
+            </div>
+        </div>
+        <!-- end ma-log -->
+
+        <div class="navbar-collapse collapse justify-content-end">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll active" href="/" style="font-weight: bold; font-size: 110%;">HOME</a>
+                </li>
+                <li class="nav-item" style="margin-left:25%; bold; font-size: 110%;">
+                    <a class="nav-link js-scroll" href="#bolsas">BOLSAS</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- init flag language  -->
+    <div class="languages" style="padding-right: 1%; padding-left: 10%;">
+        <div class="flag-deutsch">
+            <a href="#home">
+                <img src="img/deutsch.png">
+            </a>
+        </div>
+        <div class="flag-usa">
+            <a href="#home">
+                <img src="img/usa.png">
+            </a>
+        </div>
+    </div>
+</nav>
+<!-- end nav-bar-->
+
+<!-- start about -->
+<section layout:fragment="conteudo" style=" margin-bottom: 12%">
+    <div class="container" style="text-align: right; margin-top: 14%">
+        <h5>Welcome, <a href="/profile" th:text="${userName}"></a></h5>
+            <a href="/admin" class="col-md-1" style="text-align: right; margin-right: 1%" >Back</a>
+            <a href="/logout" class="col-md-1" style="text-align: right;">Logout</a>
+    </div>
+
+
+    <div class=" container panel panel-default" style=" margin-top: 2%">
+        <div class="panel-heading" style="background-color: silver;">
+            <h4 class="panel-title aw-titulo-panel" style="background-color: silver; padding-bottom: 2%; padding-top: 1%; margin-left: 1%;">Create/Edit...</h4>
+        </div>
+        <div class="panel-heading" th:replace="mensagemok"></div>
+        <div class="panel-heading" th:replace="mensagemerro"></div>
+
+
+        <div class="container">
+            <form action="#" th:action="@{/update_user}" method="post" th:object="${user}">
+                <div class="container">
+                <div class="row">
+                <div class="col mt-5">
+                <div class="card">
+                        <article class="card-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <label>Title</label>
+                                        <input type="text" class="form-control" name="title" placeholder="Title of Article, Post or Blog" >
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col mt-2">
+                                        <label>Tags</label>
+                                        <input type="text" class="form-control" name="tags" placeholder="Tags" >
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col mt-2">
+                                        <label>File name</label>
+                                        <input type="text" class="form-control" name="tags" placeholder="File name" >
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col mt-2">
+                                        <label>Source code</label>
+                                        <input type="text" class="form-control" name="tags" placeholder="Source code" >
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col mt-2">
+                                        <label>Live link</label>
+                                        <input type="text" class="form-control" name="tags" placeholder="Live link" >
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 mt-4">
+                                        <div class="">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Add content</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 mt-4">
+                                        <div class="">
+                                            <button type="button" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- start modal -->
+
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Write a content...</h5>
+                                                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label class="col-form-label">Chose:</label>
+                                                        <select id="cars" name="cars">
+                                                            <option value="volvo">Title</option>
+                                                            <option value="saab">Link for image</option>
+                                                            <option value="fiat">Peace of code</option>
+                                                            <option value="audi">Paragraph</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="message-text" class="col-form-label">Message:</label>
+                                                        <textarea class="form-control" id="message-text"></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn btn-primary">Add</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- end modal -->
+
+
+                            </div>
+                    </article>
+                </div>
+                </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- fixed-bottom-->
+<footer class="site-footer" style="background-color:#26272b;">
+        </div>
+        <hr>
+        </div>
+        <div class="container" style="text-align:center">
+            <div class="text-center" style="text-align:center; margin-top:4%; margin-bottom:2%">
+                <H6 class="copyright-text">Thanks for visiting - Milson</H6>
+                <img src="../img/coracao.png">
+            </div>
+        </div>
+</footer>
+
+<!-- Bootstrap core JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+
+<!-- Third party plugin JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+</body>
