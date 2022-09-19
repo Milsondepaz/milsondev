@@ -130,7 +130,7 @@ public class Principal {
     public ModelAndView openArticle(@PathVariable String page, RedirectAttributes attributes) {
         Article article = articleService.getArticleByHtmlPage(page).get();
 
-        ModelAndView mv = new ModelAndView(article.getPath()+page);
+        ModelAndView mv = new ModelAndView(page);
 
         mv.addObject("article", article);
         mv.addObject("title", article.getTitle());
