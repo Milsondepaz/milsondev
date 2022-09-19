@@ -33,8 +33,6 @@ public class ArticleService {
         article1.setGithubLink("https://github.com/Milsondepaz/tbagroup-milson");
         article1.setYoutubeLink("https://youtu.be/73tzcFTnhSI");
         article1.setKeyWords("Key Words: #Java #JavaSE #Threads #Concurrency #DesignPatterns");
-        article1.setPage("/blogs/simultaor-for-transport-management-of-containerezed-port-cargo-with-javase");
-        article1.setPath("/blogs/");
         article1.setShortName("#article01");
         article1.setAuthor("milsondev");
         article1.setNumbersOfViews(0);
@@ -47,7 +45,6 @@ public class ArticleService {
         article2.setYoutubeLink("https://youtu.be/er7pSuhFsmo");
         article2.setKeyWords("Key Words: #Java #JavaSE #Threads #Concurrency #DesignPatterns");
         article2.setPage("ecommerce-fruit-shop-with-java-and-srping");
-        article2.setPath("/blogs/");
         article2.setShortName("#article02");
         article2.setAuthor("milsondev");
         article2.setNumbersOfViews(0);
@@ -61,7 +58,6 @@ public class ArticleService {
         article3.setYoutubeLink("https://youtu.be/EAmblRh06YM");
         article3.setKeyWords("Key Words: #Java #JavaSE #Threads #Concurrency #DesignPatterns");
         article3.setPage("account-and-billing-control-system");
-        article3.setPath("/blogs/");
         article3.setShortName("#article03");
         article3.setAuthor("milsondev");
         article2.setNumbersOfViews(0);
@@ -74,7 +70,6 @@ public class ArticleService {
         article4.setYoutubeLink("https://youtu.be/EAmblRh06YM");
         article4.setKeyWords("Key Words: #Java #JavaSE #Threads #Concurrency #DesignPatterns");
         article4.setPage("java-spring-boot-validation-thymeleaf");
-        article4.setPath("/blogs/");
         article4.setShortName("#article04");
         article4.setAuthor("milsondev");
         article4.setNumbersOfViews(0);

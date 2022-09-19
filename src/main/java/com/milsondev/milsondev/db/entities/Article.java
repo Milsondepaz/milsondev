@@ -40,7 +40,7 @@ public class Article {
 
     private String page;
 
-    private String path;
+    private String path = "./articles/";
 
     private Instant createdUpdateOn = Instant.now();
 
