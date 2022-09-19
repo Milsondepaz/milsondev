@@ -140,6 +140,10 @@ public class ArticleService {
 
     public Paged<Article> getPage(int pageNumber, int size) {
         PageRequest request = PageRequest.of(pageNumber - 1, size);
+        //Optional<Page<Article>> articlePage2 = repository.findAllPageCustomQuery(request);
+
+        //Page<Article> articlePage = articlePage2.get();
+
         Page<Article> articlePage = repository.findAll(request);
 
         // ja tem q vir filtrado do banco

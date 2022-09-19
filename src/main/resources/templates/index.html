@@ -83,6 +83,11 @@
                 <img src="img/usa.png">
             </a>
         </div>
+        <div class="flag-angola">
+            <a href="#home">
+                <img src="img/angola.png">
+            </a>
+        </div>
     </div>
     <!-- end of flag language -->
 </nav>
@@ -145,7 +150,7 @@ https://www.bootdey.com/bootstrap-themes
                                     <div class="about-info">
                                         <p><span class="title-s" style="font-weight: bold;">Email: </span> <span th:text="${user.email}"></span></p>
                                         <p><span class="title-s" style="font-weight: bold;">Phone: </span> <span th:text="${user.phone}"></span></p>
-                                        <p><span class="title-s" style="font-weight: bold;">Area: </span> <span th:text="${user.location}"></span></p>
+                                        <!--<p><span class="title-s" style="font-weight: bold;">Area: </span> <span th:text="${user.location}"></span></p>-->
                                     </div>
 
                                     <!-- start images -->
@@ -228,14 +233,17 @@ https://www.bootdey.com/bootstrap-themes
                         </div>
 
                         <div class="row align-items-center">
+
+                            <!--
                             <div class="col-4 col-md-2">
                                 <div class="text-secondary-d1 text-120"; style="margin-left:60%;">
                                     <span class="text-180" th:text="${article.id}"></span>
                                 </div>
                             </div>
+                            -->
 
-                            <div class="col-8 col-md-9">
-                                <p style="text-align: justify" th:text="#{about.third}"></p>
+                            <div class="col">
+                                <p style="text-align: justify; margin-left: 5%; margin-right: 7%;" th:text="#{about.third}"></p>
                             </div>
                         </div>
                     </div>
