@@ -38,6 +38,7 @@ public class ArticleService {
         article1.setNumbersOfViews(0);
 
 
+
         Article article2 = new Article();
         article2.setTitle("Fruit Shop (Java 8/Srping Boot + PostgreSQL + Thymeleaf");
         article2.setDescription("Desktop application, developed with Java 8, thats simulates");
@@ -51,6 +52,7 @@ public class ArticleService {
 
 
 
+
         Article article3 = new Article();
         article3.setTitle("Account and Billing Control System");
         article3.setDescription("Desktop application, developed with Java 8, thats simulates ");
@@ -60,7 +62,7 @@ public class ArticleService {
         article3.setPage("account-and-billing-control-system");
         article3.setShortName("#article03");
         article3.setAuthor("milsondev");
-        article2.setNumbersOfViews(0);
+        article3.setNumbersOfViews(0);
 
 
         Article article4 = new Article();
@@ -98,17 +100,17 @@ public class ArticleService {
     public void changeStateOfArticle (long id) {
         Article article = repository.findById(id).get();
 
-        boolean valor = article.isEnable();
+        boolean valor = article.isPublished();
 
-        if (article.isEnable() == false){
-            article.setEnable(true);
+        if (article.isPublished() == false){
+            article.setPublished(true);
         } else {
-            article.setEnable(false);
+            article.setPublished(false);
         }
 
         repository.save(article);
 
-        valor = article.isEnable();
+        valor = article.isPublished();
 
     }
 
@@ -140,13 +142,23 @@ public class ArticleService {
 
     public Paged<Article> getPage(int pageNumber, int size) {
         PageRequest request = PageRequest.of(pageNumber - 1, size);
-        //Optional<Page<Article>> articlePage2 = repository.findAllPageCustomQuery(request);
 
-        //Page<Article> articlePage = articlePage2.get();
+       // List<Article> listNormal = repository.findAllCustom();
 
-        Page<Article> articlePage = repository.findAll(request);
+        int i = 0;
 
-        // ja tem q vir filtrado do banco
+        int b = 0;
+
+
+        Page<Article> articlePage = repository.findAllCustom(request);
+
+
+
+        //Page<Article> articlePage = repository.findAll(request);
+
+        int  y = 0;
+
+        int z = 0;
 
 
         return new Paged<>(articlePage, Paging.of(articlePage.getTotalPages(), pageNumber, size));

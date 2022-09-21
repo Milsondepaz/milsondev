@@ -46,7 +46,7 @@ public class Article {
 
     private String formatedDate =  getFormatedDate();
 
-    private boolean enable = true;
+    private boolean published = true;
 
     Random r = new Random();
 
