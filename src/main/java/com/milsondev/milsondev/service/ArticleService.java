@@ -142,25 +142,7 @@ public class ArticleService {
 
     public Paged<Article> getPage(int pageNumber, int size) {
         PageRequest request = PageRequest.of(pageNumber - 1, size);
-
-       // List<Article> listNormal = repository.findAllCustom();
-
-        int i = 0;
-
-        int b = 0;
-
-
         Page<Article> articlePage = repository.findAllCustom(request);
-
-
-
-        //Page<Article> articlePage = repository.findAll(request);
-
-        int  y = 0;
-
-        int z = 0;
-
-
         return new Paged<>(articlePage, Paging.of(articlePage.getTotalPages(), pageNumber, size));
     }
 

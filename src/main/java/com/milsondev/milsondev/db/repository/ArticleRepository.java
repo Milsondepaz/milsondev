@@ -16,19 +16,10 @@ import java.util.Optional;
 
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Long> {
-
-
     Optional<Article> findByPage(String htmlPage);
-
-    //@Query(value = "select * from article a where a.published = true;", nativeQuery = true)
-
-    @Query(
+       @Query(
             value = "SELECT * FROM article a where a.published = true \n-- #pageable\n",
             countQuery = "SELECT count(*) FROM article",
             nativeQuery = true)
     Page<Article> findAllCustom(Pageable pageable);
-
-    //@Modifying
-    //@Query(value = "select * from article where id not in ('22','10','5');", nativeQuery = true)
-    //Optional<Page<Article>> findAllPageCustomQuery(Pageable pageable);
 }
