@@ -27,20 +27,16 @@ public class User {
     @Email(message = "E-mail is not valid")
     private String email;
 
-    @NotBlank(message = "E-mail is mandatory")
-    @Size(min = 5, max=10, message = "User name should be between 5 and 10")
-    private String userName;
+    //@NotBlank(message = "E-mail is mandatory")
+    //@Size(min = 5, max=10, message = "User name should be between 5 and 10")
 
-    private String fullName;
+    private String userName = "milsona";
 
     @NotBlank(message = "Password is mandatory")
     private String password;
 
     @NotBlank(message = "Phone number is mandatory")
     private String phone;
-
-    @NotBlank(message = "Address is mandatory")
-    private String location;
 
     @NotBlank(message = "Git Hub link is mandatory")
     private String githubLink;
@@ -54,6 +50,14 @@ public class User {
     @NotBlank(message = "YouTube Channel link is mandatory")
     private String youtubeLink;
 
-    @NotBlank(message = "Instagram link is mandatory")
+    //@NotBlank(message = "Instagram link is mandatory")
     private String instagramLink;
+
+    private String firstParagraph;
+
+    private String secondParagraph;
+
+    private String thirdParagraph;
+
+
 }

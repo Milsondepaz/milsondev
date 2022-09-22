@@ -27,43 +27,6 @@ public class ArticleService {
 
     @PostConstruct
     public void dataBase() {
-        Article article1 = new Article();
-        article1.setTitle("Simulator for Transport Management of Containerized Port Cargo");
-        article1.setDescription("Desktop application, developed with Java 8, thats simulates ");
-        article1.setGithubLink("https://github.com/Milsondepaz/tbagroup-milson");
-        article1.setYoutubeLink("https://youtu.be/73tzcFTnhSI");
-        article1.setKeyWords("Key Words: #Java #JavaSE #Threads #Concurrency #DesignPatterns");
-        article1.setShortName("#article01");
-        article1.setAuthor("milsondev");
-        article1.setNumbersOfViews(0);
-
-
-
-        Article article2 = new Article();
-        article2.setTitle("Fruit Shop (Java 8/Srping Boot + PostgreSQL + Thymeleaf");
-        article2.setDescription("Desktop application, developed with Java 8, thats simulates");
-        article2.setGithubLink("https://github.com/Milsondepaz/cinemofruitshop");
-        article2.setYoutubeLink("https://youtu.be/er7pSuhFsmo");
-        article2.setKeyWords("Key Words: #Java #JavaSE #Threads #Concurrency #DesignPatterns");
-        article2.setPage("ecommerce-fruit-shop-with-java-and-srping");
-        article2.setShortName("#article02");
-        article2.setAuthor("milsondev");
-        article2.setNumbersOfViews(0);
-
-
-
-
-        Article article3 = new Article();
-        article3.setTitle("Account and Billing Control System");
-        article3.setDescription("Desktop application, developed with Java 8, thats simulates ");
-        article3.setGithubLink("https://github.com/Milsondepaz/cobranca");
-        article3.setYoutubeLink("https://youtu.be/EAmblRh06YM");
-        article3.setKeyWords("Key Words: #Java #JavaSE #Threads #Concurrency #DesignPatterns");
-        article3.setPage("account-and-billing-control-system");
-        article3.setShortName("#article03");
-        article3.setAuthor("milsondev");
-        article3.setNumbersOfViews(0);
-
 
         Article article4 = new Article();
         article4.setTitle("Javax Validation - Java & Spring Boot");
@@ -77,10 +40,6 @@ public class ArticleService {
         article4.setNumbersOfViews(0);
 
         repository.save(article4);
-        repository.save(article3);
-        repository.save(article2);
-        repository.save(article1);
-
 
     }
 

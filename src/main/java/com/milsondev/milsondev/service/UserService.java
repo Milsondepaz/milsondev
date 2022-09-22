@@ -17,11 +17,8 @@ public class UserService {
     @PostConstruct
     public void dataBase() {
         User user = new User();
-        user.setFullName("Milson Antonio");
         user.setEmail("milson.milson@outlook.com");
         user.setPhone("(+49) 1521 2816 680");
-        user.setLocation("Germany, Bayern - Bamberg");
-        user.setUserName("milsona");
         user.setPassword("12345");
 
         user.setGithubLink("https://github.com/Milsondepaz?tab=repositories");

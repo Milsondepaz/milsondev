@@ -30,17 +30,11 @@ public class Principal {
     @Autowired
     UserService userService;
 
-    private User user = new User();
-
-    @PostConstruct
-    public void init(){
-        user = userService.getUser().get();
-    }
-
     @GetMapping("/")
     public ModelAndView index(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
                               @RequestParam(value = "size", required = false, defaultValue = "4") int size, Model model ) {
         ModelAndView mv = new ModelAndView("index");
+        User user = userService.getUser().get();
         mv.addObject("user", user);
         mv.addObject("articleList", articleService.getPage(pageNumber, size));
         return mv;
@@ -59,10 +53,13 @@ public class Principal {
     @GetMapping("/profile")
     public ModelAndView profile( ) {
         ModelAndView mv = new ModelAndView("profile");
+        User user = userService.getUser().get();
         mv.addObject("user", user);
         mv.addObject("userName", user.getUserName());
         return mv;
     }
+
+
 
 
 
@@ -72,7 +69,7 @@ public class Principal {
             attributes.addFlashAttribute("mensagem_erro", "Please fill out all necessary fields correctly!");
             return "redirect:/profile";
         }
-        user = userService.updateUser(user_args);
+        User user = userService.updateUser(user_args);
         attributes.addFlashAttribute("user", user);
         attributes.addFlashAttribute("userName", user.getUserName());
         attributes.addFlashAttribute("mensagem", "Your information has been successfully updated!");
@@ -108,13 +105,6 @@ public class Principal {
         List<String> listTag = new ArrayList<>(Arrays.asList("custom login", "securty ", "spring boot", "spring security", "template", "thymeleaf"));
         mv.addObject("listTag", listTag);
 
-
-
-
-
-
-
-
         return mv;
     }
 
@@ -122,17 +112,16 @@ public class Principal {
     public ModelAndView admin(Model model) {
         ModelAndView mv = new ModelAndView("admin");
         mv.addObject("articleList", articleService.getArticleList());
+        User user = userService.getUser().get();
         mv.addObject("userName", user.getUserName());
         return mv;
     }
 
     @RequestMapping(value = "/article/{page}", method = RequestMethod.GET)
-    public ModelAndView openArticle(@PathVariable String page, RedirectAttributes attributes) {
+    public ModelAndView openArticle(@PathVariable String page) {
         Article article = articleService.getArticleByHtmlPage(page).get();
 
         ModelAndView mv = new ModelAndView( article.getPath()+ page);
-
-
 
         mv.addObject("article", article);
         mv.addObject("title", article.getTitle());
@@ -144,6 +133,16 @@ public class Principal {
         article.setNumbersOfViews(article.getNumbersOfViews() + 1);
         articleService.articleUpdateNumbersOfViews(article);
 
+        return mv;
+    }
+
+    @RequestMapping(value = "/edit/{page}", method = RequestMethod.GET)
+    public ModelAndView editArticle(@PathVariable String page) {
+        Article article = articleService.getArticleByHtmlPage(page).get();
+        ModelAndView mv = new ModelAndView("edit");
+        mv.addObject("article", article);
+        User user = userService.getUser().get();
+        mv.addObject("userName", user.getUserName());
         return mv;
     }
 
