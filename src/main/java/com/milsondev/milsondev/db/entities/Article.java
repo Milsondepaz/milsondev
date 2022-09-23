@@ -6,6 +6,8 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import javax.validation.constraints.*;
@@ -24,50 +26,47 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String shortName;
 
-    private String author;
+    private String author = "milsona";
 
+    @NotBlank(message = "Title is mandatory")
     private String title;
 
+    @NotBlank(message = "Description is mandatory")
+    @Column(columnDefinition = "TEXT", length=300)
+    //@Size(min = 239, max=300, message = "Description should be between 239 and 300")
     private String description;
 
-    private String githubLink;
+    private String sourceCode;
 
-    private String youtubeLink;
+    private String liveLink;
 
-    private String keyWords;
+    private String tags;
 
-    private String page;
+    //private List<String> listTags = new ArrayList<>();
+
+    @NotBlank(message = "File Name is mandatory")
+    @Column(unique=true)
+    public String fileName;
 
     private String path = "./articles/";
 
     private Instant createdUpdateOn = Instant.now();
 
-    private String formatedDate =  getFormatedDate();
-
-    private boolean published = true;
-
+    private boolean published = false;
     Random r = new Random();
-
     private int views = r.nextInt(25);
     private int likes =  r.nextInt(25);
 
+    public String fortmadetData = getFormatedDate();
 
-    private int numbersOfViews;
-
-    public String getFormatedDate(){
+    private String getFormatedDate(){
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime( FormatStyle.SHORT )
                 .withLocale( Locale.getDefault() )
                 .withZone( ZoneId.systemDefault() );
-
-        Instant instant = getCreatedUpdateOn();
-       return formatter.format( instant );
+       return formatter.format(getCreatedUpdateOn());
     }
 
 
 
-    public void setShortName(String shortName) {
-        this.shortName = shortName;
-    }
 }

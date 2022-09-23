@@ -273,23 +273,13 @@ https://www.bootdey.com/bootstrap-themes
             <div class="mt-1">
                 <div class="bgc-white my-2 py-3 shadow-sm">
                         <div style="text-align: left; margin-left:5%; margin-bottom:1%">
-                            <a class="" th:href="@{article/{page}(page=${article.page})}">
+                            <a class="" th:href="@{article/{fileName}(fileName=${article.fileName})}">
                                 <div>
                                     <h4 th:text="${article.title}"></h4>
                                 </div>
                             </a>
                         </div>
-
                         <div class="row align-items-center">
-
-                            <!--
-                            <div class="col-4 col-md-2">
-                                <div class="text-secondary-d1 text-120"; style="margin-left:60%;">
-                                    <span class="text-180" th:text="${article.id}"></span>
-                                </div>
-                            </div>
-                            -->
-
                             <div class="col">
                                 <p style="text-align: justify; margin-left: 5%; margin-right: 7%;" th:text="#{about.third}"></p>
                             </div>
@@ -299,7 +289,7 @@ https://www.bootdey.com/bootstrap-themes
         </tr>
     </div>
 
-        <!-- pagination 2 -->
+        <!-- pagination-->
         <nav aria-label="Page navigation" class="paging justify-content-center" >
             <ul class="pagination justify-content-center" th:if="${articleList.page.totalPages > 1}">
                 <li class="page-item" th:classappend="${!articleList.paging.isPrevEnabled()? 'disabled' : ''}">
@@ -321,7 +311,7 @@ https://www.bootdey.com/bootstrap-themes
                 </li>
             </ul>
         </nav>
-        <!-- finish pagination 2 -->
+        <!--end pagination-->
     </div>
 </section>
 

@@ -12,10 +12,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -24,23 +22,13 @@ public class ArticleService {
     @Autowired
     private ArticleRepository repository;
 
-
     @PostConstruct
     public void dataBase() {
-
-        Article article4 = new Article();
-        article4.setTitle("Javax Validation - Java & Spring Boot");
-        article4.setDescription("Desktop application, developed with Java 8, thats simulates ");
-        article4.setGithubLink("https://github.com/Milsondepaz/cobranca");
-        article4.setYoutubeLink("https://youtu.be/EAmblRh06YM");
-        article4.setKeyWords("Key Words: #Java #JavaSE #Threads #Concurrency #DesignPatterns");
-        article4.setPage("java-spring-boot-validation-thymeleaf");
-        article4.setShortName("#article04");
-        article4.setAuthor("milsondev");
-        article4.setNumbersOfViews(0);
-
-        repository.save(article4);
-
+        Article article = new Article();
+        article.setTitle("Javax Validation - Java & Spring Boot");
+        article.setDescription("Desktop application, developed with Java 8, thats simulates");
+        article.setFileName("java-spring-boot-validation-thymeleaf");
+        repository.save(article);
     }
 
     public List<Article> getPageableArticleList() {
@@ -58,46 +46,39 @@ public class ArticleService {
 
     public void changeStateOfArticle (long id) {
         Article article = repository.findById(id).get();
-
         boolean valor = article.isPublished();
-
         if (article.isPublished() == false){
             article.setPublished(true);
         } else {
             article.setPublished(false);
         }
-
         repository.save(article);
-
-        valor = article.isPublished();
-
     }
 
-
-
-
-    public boolean saveArticle(Article articleDto){
-        //Article article = repository.save(converter.convert(articleDto));
-        //return converter.convert(article);
-        return  false;
+    public void saveArticle(Article article){
+        repository.save(article);
     }
 
-    public Optional<Article> getArticleByHtmlPage(Long id) {
-        return repository.findById(id);
+    public void updateArticleInfo(Article article){
+        Article articleDB = repository.findById(article.getId()).get();
+        articleDB.setTitle(article.getTitle());
+        articleDB.setCreatedUpdateOn(Instant.now());
+        articleDB.setDescription(article.getDescription());
+        articleDB.setSourceCode(article.getSourceCode());
+        articleDB.setLiveLink(article.getLiveLink());
+        articleDB.setFileName(article.getFileName());
+        articleDB.setPath(article.getPath());
+        repository.save(articleDB);
     }
 
-    public Optional<Article> getArticleByHtmlPage(String htmlPage) {
-        return repository.findByPage(htmlPage);
+    public Optional<Article> getArticleByFileName(String fileName) {
+        return repository.findByFileName(fileName);
     }
 
     public void articleUpdateNumbersOfViews(Article article) {
         repository.save(article);
     }
 
-    public void updateArticle(Article article) {
-        article.setCreatedUpdateOn(Instant.now());
-        repository.save(article);
-    }
 
     public Paged<Article> getPage(int pageNumber, int size) {
         PageRequest request = PageRequest.of(pageNumber - 1, size);

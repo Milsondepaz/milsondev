@@ -110,7 +110,7 @@
             <h4 class="panel-title aw-titulo-panel" style="background-color: silver; padding-bottom: 2%; padding-top: 1%; margin-left: 1%;">Articles...</h4>
         </div>
         <div class="" style="margin-bottom: 2%; text-align: left;">
-            <a class="mt-4 text-left" href="/newpost">
+            <a class="mt-4 text-left" href="/new-article">
                 <button type="submit" class="btn btn-primary" style="width: 178px;">New</button>
             </a>
         </div>
@@ -124,7 +124,7 @@
                         <th class ="text-center col-md-2">Create/Update on</th>
                         <th class ="text-center col-md-1">Views</th>     <!-- open-->
                         <th class ="text-center col-md-1">Likes</th>     <!-- edit-->
-                        <th class ="text-center col-md-1">Enable/Disable</th>     <!-- disable-->
+                        <th class ="text-center col-md-1">Disable | Enable</th>     <!-- disable-->
                         <th class ="text-center col-md-1">Edit</th>     <!-- delete-->
                         <th class ="text-center col-md-1">Delete</th>     <!-- delete-->
                     </tr>
@@ -133,11 +133,11 @@
                     <tr th:each = "article: ${articleList}">
                         <td class ="text-center col-md-1" th:text="${article.id}"></td>
                         <td>
-                            <a class="" th:href="@{article/{page}(page=${article.page})}" target="_blank">
+                            <a class="" th:href="@{article/{fileName}(fileName=${article.fileName})}" target="_blank">
                                 <div style="text-align: left"><span th:text="${article.title}"> </span></div>
                             </a>
                         </td>
-                        <td class ="text-center col-md-1" th:text="${article.formatedDate}"></td>
+                        <td class ="text-center col-md-1" th:text="${article.fortmadetData}"></td>
                         <td class ="text-center col-md-1" th:text="${article.views}"></td>
                         <td class ="text-center col-md-1" th:text="${article.likes}"></td>
 
@@ -155,7 +155,7 @@
                         </td>
 
                         <td class ="text-center col-md-1">
-                            <a class="btn btn-link btn-xs" th:href="@{/edit/{page}(page=${article.page})}">
+                            <a class="btn btn-link btn-xs" th:href="@{/edit/{fileName}(fileName=${article.fileName})}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                             </svg>
@@ -170,31 +170,6 @@
                             </svg>
                             </a>
                         </td>
-                        <!--
-                        <td class ="text-center" th:text="${{titulo.dataVencimento}}"></td>
-                        <td class ="text-right" th:text="|€ ${{titulo.valor}}|"></td>
-                        <td class="text-center" th:attr="data-role=${titulo.codigo}">
-                                    <span class="label" th:text="${titulo.status.descricao}"
-                                          th:classappend="${titulo.isPendente() ? 'label-danger' : 'label-success'}">
-                                    </span>
-                        </td>
-                        <td class="text-center">
-                            <a class="btn btn-link btn-xs" th:href="@{/{codigo}(codigo = ${titulo.codigo})}"
-                               title="Editar" rel="tooltip" data-placement="top">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </a>
-                            <a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoModal"
-                               th:attr="data-codigo=${titulo.codigo}, data-descricao=${titulo.descricao}"
-                               title="Excluir" rel="tooltip" data-placement="top">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </a>
-                            <a class="btn btn-link btn-xs js-atualizar-status" th:if="${titulo.isPendente()}"
-                               title="Receber" rel="tooltip" data-placement="top"
-                               th:attr="data-codigo=${titulo.codigo}"
-                               th:href="@{receber/{codigo}(codigo=${titulo.codigo})}">
-                                <span class="glyphicon glyphicon-check"></span>
-                            </a>
-                            -->
                         </td>
                     </tr>
                     <tr>
@@ -210,38 +185,14 @@
 <!-- termina aqui about -->
 
 
-<footer class="site-footer fixed-bottom">
+<footer class="site-footer" style="background-color:#26272b;">
     </div>
     <hr>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-sm-6 col-xs-12">
-                <p class="copyright-text">Thanks for visiting - Milson</p>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <ul class="social-icons">
-
-                    <li><a class="hover01 column" href="#">
-                        <figure>
-                            <img src="img/linkedin.png">
-                        </figure>
-                    </a></li>
-
-                    <li><a class="hover01 column" href="#">
-                        <figure>
-                            <img src="img/youtube.png">
-                        </figure>
-                    </a></li>
-
-                    <li><a class="hover01 column" href="#">
-                        <figure>
-                            <img src="img/instagram.png">
-                        </figure>
-                    </a></li>
-
-                </ul>
-            </div>
+    <div class="container" style="text-align:center">
+        <div class="text-center" style="text-align:center; margin-top:4%; margin-bottom:2%">
+            <H6 class="copyright-text">Thanks for visiting - Milson</H6>
+            <img src="img/coracao.png">
         </div>
     </div>
 </footer>

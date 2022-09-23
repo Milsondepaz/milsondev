@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Long> {
-    Optional<Article> findByPage(String htmlPage);
+    Optional<Article> findByFileName(String htmlPage);
        @Query(
             value = "SELECT * FROM article a where a.published = true \n-- #pageable\n",
             countQuery = "SELECT count(*) FROM article",
