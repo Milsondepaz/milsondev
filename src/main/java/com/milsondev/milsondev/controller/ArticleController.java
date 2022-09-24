@@ -39,7 +39,7 @@ public class ArticleController {
     public ModelAndView editArticle(@PathVariable String fileName) {
         Article article = articleService.getArticleByFileName(fileName).get();
         ModelAndView mv = new ModelAndView("edit");
-        User user = userService.getUser().get();
+        User user = userService.getUser();
         mv.addObject("article", article);
         mv.addObject("userName", user.getUserName());
         return mv;
@@ -59,7 +59,7 @@ public class ArticleController {
 
     @GetMapping("/new-article")
     public ModelAndView newArticle( ) {
-        User user = userService.getUser().get();
+        User user = userService.getUser();
         ModelAndView mv = new ModelAndView("new-article");
         mv.addObject("user", user);
         mv.addObject("userName", user.getUserName());
@@ -72,7 +72,7 @@ public class ArticleController {
             attributes.addFlashAttribute("mensagem_erro", "Please fill out all necessary fields correctly!");
             return "redirect:/new-article";
         }
-        User user = userService.getUser().get();
+        User user = userService.getUser();
         article.setAuthor(user.getUserName());
         articleService.saveArticle(article);
         attributes.addFlashAttribute("mensagem", "New article was been successfully saved!");
@@ -82,7 +82,7 @@ public class ArticleController {
     @RequestMapping(value = "/update_article", method = RequestMethod.POST)
     public ModelAndView updateArticle(@Valid @ModelAttribute("article") Article article, Errors errors, RedirectAttributes attributes) {
         ModelAndView mv = new ModelAndView("edit");
-        User user = userService.getUser().get();
+        User user = userService.getUser();
         mv.addObject("user", user);
         mv.addObject("userName", user.getUserName());
 

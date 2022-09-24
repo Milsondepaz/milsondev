@@ -57,7 +57,7 @@ public class UserController {
     @GetMapping("/profile")
     public ModelAndView profile( ) {
         ModelAndView mv = new ModelAndView("profile");
-        User user = userService.getUser().get();
+        User user = userService.getUser();
         mv.addObject("user", user);
         mv.addObject("userName", user.getUserName());
         return mv;
@@ -85,7 +85,7 @@ public class UserController {
     public ModelAndView admin(Model model) {
         ModelAndView mv = new ModelAndView("admin");
         mv.addObject("articleList", articleService.getArticleList());
-        User user = userService.getUser().get();
+        User user = userService.getUser();
         mv.addObject("userName", user.getUserName());
         return mv;
     }
