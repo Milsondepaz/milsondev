@@ -72,6 +72,8 @@ public class ArticleController {
             attributes.addFlashAttribute("mensagem_erro", "Please fill out all necessary fields correctly!");
             return "redirect:/new-article";
         }
+        User user = userService.getUser().get();
+        article.setAuthor(user.getUserName());
         articleService.saveArticle(article);
         attributes.addFlashAttribute("mensagem", "New article was been successfully saved!");
         return "redirect:/new-article";

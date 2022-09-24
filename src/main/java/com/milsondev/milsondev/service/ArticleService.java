@@ -10,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
@@ -21,15 +20,6 @@ public class ArticleService {
 
     @Autowired
     private ArticleRepository repository;
-
-    @PostConstruct
-    public void dataBase() {
-        Article article = new Article();
-        article.setTitle("Javax Validation - Java & Spring Boot");
-        article.setDescription("Desktop application, developed with Java 8, thats simulates");
-        article.setFileName("java-spring-boot-validation-thymeleaf");
-        repository.save(article);
-    }
 
     public List<Article> getPageableArticleList() {
         Pageable firstPageWithTreeElements = PageRequest.of(0, 3);
@@ -79,13 +69,10 @@ public class ArticleService {
         repository.save(article);
     }
 
-
     public Paged<Article> getPage(int pageNumber, int size) {
         PageRequest request = PageRequest.of(pageNumber - 1, size);
         Page<Article> articlePage = repository.findAllCustom(request);
         return new Paged<>(articlePage, Paging.of(articlePage.getTotalPages(), pageNumber, size));
     }
-
-
 
 }

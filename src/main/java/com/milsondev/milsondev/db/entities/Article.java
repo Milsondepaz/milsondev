@@ -27,7 +27,7 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String author = "milsona";
+    private String author;
 
     @NotBlank(message = "Title is mandatory")
     private String title;
@@ -54,9 +54,8 @@ public class Article {
     private Instant createdUpdateOn = Instant.now();
 
     private boolean published = false;
-    Random r = new Random();
-    private int views = r.nextInt(25);
-    private int likes =  r.nextInt(25);
+    private int views;
+    private int likes;
 
     public String fortmadetData = getFormatedDate();
 

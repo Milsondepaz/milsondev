@@ -25,7 +25,9 @@
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8900699534475025"
             crossorigin="anonymous"></script>
+
     <link rel="icon" type="image/ico" th:href="@{../static/favicon.ico}">
+
 
     <!-- Include Bootstrap CSS and Javascript Files
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -48,7 +50,7 @@
             <div class="hover01 column">
                 <a class="navbar-brand js-scroll" href="/">
                     <figure>
-                        <img src="../img/ma-logo.png">
+                        <img src="img/ma-logo.png">
                     </figure>
                 </a>
             </div>
@@ -71,90 +73,67 @@
     <div class="languages" style="padding-right: 1%; padding-left: 10%;">
         <div class="flag-deutsch">
             <a href="#home">
-                <img src="../img/deutsch.png">
+                <img src="img/deutsch.png">
             </a>
         </div>
         <div class="flag-usa">
             <a href="#home">
-                <img src="../img/usa.png">
+                <img src="img/usa.png">
             </a>
         </div>
     </div>
+    <!-- end of flag language -->
 </nav>
 <!-- end nav-bar-->
 
 
-
 <!-- start about -->
-<section layout:fragment="conteudo" style=" margin-bottom: 2%">
-    <div class="container" style="text-align: right; margin-top: 14%">
-        <h5>Welcome, <a href="/profile" th:text="${userName}"></a></h5>
-            <a href="/admin" class="col-md-1" style="text-align: right; margin-right: 1%" >Back</a>
-            <a href="/logout" class="col-md-1" style="text-align: right;">Logout</a>
-    </div>
+<section style="padding-top:14%; padding-bottom:8%; background-color:#DCDCDC;">
+    <div class="panel-heading" th:replace="mensagemok"></div>
+    <div class="panel-heading" th:replace="mensagemerro"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card my-3">
+                    <form action="#" th:action="@{/sign-up}" method="post" th:object="${user}" class="card-body cardbody-color p-lg-5">
+                        <div class="text-center">
+                            <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                                 width="150px" alt="profile">
+                        </div>
+                        <div class="mb-4">
+                            <label>User Name</label>
+                            <input type="text" class="form-control" name="userName" placeholder="User Name">
+                        </div>
 
-
-    <div class=" container panel panel-default" style=" margin-top: 2%">
-        <div class="panel-heading" style="background-color: silver;">
-            <h4 class="panel-title aw-titulo-panel" th:text="${article.title}" style="background-color: silver; padding-bottom: 2%; padding-top: 1%; margin-left: 1%;"></h4>
-        </div>
-        <div class="panel-heading" th:replace="mensagemok"></div>
-        <div class="panel-heading" th:replace="mensagemerro"></div>
-
-        <div class="container">
-            <form action="#" th:action="@{/update_article}" method="post" th:object="${article}">
-                <div class="container">
-                <div class="row">
-                <div class="col-md-26 mt-5">
-                <div class="card">
-                    <article class="card-body">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Title</label>
-                                    <input type="text" class="form-control" name="title" placeholder="Title" th:field="*{title}">
-                                    <input type="hidden" th:field="*{id}" name="id">
-                                </div>
-                                <div class="col-md-12 mt-2">
-                                    <label>Description</label>
-                                    <textarea class="form-control" rows="4" name="description" placeholder="Description" th:field="*{description}"></textarea>
-                                </div>
-                                <div class="col-md-12 mt-2">
-                                    <label>Tags</label>
-                                    <input type="text" class="form-control"  name="tags" placeholder="Description" th:field="*{tags}">
-                                </div>
-                                <div class="col-md-6 mb-2 mt-2">
-                                    <label>Source Code</label>
-                                    <input type="text" class="form-control" name="sourceCode" placeholder="Source Code"  th:field="*{sourceCode}">
-                                </div>
-                                <div class="col-md-6 mb-2 mt-2">
-                                    <label>Live Link</label>
-                                    <input type="text" class="form-control" name="liveLink" placeholder="Live Link" th:field="*{liveLink}">
-                                </div>
-                                <div class="col-md-6 mb-2 mt-2">
-                                    <label>Path</label>
-                                    <input type="text" class="form-control" name="path" placeholder="Path" th:field="*{path}">
-                                </div>
-                                <div class="col-md-6 mb-2 mt-2">
-                                    <label>File Name</label>
-                                    <input type="text" class="form-control" name="fileName" placeholder="File Name" th:field="*{fileName}">
-                                </div>
+                        <div class="row">
+                            <div class="col-md-6 mt-2">
+                                <label>Password</label>
+                                <input type="password" class="form-control" name="password" placeholder="**********">
+                            </div>
+                            <div class="col-md-6 mb-2 mt-2">
+                                <label>Repeat Password</label>
+                                <input type="password" class="form-control" name="repeatPassword" placeholder="**********">
                             </div>
                         </div>
-                    </article>
-                </div>
-                </div>
-                        <div class="mt-3">
-                            <button type="submit" class="btn btn-primary" style="width: 178px; margin-left: 5%;">Save</button>
+                        <div class="mt-4 text-center">
+                            <button type="submit" class="btn btn-primary" style="width: 178px;">Sign Up</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
-</section>
 
-<!-- fixed-bottom-->
+
+
+
+
+</section>
+<!-- termina aqui about -->
+
+
+
+
 <footer class="site-footer" style="background-color:#26272b;">
     </div>
     <hr>
@@ -162,7 +141,7 @@
     <div class="container" style="text-align:center">
         <div class="text-center" style="text-align:center; margin-top:4%; margin-bottom:2%">
             <H6 class="copyright-text">Thanks for visiting - Milson</H6>
-            <img src="../img/coracao.png">
+            <img src="img/coracao.png">
         </div>
     </div>
 </footer>
@@ -173,5 +152,9 @@
 
 <!-- Third party plugin JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+
+
+
 
 </body>

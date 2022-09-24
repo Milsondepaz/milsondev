@@ -26,6 +26,28 @@ public class UserController {
     @Autowired
     ArticleService articleService;
 
+    @GetMapping("/sign-up")
+    public String signup() {
+        return "sign-up";
+    }
+
+    @RequestMapping(value = "/sign-up", method = RequestMethod.POST)
+    public String addUser(@Valid @ModelAttribute("user") User user, Errors errors, RedirectAttributes attributes) {
+        if (errors.hasErrors()){
+            attributes.addFlashAttribute("mensagem_erro", "Please fill out all necessary fields correctly!");
+            return "redirect:/sign-up";
+        }
+
+        if (!user.getPassword().equals(user.getRepeatPassword())){
+            attributes.addFlashAttribute("mensagem_erro", "The passowrd dont fit!");
+            return "redirect:/sign-up";
+        }
+
+        userService.saveUser(user);
+        attributes.addFlashAttribute("mensagem", "You have successfully registered, click to Login");
+
+        return "redirect:/sign-up";
+    }
 
     @GetMapping("/logout")
     public String logout( ) {
@@ -82,8 +104,5 @@ public class UserController {
         // add msm de login incorreto
         return mv;
     }
-
-
-
 
 }
