@@ -27,9 +27,11 @@ public class User {
     private String email;
 
     @NotBlank(message = "User Name is mandatory")
+    @Column(unique=true)
     private String userName;
 
     @NotBlank(message = "Password is mandatory")
+    @Column(unique=true)
     private String password;
 
     private String repeatPassword;

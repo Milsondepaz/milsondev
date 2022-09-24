@@ -93,7 +93,8 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(@ModelAttribute("user") User user_arg) {
         ModelAndView mv;
-        if(user_arg.getUserName().equals("milsona") && user_arg.getPassword().equals("12345")){
+        User user = userService.getUser();
+        if(user_arg.getUserName().equals(user.getUserName()) && user_arg.getPassword().equals(user.getPassword())){
             mv = new ModelAndView("admin");
             mv.addObject("articleList", articleService.getArticleList());
             mv.addObject("userName", user_arg.getUserName());
@@ -101,7 +102,7 @@ public class UserController {
         }
 
         mv = new ModelAndView("login");
-        // add msm de login incorreto
+        mv.addObject("mensagem_erro", "Invalid credentials!");
         return mv;
     }
 
