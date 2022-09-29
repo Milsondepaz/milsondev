@@ -17,6 +17,7 @@
 
     <link th:href="@{/styles/articlecards.css}" rel="stylesheet" />
 
+
     <script type="text/javascript" th:src="@{/js/typewritereffect.js}"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -27,11 +28,10 @@
             crossorigin="anonymous"></script>
     <link rel="icon" type="image/ico" th:href="@{../static/favicon.ico}">
 
-    <!-- Include Bootstrap CSS and Javascript Files
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    -->
+
+    <!-- try multiple select -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -118,8 +118,20 @@
                                     </div>
                                     <div class="col-md-12 mt-2">
                                         <label>Tags</label>
-                                        <input type="text" class="form-control"  name="tags" placeholder="Description">
+                                        <input type="text" class="form-control" name="tags" th:value="${defaulTagsList}">
                                     </div>
+
+
+                                    <!--
+                                    <select class="form-control" id="parts" name="parts" multiple="multiple">
+                                        <option th:each="part : ${partsAtribute}"
+                                                th:selected="${servisAttribute.parts.contains(part)}"
+                                                th:value="${part.id}"
+                                                th:selected="${defaulTagsList.tag}"
+                                                th:text="${part.name}">Part name</option>
+                                    </select>
+                                    -->
+
                                     <div class="col-md-6 mb-2 mt-2">
                                         <label>Source Code</label>
                                         <input type="text" class="form-control" name="sourceCode" placeholder="Source Code">
@@ -127,14 +139,6 @@
                                     <div class="col-md-6 mb-2 mt-2">
                                         <label>Live Link</label>
                                         <input type="text" class="form-control" name="liveLink" placeholder="Live Link">
-                                    </div>
-                                    <div class="col-md-6 mb-2 mt-2">
-                                        <label>Path</label>
-                                        <input type="text" class="form-control" name="path" placeholder="Path">
-                                    </div>
-                                    <div class="col-md-6 mb-2 mt-2">
-                                        <label>File Name</label>
-                                        <input type="text" class="form-control" name="fileName" placeholder="File Name">
                                     </div>
                                 </div>
                             </div>
@@ -172,5 +176,14 @@
 
 <!-- Third party plugin JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+<!-- multipli-select-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+
+
+
+
 
 </body>

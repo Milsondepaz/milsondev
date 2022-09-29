@@ -78,12 +78,7 @@
 
     <!-- init flag language  -->
     <div class="languages" style="padding-right: 1%; padding-left: 10%;">
-        <div class="flag-deutsch">
-            <a href="#home">
-                <img src="img/deutsch.png">
-            </a>
-        </div>
-        <div class="flag-usa">
+               <div class="flag-usa">
             <a href="#home">
                 <img src="img/usa.png">
             </a>
@@ -96,172 +91,9 @@
     </div>
     <!-- end of flag language -->
 </nav>
-
-<!--
-https://www.bootdey.com/bootstrap-themes
--->
-
 <!-- end nav-bar-->
 
-
-<div id="home" class="container-fluid" style="background-color: #737373">
-    <!-- start animation -->
-    <div class="container" style="padding-top: 12%;">
-    <p class="intro-subtitle">
-        <h1 class="typewrite"
-            data-period="3000"
-            data-type='[ "JAVA_", "SPRING BOOT_", "THYMELEAF"]'
-            style="text-align:center; color:white; font-size: 250%;">
-      </h1>
-    </div>
-    <!-- end animation -->
-
-    <!-- start images -->
-    <div class="container" style=" text-align: center; margin-top: 30px; padding-bottom: 30px; width:30%" >
-        <div class="row">
-            <div class="col-xs-6 col-sm-4">
-                <img src="img/java-logo.png" style="width:41%;">
-            </div>
-            <div class="col-xs-6 col-sm-4" style="padding-top:6%">
-                <img src="img/springboot-logo.png" style="width:40%;">
-            </div>
-            <div class="col-xs-6 col-sm-4" style="padding-top:4%">
-                <img src="img/thymeleaf.png" style="width:40%;">
-            </div>
-        </div>
-    </div>
-    <!-- end images -->
-</div>
-</div>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8900699534475025"
-        crossorigin="anonymous"></script>
-<!-- anuncios horizontas -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8900699534475025"
-     data-ad-slot="8008603215"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-<!-- start about -->
-<section id="about" class="about-mf sect-pt4 route" style="padding-top:4%; padding-bottom:4%; background-color:#DCDCDC;">
-    <div class="container">
-        <div class="card">
-            <div class="card-body" style="padding:4%">
-            <div class="col-sm-12">
-                <div class="box-shadow-full">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="row">
-
-                                <div class="col-sm-6 col-md-5">
-                                    <div class="about-img">
-                                        <img src="img/milson.png" class="img-fluid rounded b-shadow-a">
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6 col-md-7" style="padding-top:4%">
-                                    <div class="about-info">
-                                        <p><span class="title-s" style="font-weight: bold;">Email: </span> <span th:text="${user.email}"></span></p>
-                                        <p><span class="title-s" style="font-weight: bold;">Phone: </span> <span th:text="${user.phone}"></span></p>
-                                        <!--<p><span class="title-s" style="font-weight: bold;">Area: </span> <span th:text="${user.location}"></span></p>-->
-                                    </div>
-
-                                    <!-- start images -->
-                                    <div class="container" style="margin-top: 30px; width:90%; margin-right: 10%" >
-                                        <div class="row">
-                                            <div class="col">
-                                                <a th:href="${user.githubLink}"  target="_blank">
-                                                    <img src="img/github.png" style="width:60%;">
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a th:href="${user.gitlabLink}" target="_blank">
-                                                    <img src="img/gitlab.png" style="width:60%;">
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a th:href="${user.linkedinLink}"  target="_blank">
-                                                    <img src="img/linkedin.png" style="width:60%;">
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a th:href="${user.youtubeLink}"  target="_blank">
-                                                    <img src="img/youtube.png" style="width:75%;">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end images -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="about-me pt-4 pt-md-0" style="padding-bottom: 1%">
-                                <div class="title-box-2">
-                                    <h2 class="title-left">About me</h2>
-                                </div>
-                                <p style="text-align: justify" th:text="${user.firstParagraph}"></p>
-                                <p style="text-align: justify" th:text="${user.secondParagraph}"></p>
-                                <p style="text-align: justify" th:text="${user.thirdParagraph}"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-</section>
-<!-- termina aqui about -->
-
-<!-- anuncio dinamico -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8900699534475025"
-        crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-8900699534475025"
-     data-ad-slot="1482723310"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-<!-- imagem 1-->
-<div class="container-fluid" style="background-color: #737373">
-    </br>
-    </br>
-    </br>
-    </br>
-    </br>
-    </br>
-    </br>
-</div>
-<!-- imagem 1 -->
-
-
-
-</div>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8900699534475025"
-        crossorigin="anonymous"></script>
-<!-- anuncios horizontas -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8900699534475025"
-     data-ad-slot="8008603215"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-<section class="" id="articles" style="background-color:#DCDCDC;">
+<section class="container" id="articles" style="background-color:#DCDCDC; margin-top: 15%">
     <div class="container" style="padding-top:2%; padding-bottom:2%; background-color:#DCDCDC;">
         <div class="col-sm-12">
             <div class="title-box text-center">
@@ -329,12 +161,21 @@ https://www.bootdey.com/bootstrap-themes
 </script>
 
 
-<footer class="site-footer" style="background-color:#26272b;">
+<footer class="site-footer fixed-bottom" style="background-color:#26272b;">
     </div>
     <hr>
     </div>
+    <div class="container" style="text-align:center; margin-top:2%;">
+        <section class="text-center">
+                <form action="#" th:action="@{/subscribe}" method="post" th:object="${subscriber}">
+                    <input type="email" name="email" placeholder="Enter Your Email">
+                    <button type="submit" class="btn btn-danger">Subscribe  <i class="fa fa-envelope"></i></button>
+                </form>
+            <span class="mt-3" th:text="${mensagem}" style=" font-color:#FFFFFF; "></span>
+        </section>
+    </div>
     <div class="container" style="text-align:center">
-            <div class="text-center" style="text-align:center; margin-top:4%; margin-bottom:2%">
+            <div class="text-center" style="text-align:center; margin-top:2%; margin-bottom:2%">
                 <H6 class="copyright-text">Thanks for visiting - Milson</H6>
                 <img src="img/coracao.png">
             </div>

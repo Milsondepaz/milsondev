@@ -11,8 +11,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -46,7 +48,14 @@ public class ArticleService {
     }
 
     public void saveArticle(Article article){
+        article.setFileName( article.getTitle().toLowerCase().replaceAll(" ", "-"));
+        article.setListTags(convertToTagList(article.getTags()));
         repository.save(article);
+    }
+
+    public List<String> convertToTagList(String tags) {
+        String vetor [] = tags.split(";");
+        return Arrays.asList(vetor);
     }
 
     public void updateArticleInfo(Article article){
@@ -56,7 +65,6 @@ public class ArticleService {
         articleDB.setDescription(article.getDescription());
         articleDB.setSourceCode(article.getSourceCode());
         articleDB.setLiveLink(article.getLiveLink());
-        articleDB.setFileName(article.getFileName());
         articleDB.setPath(article.getPath());
         repository.save(articleDB);
     }

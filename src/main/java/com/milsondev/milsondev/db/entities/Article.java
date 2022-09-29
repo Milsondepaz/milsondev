@@ -29,10 +29,10 @@ public class Article {
 
     private String author;
 
-    @NotBlank(message = "Title is mandatory")
+    //@NotBlank(message = "Title is mandatory")
     private String title;
 
-    @NotBlank(message = "Description is mandatory")
+    //@NotBlank(message = "Description is mandatory")
     @Column(columnDefinition = "TEXT", length=300)
     //@Size(min = 239, max=300, message = "Description should be between 239 and 300")
     private String description;
@@ -41,13 +41,15 @@ public class Article {
 
     private String liveLink;
 
-    private String tags;
+    @Column(name="listTags")
+    @ElementCollection(targetClass=String.class)
+    private List<String> listTags = new ArrayList<>();
 
-    //private List<String> listTags = new ArrayList<>();
-
-    @NotBlank(message = "File Name is mandatory")
+    //@NotBlank(message = "File Name is mandatory")
     @Column(unique=true)
     public String fileName;
+
+    public String tags;
 
     private String path = "./articles/";
 

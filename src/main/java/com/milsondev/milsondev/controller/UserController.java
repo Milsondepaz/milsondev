@@ -55,12 +55,11 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public ModelAndView profile( ) {
-        ModelAndView mv = new ModelAndView("profile");
+    public String profile( Model model) {
         User user = userService.getUser();
-        mv.addObject("user", user);
-        mv.addObject("userName", user.getUserName());
-        return mv;
+        model.addAttribute("user", user);
+        model.addAttribute("userName", user.getUserName());
+        return "profile";
     }
 
     @GetMapping("/login")

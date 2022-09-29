@@ -29,7 +29,7 @@ public class UserService {
 
     public void saveUser(User user) {
         Optional<User> userOptional = repository.findById(1L);
-        if (userOptional.isPresent())
+        if (!userOptional.isPresent())
             repository.save(user);
     }
 }

@@ -6,23 +6,31 @@ import com.milsondev.milsondev.service.ArticleService;
 import com.milsondev.milsondev.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping
 public class ArticleController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    ArticleService articleService;
+    private ArticleService articleService;
+
+    //private List<String> defaulTagsList = Arrays.asList("custom login", "securty ", "spring boot", "spring security", "template", "thymeleaf");
+    //private List<String> emptyTagList = new ArrayList<>();
+
+    String defaulTagsList = "custom login; securty; spring boot; spring security; template; thymeleaf";
 
     @RequestMapping(value = "/article/{fileName}", method = RequestMethod.GET)
     public ModelAndView openArticle(@PathVariable String fileName) {
@@ -31,7 +39,6 @@ public class ArticleController {
         article.setViews(article.getViews() + 1);
         articleService.articleUpdateNumbersOfViews(article);
         mv.addObject("article", article);
-        mv.addObject("listTag", Arrays.asList("custom login", "securty ", "spring boot", "spring security", "template", "thymeleaf"));
         return mv;
     }
 
@@ -58,20 +65,25 @@ public class ArticleController {
     }
 
     @GetMapping("/new-article")
-    public ModelAndView newArticle( ) {
+    public String newArticle(Model model) {
         User user = userService.getUser();
-        ModelAndView mv = new ModelAndView("new-article");
-        mv.addObject("user", user);
-        mv.addObject("userName", user.getUserName());
-        return mv;
+        model.addAttribute("user", user);
+        model.addAttribute("userName", user.getUserName());
+        model.addAttribute("defaulTagsList", defaulTagsList);
+        model.addAttribute("article", new Article());
+
+        // mv.addObject("listTag", emptyTagList);
+        return "new-article";
     }
 
     @RequestMapping(value = "/add_new_article", method = RequestMethod.POST)
-    public String createNewArticle(@Valid @ModelAttribute("article") Article article, Errors errors, RedirectAttributes attributes) {
+    public String createNewArticle(@Valid @ModelAttribute("article") Article article,
+                                   Errors errors, RedirectAttributes attributes) {
         if (errors.hasErrors()){
             attributes.addFlashAttribute("mensagem_erro", "Please fill out all necessary fields correctly!");
             return "redirect:/new-article";
         }
+
         User user = userService.getUser();
         article.setAuthor(user.getUserName());
         articleService.saveArticle(article);
