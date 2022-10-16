@@ -11,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.thymeleaf.Thymeleaf;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -76,6 +77,8 @@ public class ArticleController {
         return "new-article";
     }
 
+
+    //Java Spring Boot Validation Thymeleaf
     @RequestMapping(value = "/add_new_article", method = RequestMethod.POST)
     public String createNewArticle(@Valid @ModelAttribute("article") Article article,
                                    Errors errors, RedirectAttributes attributes) {

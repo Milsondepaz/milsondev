@@ -44,7 +44,7 @@ public class UserController {
         }
 
         userService.saveUser(user);
-        attributes.addFlashAttribute("mensagem", "You have successfully registered, click to Login");
+        attributes.addFlashAttribute("mensagem", "You have successfully registered, click to ");
 
         return "redirect:/sign-up";
     }
