@@ -1,0 +1,73 @@
+version: '3.7'
+
+services:
+
+  #milsondev-app:
+   # image: docker.io/library/milsondev:0.0.1-SNAPSHOT
+   # container_name: milsondev-app
+   # ports:
+   #   - "8080:8080"
+   # depends_on:
+   #   - postgres-db
+   # environment:
+   #   db_host: postgres-db
+   #   db_port: 5432
+   #   db_name: milsondevdb
+   #   db_username: milson
+   #   db_password: 12345
+   # volumes:
+   #   - db-data:/var/lib/postgres/data
+   # networks:
+   #   - milsondev_network
+
+  postgres-db:
+    build:
+      context: ./Docker
+      dockerfile: Dockerfile
+    volumes:
+       - db-data:/var/lib/postgres/data
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      MILSON_USER: milson
+      MILSON_PASSWORD: 12345
+      MILSON_DBNAME: milsondevdb
+    ports:
+      - 5432:5432
+    networks:
+      - milsondev_network
+
+  postgres-admin:
+    image: dpage/pgadmin4
+    container_name: postgres-admin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=milson@milson.com
+      - PGADMIN_DEFAULT_PASSWORD=12345
+    ports:
+      - 8081:80
+    networks:
+      - milsondev_network
+
+networks:
+  milsondev_network:
+    driver: bridge
+
+volumes:
+  db-data:
+
+
+##List all containers (only IDs)
+#docker ps -aq
+
+#Stop all running containers
+#docker stop $(docker ps -aq)
+
+#Remove all containers
+#docker rm $(docker ps -aq)
+
+#Remove all images
+#docker rmi $(docker images -q)
+
+##remove all volumes
+#docker volume rm $(docker volume ls -q --filter dangling=true)
