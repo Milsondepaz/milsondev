@@ -48,7 +48,7 @@ public class ArticleService {
     }
 
     public void saveArticle(Article article){
-        article.setFileName( article.getTitle().toLowerCase().replaceAll(" ", "-"));
+        article.setFileName( article.getTitle().toLowerCase().replaceAll(" ", "-") + ".html");
         article.setListTags(convertToTagList(article.getTags()));
         repository.save(article);
     }

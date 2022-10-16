@@ -12,5 +12,8 @@ public class MilsonDevApplication {
 	}
 
 
+	// spring.profiles.active=local
+
+
 
 }

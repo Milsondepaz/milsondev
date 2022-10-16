@@ -17,6 +17,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
+// refatorar front-end
+// adicionar jQuery
+// criar arquivo ao criar novo artigo
+// subscribers - account validation
+// securirity
+// article page - share on Linkedin, facebook, whatsApp
+
+
 @Controller
 @RequestMapping
 public class MilsonDevController {
