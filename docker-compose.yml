@@ -2,23 +2,23 @@ version: '3.7'
 
 services:
 
-  #milsondev-app:
-   # image: docker.io/library/milsondev:0.0.1-SNAPSHOT
-   # container_name: milsondev-app
-   # ports:
-   #   - "8080:8080"
-   # depends_on:
-   #   - postgres-db
-   # environment:
-   #   db_host: postgres-db
-   #   db_port: 5432
-   #   db_name: milsondevdb
-   #   db_username: milson
-   #   db_password: 12345
-   # volumes:
-   #   - db-data:/var/lib/postgres/data
-   # networks:
-   #   - milsondev_network
+  milsondev-app:
+    image: docker.io/library/milsondev:0.0.1-SNAPSHOT
+    container_name: milsondev-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres-db
+    environment:
+      db_host: postgres-db
+      db_port: 5432
+      db_name: milsondevdb
+      db_username: milson
+      db_password: 12345
+    volumes:
+      - db-data:/var/lib/postgres/data
+    networks:
+      - milsondev_network
 
   postgres-db:
     build:
