@@ -19,7 +19,7 @@
                         <img src="../img/milson.png" width= "100" height="100"; style="border-radius: 50%; border:1px groove #545565;">
                 </div>
                 <div class="col-sm-6 col-md-7" style="margin-top:1%; margin-left:1%; margin-bottom:2%">
-                    <small>By <a href="#" th:text="${article.author}"></a> </small>
+                    <small>By <a th:href="@{../profile/{author}(author=${article.author})}" th:text="${article.author}"></a> </small>
                    <div class="">
                        <small>Viewed: <span th:text="${article.views}" style=" font-weight: bold; "></span>
                            | Likes: <span th:text="${article.likes}" style=" font-weight: bold; "></span>

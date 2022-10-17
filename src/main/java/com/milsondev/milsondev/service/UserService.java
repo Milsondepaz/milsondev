@@ -32,4 +32,8 @@ public class UserService {
         if (!userOptional.isPresent())
             repository.save(user);
     }
+
+    public User getUserbyName(String userName){
+        return repository.findByUserName(userName);
+    }
 }

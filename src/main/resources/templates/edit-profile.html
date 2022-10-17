@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Milson Antonio - Java Software Engineer</title>
+</head>
+
+<section layout:fragment="content" style=" margin-bottom: 2%">
+    <div class="container" style="text-align: right; margin-top: 14%">
+        <h5>Welcome, <a th:href="@{profile/{author}(author=${userName})}" th:text="${userName}" target="_blank"></a></h5>
+        <a href="/admin" class="col-md-1" style="text-align: right; margin-right: 1%" >Back</a>
+        <a href="/logout" class="col-md-1" style="text-align: right;">Logout</a>
+    </div>
+
+
+    <div class=" container panel panel-default" style=" margin-top: 2%">
+        <div class="panel-heading" style="background-color: silver;">
+            <h4 class="panel-title aw-titulo-panel" style="background-color: silver; padding-bottom: 2%; padding-top: 1%; margin-left: 1%;">Profile Information...</h4>
+        </div>
+        <div class="panel-heading" th:replace="mensagemok"></div>
+        <div class="panel-heading" th:replace="mensagemerro"></div>
+
+
+        <div class="container">
+            <form action="#" th:action="@{/update-user}" method="post" th:object="${user}">
+                <div class="container">
+                <div class="row">
+                <div class="col-md-6 mt-5">
+                <div class="card">
+                        <article class="card-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6 mb-2 mt-2">
+                                        <label>E-mail</label>
+                                        <input type="email" class="form-control" name="email" placeholder="E-mail" th:field="*{email}">
+                                        <input type="hidden" th:field="*{id}" name="id">
+                                        <input type="hidden" th:field="*{userName}" name="userName">
+                                        <input type="hidden" th:field="*{password}" name="password">
+                                    </div>
+                                    <div class="col-md-6 mb-2 mt-2">
+                                        <label>Phone Number</label>
+                                        <input type="text" class="form-control" name="phone" placeholder="Phone Number" th:field="*{phone}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 mt-3">
+                                    <label>Introduction one paragraph...</label>
+                                    <input type="text" class="form-control"  th:field="*{introductionOneParagraph}" name="introductionOneParagraph">
+                                </div>
+
+                                <div class="col-md-12 mt-2">
+                                    <label>More about tree paragraphs Paragraph</label>
+                                    <textarea class="form-control" rows="4" th:field="*{moreAboutTreeParagraph}" name="moreAboutTreeParagraph"></textarea>
+                                </div>
+
+                                <div class="col-md-12 mt-2">
+                                    <label>Conclusion tree paragraphs</label>
+                                    <textarea class="form-control" rows="4" th:field="*{conclusionTreeParagraph}" name="conclusionTreeParagraph"></textarea>
+                                </div>
+                            </div>
+                    </article>
+                </div>
+                </div>
+
+                    <div class="col-md-6 mt-5">
+                        <div class="card">
+                            <article class="card-body">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>LinkedIn</label>
+                                            <input type="text" class="form-control" name="linkedinLink" placeholder="LinkedIn" th:field="*{linkedinLink}">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 mt-2">
+                                            <label>Git Hub</label>
+                                            <input type="text" class="form-control" name="githubLink" placeholder="Git Hub" th:field="*{githubLink}">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 mt-2">
+                                            <label>Git Lab</label>
+                                            <input type="text" class="form-control" name="gitlabLink" placeholder="Git Lab" th:field="*{gitlabLink}">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 mt-2">
+                                            <label>YouTube</label>
+                                            <input type="text" class="form-control" name="youtubeLink" placeholder="YouTube" th:field="*{youtubeLink}">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 mt-2">
+                                            <label>Instagram</label>
+                                            <input type="text" class="form-control" name="instagramLink" placeholder="Instagram" th:field="*{instagramLink}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-primary" style="width: 178px; margin-left: 5%;">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+</html>

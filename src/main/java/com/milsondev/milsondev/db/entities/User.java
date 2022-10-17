@@ -48,10 +48,10 @@ public class User {
 
     private String instagramLink;
 
-    private String firstParagraph;
+    private String introductionOneParagraph;
 
-    private String secondParagraph;
+    private String moreAboutTreeParagraph;
 
-    private String thirdParagraph;
+    private String conclusionTreeParagraph;
 
 }

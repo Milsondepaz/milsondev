@@ -10,8 +10,8 @@
 
 <section layout:fragment="content" style=" margin-bottom: 11%">
     <div class="container" style="text-align: right; margin-top: 15%">
-        <h5>Welcome, <a href="/profile" th:text="${userName}"></a></h5>
-        <a href="/profile" class="col-md-1" style="text-align: right; padding-left:2%">Edit profile</a>
+        <h5>Welcome, <a th:href="@{profile/{author}(author=${userName})}" th:text="${userName}" target="_blank"></a></h5>
+        <a href="/edit-profile" class="col-md-1" style="text-align: right; padding-left:2%">Edit profile</a>
         <a href="/logout" class="col-md-1" style="text-align: right; padding-left:2%">Logout</a>
     </div>
 

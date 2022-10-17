@@ -17,12 +17,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
-// refatorar front-end
+
 // adicionar jQuery
 // criar arquivo ao criar novo artigo
 // subscribers - account validation
 // securirity
+
+// add photo profile -salvar no banco
+
 // article page - share on Linkedin, facebook, whatsApp
+
+// melhorar o layout da home
 
 
 @Controller
