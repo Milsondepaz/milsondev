@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -54,12 +51,22 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/profile")
+    //edit-profile/{userName}
+    @GetMapping("/edit-profile")
     public String profile( Model model) {
         User user = userService.getUser();
         model.addAttribute("user", user);
         model.addAttribute("userName", user.getUserName());
-        return "profile";
+        return "edit-profile";
+    }
+
+    //edit-profile/{userName}
+    @RequestMapping(value = "/profile/{author}", method = RequestMethod.GET)
+    public ModelAndView profile(@PathVariable String author, Model model) {
+        User user = userService.getUserbyName(author);
+        ModelAndView mv = new ModelAndView("profile");
+        mv.addObject("user", user);
+        return mv;
     }
 
     @GetMapping("/login")
@@ -67,17 +74,17 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(value = "/update_user", method = RequestMethod.POST)
+    @RequestMapping(value = "/update-user", method = RequestMethod.POST)
     public String updateUser(@Valid @ModelAttribute("user") User user_args, Errors errors, RedirectAttributes attributes) {
         if (errors.hasErrors()){
             attributes.addFlashAttribute("mensagem_erro", "Please fill out all necessary fields correctly!");
-            return "redirect:/profile";
+            return "redirect:/edit-profile";
         }
         User user = userService.updateUser(user_args);
         attributes.addFlashAttribute("user", user);
         attributes.addFlashAttribute("userName", user.getUserName());
         attributes.addFlashAttribute("mensagem", "Your information has been successfully updated!");
-        return "redirect:/profile";
+        return "redirect:/edit-profile";
     }
 
     @GetMapping("/admin")
