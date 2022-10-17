@@ -1,89 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-     xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout2}">
 <head>
     <title>Milson Antonio - Java Software Engineer</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css} "/>
-    <link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet" />
-    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/6.1.0/css/all.css} "/>
-
-    <link th:href="@{/styles/imagemalogoefect.css}" rel="stylesheet" />
-
-    <link th:href="@{/styles/navbar.css}" rel="stylesheet" />
-
-    <link th:href="@{/styles/articlecards.css}" rel="stylesheet" />
-
-    <script type="text/javascript" th:src="@{/js/typewritereffect.js}"></script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8900699534475025"
-            crossorigin="anonymous"></script>
-    <link rel="icon" type="image/ico" th:href="@{../static/favicon.ico}">
-
-    <!-- Include Bootstrap CSS and Javascript Files
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    -->
-
 </head>
-<body>
 
-<!-- style="padding-left: 15%" -->
-
-<!-- init nav-bar-->
-
-<nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" style="background-color: #737373">
-    <div class="container">
-
-        <!-- init ma-log -->
-        <div class="container" style="padding-left: 15%">
-            <div class="hover01 column">
-                <a class="navbar-brand js-scroll" href="/">
-                    <figure>
-                        <img src="../img/ma-logo.png">
-                    </figure>
-                </a>
-            </div>
-        </div>
-        <!-- end ma-log -->
-
-        <div class="navbar-collapse collapse justify-content-end">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll active" href="/" style="font-weight: bold; font-size: 110%;">HOME</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- init flag language  -->
-    <div class="languages" style="padding-right: 1%; padding-left: 10%;">
-        <div class="flag-deutsch">
-            <a href="#home">
-                <img src="../img/deutsch.png">
-            </a>
-        </div>
-        <div class="flag-usa">
-            <a href="#home">
-                <img src="../img/usa.png">
-            </a>
-        </div>
-    </div>
-</nav>
-<!-- end nav-bar-->
-
-
-
-<!-- start about -->
-<section layout:fragment="conteudo" style=" margin-bottom: 2%">
+<section layout:fragment="content2" style=" margin-bottom: 2%">
     <div class="container" style="text-align: right; margin-top: 14%">
         <h5>Welcome, <a href="/profile" th:text="${userName}"></a></h5>
             <a href="/admin" class="col-md-1" style="text-align: right; margin-right: 1%" >Back</a>
@@ -142,25 +67,4 @@
         </div>
     </div>
 </section>
-
-<!-- fixed-bottom-->
-<footer class="site-footer" style="background-color:#26272b;">
-    </div>
-    <hr>
-    </div>
-    <div class="container" style="text-align:center">
-        <div class="text-center" style="text-align:center; margin-top:4%; margin-bottom:2%">
-            <H6 class="copyright-text">Thanks for visiting - Milson</H6>
-            <img src="../img/coracao.png">
-        </div>
-    </div>
-</footer>
-
-<!-- Bootstrap core JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-
-<!-- Third party plugin JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-
-</body>
+</html>

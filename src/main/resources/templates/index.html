@@ -2,98 +2,14 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <title>Milson Antonio - Java Software Engineer</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css} "/>
-    <link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet" />
-    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/6.1.0/css/all.css} "/>
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8900699534475025"
-            crossorigin="anonymous"></script>
-
-    <link th:href="@{/styles/imagemalogoefect.css}" rel="stylesheet" />
-
-    <link th:href="@{/styles/navbar.css}" rel="stylesheet" />
-
-    <!--<link th:href="@{/styles/articlecards.css}" rel="stylesheet" />-->
-
-    <link th:href="@{/styles/card.css}" rel="stylesheet" />
-
-
-    <script type="text/javascript" th:src="@{/js/typewritereffect.js}"></script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
-
-
-    <!-- Include Bootstrap CSS and Javascript Files
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    -->
-
-    <link rel="icon" type="image/ico" th:href="@{../static/favicon.ico}">
-
 </head>
-<body>
 
-<!-- style="padding-left: 15%" -->
-
-<!-- init nav-bar-->
-
-<nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" style="background-color: #737373">
-    <div class="container">
-
-        <!-- init ma-log -->
-        <div class="container" style="padding-left: 15%">
-            <div class="hover01 column">
-                <a class="navbar-brand js-scroll" href="/">
-                    <figure>
-                        <img src="img/ma-logo.png">
-                    </figure>
-                </a>
-            </div>
-        </div>
-        <!-- end ma-log -->
-
-        <div class="navbar-collapse collapse justify-content-end">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll active" href="#home" style="font-weight: bold; font-size: 110%;">HOME</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll" href="#about" style="font-weight: bold; font-size: 110%;">ABOUT</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link js-scroll" href="#articles" style="color:font-weight: bold; font-size: 110%;">ARTICLES</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- init flag language  -->
-    <div class="languages" style="padding-right: 1%; padding-left: 10%;">
-               <div class="flag-usa">
-            <a href="#home">
-                <img src="img/usa.png">
-            </a>
-        </div>
-        <div class="flag-angola">
-            <a href="#home">
-                <img src="img/angola.png">
-            </a>
-        </div>
-    </div>
-    <!-- end of flag language -->
-</nav>
-<!-- end nav-bar-->
-
-<section class="container" id="articles" style="background-color:#DCDCDC; margin-top: 15%">
+<section layout:fragment="content" class="container" id="articles" style="margin-top: 18%; padding-bottom:10%;">
+    <div class="container" style="background-color:#DCDCDC;"></div>
     <div class="container" style="padding-top:2%; padding-bottom:2%; background-color:#DCDCDC;">
         <div class="col-sm-12">
             <div class="title-box text-center">
@@ -145,46 +61,8 @@
         </nav>
         <!--end pagination-->
     </div>
+    </div>
 </section>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8900699534475025"
-        crossorigin="anonymous"></script>
-<!-- anuncios horizontas -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8900699534475025"
-     data-ad-slot="8008603215"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-<footer class="site-footer fixed-bottom" style="background-color:#26272b;">
-    </div>
-    <hr>
-    </div>
-    <div class="container" style="text-align:center; margin-top:2%;">
-        <section class="text-center">
-                <form action="#" th:action="@{/subscribe}" method="post" th:object="${subscriber}">
-                    <input type="email" name="email" placeholder="Enter Your Email">
-                    <button type="submit" class="btn btn-danger">Subscribe  <i class="fa fa-envelope"></i></button>
-                </form>
-            <span class="mt-3" th:text="${mensagem}" style=" font-color:#FFFFFF; "></span>
-        </section>
-    </div>
-    <div class="container" style="text-align:center">
-            <div class="text-center" style="text-align:center; margin-top:2%; margin-bottom:2%">
-                <H6 class="copyright-text">Thanks for visiting - Milson</H6>
-                <img src="img/coracao.png">
-            </div>
-    </div>
-</footer>
-
-<!-- Bootstrap core JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-<!-- Third party plugin JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-</body>
+</section>
+</html>
