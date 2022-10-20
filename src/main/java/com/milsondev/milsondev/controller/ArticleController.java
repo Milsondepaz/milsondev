@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.thymeleaf.Thymeleaf;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -79,9 +80,9 @@ public class ArticleController {
 
 
     //Java Spring Boot Validation Thymeleaf
-    @RequestMapping(value = "/add_new_article", method = RequestMethod.POST)
+    @RequestMapping(value = "/add-new-article", method = RequestMethod.POST)
     public String createNewArticle(@Valid @ModelAttribute("article") Article article,
-                                   Errors errors, RedirectAttributes attributes) {
+                                   Errors errors, RedirectAttributes attributes) throws IOException {
         if (errors.hasErrors()){
             attributes.addFlashAttribute("mensagem_erro", "Please fill out all necessary fields correctly!");
             return "redirect:/new-article";
