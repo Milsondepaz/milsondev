@@ -4,17 +4,23 @@ import com.milsondev.milsondev.db.entities.Article;
 import com.milsondev.milsondev.db.entities.paging.Paged;
 import com.milsondev.milsondev.db.entities.paging.Paging;
 import com.milsondev.milsondev.db.repository.ArticleRepository;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
+import java.io.*;
+import java.nio.file.Files;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -22,6 +28,10 @@ public class ArticleService {
 
     @Autowired
     private ArticleRepository repository;
+
+
+    @Autowired
+    private ResourceLoader resourceLoader;
 
     public List<Article> getPageableArticleList() {
         Pageable firstPageWithTreeElements = PageRequest.of(0, 3);
@@ -47,7 +57,7 @@ public class ArticleService {
         repository.save(article);
     }
 
-    public void saveArticle(Article article){
+    public void saveArticle(Article article) throws IOException {
         article.setFileName( article.getTitle().toLowerCase().replaceAll(" ", "-") + ".html");
         article.setListTags(convertToTagList(article.getTags()));
         repository.save(article);
@@ -82,5 +92,15 @@ public class ArticleService {
         Page<Article> articlePage = repository.findAllCustom(request);
         return new Paged<>(articlePage, Paging.of(articlePage.getTotalPages(), pageNumber, size));
     }
+
+
+
+
+
+
+
+
+
+
 
 }
