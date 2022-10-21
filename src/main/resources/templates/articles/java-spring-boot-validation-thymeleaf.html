@@ -10,7 +10,7 @@
     <!-- share on facebook -->
     <meta property="og:url"           content="https://www.milsondev.de/article/java-spring-boot-validation-thymeleaf.html" />
     <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="Java Spring Boot Validation Thymeleaf"/>
+    <meta property="og:title"         content="${article.title}"/>
     <meta property="og:description"   content="O termo Internet das Coisas (Internet of Things – IoT) vem sendo adotado como a convergência de
     várias tecnologias de automação tais como sistemas embarcados, sistemas de comunicação e hardware e que
     possibilita a integração de dispositivos, sensores e atuadores à rede internet." />
@@ -27,7 +27,7 @@
                     <h1 class="col-md-8" th:text="${article.title}"></h1>
                     <div class="col-md-3">
                         <div class="fb-share-button"
-                             data-title="Java Spring Boot Validation Thymeleaf"
+                             data-title="${article.title}"
                              data-href="https://www.milsondev.de/article/java-spring-boot-validation-thymeleaf.html"
                              data-layout="button_count">
                         </div>
