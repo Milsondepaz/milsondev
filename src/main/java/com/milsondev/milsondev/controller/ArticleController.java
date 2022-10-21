@@ -47,7 +47,7 @@ public class ArticleController {
     @RequestMapping(value = "/edit/{fileName}", method = RequestMethod.GET)
     public ModelAndView editArticle(@PathVariable String fileName) {
         Article article = articleService.getArticleByFileName(fileName).get();
-        ModelAndView mv = new ModelAndView("edit");
+        ModelAndView mv = new ModelAndView("edit-article");
         User user = userService.getUser();
         mv.addObject("article", article);
         mv.addObject("userName", user.getUserName());
@@ -97,7 +97,7 @@ public class ArticleController {
 
     @RequestMapping(value = "/update_article", method = RequestMethod.POST)
     public ModelAndView updateArticle(@Valid @ModelAttribute("article") Article article, Errors errors, RedirectAttributes attributes) {
-        ModelAndView mv = new ModelAndView("edit");
+        ModelAndView mv = new ModelAndView("edit-article");
         User user = userService.getUser();
         mv.addObject("user", user);
         mv.addObject("userName", user.getUserName());
