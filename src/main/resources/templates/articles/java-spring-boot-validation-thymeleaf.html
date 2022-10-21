@@ -6,13 +6,67 @@
       layout:decorate="~{layout2}">
 <head>
     <title th:text="${article.title}"></title>
+
+    <!-- share on facebook -->
+    <meta property="og:url"           content="https://www.milsondev.de/" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Milson" />
+    <meta property="og:description"   content="O termo Internet das Coisas (Internet of Things – IoT) vem sendo adotado como a convergência de
+    várias tecnologias de automação tais como sistemas embarcados, sistemas de comunicação e hardware e que
+    possibilita a integração de dispositivos, sensores e atuadores à rede internet. " />
+    <meta property="og:image"         content="https://www.milsondev.de/img/ma-logo.png" />
+
 </head>
 
-<section layout:fragment="content2" style=" margin-bottom: 11%; padding-top:14%; ">
+<section layout:fragment="content2" style=" margin-bottom: 11%; padding-top:15%; ">
     <div class="container">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
-                <h1 th:text="${article.title}"></h1>
+
+                <div class="row">
+                    <h1 class="col-md-8" th:text="${article.title}"></h1>
+                    <div class="col-md-3">
+
+                        <div class="fb-share-button"
+                             data-href="https://www.milsondev.de/"
+                             data-desc="O termo Internet das Coisas (Internet of Things – IoT) vem sendo adotado como a convergência de
+                                        várias tecnologias de automação tais como sistemas embarcados..."
+                             data-layout="button_count">
+                        </div>
+
+                        <a class="btnShare btn btn-link btn-xs"  target="_blank" data-toggle="tooltip" title="Share on Twitter" data-placement="bottom"
+                           data-image="../img/milson.png" data-title="Article Title" data-desc="Some description for this article"
+                           data-href="https://www.milsondev.de">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+                            <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+                        </svg>
+                    </a>
+
+                    <a class="btn btn-link btn-xs"  target="_blank" data-toggle="tooltip" title="Share on LinkedIn" data-placement="bottom">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                        </svg>
+                    </a>
+
+
+                    <a class="btn btn-link btn-xs"  target="_blank" data-toggle="tooltip" title="Share on WhatsApp" data-placement="bottom">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                            <path fill="#32CD32" d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                        </svg>
+                    </a>
+
+
+                    <a class="btn btn-link btn-xs"  target="_blank" data-toggle="tooltip" title="Copy link" data-placement="bottom">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+                            <path fill="#000000" d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
+                            <path fill="#000000" d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
+                        </svg>
+                    </a>
+
+                    </div>
+
+
+                </div>
             </div>
             <div class="row">
                 <div class="col-sm-6 col-md-1">
@@ -21,7 +75,8 @@
                 <div class="col-sm-6 col-md-7" style="margin-top:1%; margin-left:1%; margin-bottom:2%">
                     <small>By <a th:href="@{../profile/{author}(author=${article.author})}" th:text="${article.author}"></a> </small>
                    <div class="">
-                       <small>Viewed: <span th:text="${article.views}" style=" font-weight: bold; "></span>
+                       <small> <span th:text="${article.readingTime}" style=" font-weight: bold; "></span> min read
+                           | Viewed: <span th:text="${article.views}" style=" font-weight: bold; "></span>
                            | Likes: <span th:text="${article.likes}" style=" font-weight: bold; "></span>
                            | Update on: <span th:text="${article.fortmadetData}" style=" font-weight: bold; "></span>
                        </small>
@@ -35,7 +90,166 @@
                 </div>
             </div>
         </div>
-        <hr>
+
+        <div class="row mt-4">
+
+            <div class="col-md-8" style="margin-right:7%;">
+
+                <p> <b>Resumo:</b> O termo Internet das Coisas (Internet of Things – IoT) vem sendo adotado como a convergência de
+                    várias tecnologias de automação tais como sistemas embarcados, sistemas de comunicação e hardware e que
+                    possibilita a integração de dispositivos, sensores e atuadores à rede internet. O DC Alerta é um sistema que
+                    visa permitir o monitoramento da temperatura e da umidade de Data Centers e alertar aos usuários quando
+                    uma destas grandezas encontrar-se fora dos limites estabelecidos, garantindo que o ambiente monitorado se
+                    mantenha em condições adequadas. Foi desenvolvido utilizando o microcontrolador Arduino e os sensores
+                    de temperatura e umidade DHT11. Além disso, uma aplicação de monitoramento foi desenvolvida em versão
+                    Android. Como resultados dos testes, verificou-se a viabilidade na adoção da tecnologia para monitoramento
+                    de ambientes confinados.
+                </p>
+
+                <p> Palavras-chave: <b>IoT. Monitoramento de Temperatura e Umidade. Data Center.</b></p>
+
+                </br>
+                <h3><b></b>INTRODUÇÃO</b></h3>
+
+                <p>A chamada Internet das Coisas é um fenômeno que vem sendo capitaneado pela rápida popularização da Internet
+                    e da possibilidade de interconectar objetos diversos os quais possuem capacidade de disponibilizarem informações a
+                    respeito do seu funcionamento (SATO, 2015). Conforme Patel, et., al. (2016), IoT pode ser classificado em três categorias
+                    as quais interagem através da internet: “pessoas conectadas a pessoas, pessoas conectadas a máquinas (ou coisas) e coisas
+                    (ou máquinas) conectadas a coisas (ou máquinas)”</p>
+
+                <p>Existem diversas situações onde é estritamente necessário o monitoramento do ambiente, como por exemplo em
+                    data centers. A proliferação de soluções de tecnologias comerciais permite utilizar um único dispositivo para controlar
+                    uma série de dispositivos eletrônicos e appliances. Estas soluções concentram-se primariamente em monitoramento
+                    ambiental e gerenciamento de consumo de energia elétrica (VERMESAN; FRIESS; 2014). Uma das ferramentas
+                    comerciais utilizadas para monitoramento de um conjunto de sensores é o PRTG (XANDÓ; 2018).
+                </p>
+                <p>
+                    A partir deste contexto, o artigo descreve o desenvolvimento de um protótipo de um sistema de monitoramento
+                    de variáveis ambientais voltados para data centers denominado de DC Alerta. Este projeto foi motivado pela provocação
+                    de uma grande empresa da região de Blumenau a qual resultou numa primeira fase em um pequeno protótipo de prova de
+                    conceito apresentado nas disciplinas de Projeto de Software II e posteriormente em TCC I do curso de Ciência da
+                    Computação da FURB. Agora expandido, o conjunto de funcionalidades elencadas naquele protótipo foi aprimorado de
+                    forma a disponibilizar-se uma solução baseada em Internet das Coisas para o monitoramento ambiental de data centers
+                    utilizando Arduino como plataforma de coleta de dados.
+                </p>
+
+                </br>
+                <h3><b></b>FUNDAMENTAÇÃO TEÓRICA</b></h3>
+                <p>
+                    A abrangência do termo IoT envolve não só a área de sensores e atuadores, mas toda a gama de equipamentos
+                    que utilizam o protocolo TCP/IP (Transmission Control Protocol/Internet Protocol) e as tecnologias associadas a três
+                    eixos principais de análise: visão orientada a coisas, visão orientada a internet e visão orientada a semântica dos dados
+                    (SÔNEGO; 2016). A Figura 1 apresenta este modelo agrupando as tecnologias em cada um dos grupos.
+                </p>
+
+                <p>
+                    Uma das áreas que se relaciona à aplicação da Internet das Coisas é a área de monitoramento energético e
+                    ambiental, o que sugere um uso adequado e consciente dos recursos naturais (SÔNEGO; MARCELINO; GRUBER;
+                    2016). E uma das áreas que requer constante monitoramento é a área de data centers que nada mais são do que
+                    “equipamentos eletrônicos utilizados para processamento de dados (servidores), armazenamento de dados (equipamentos
+                    de armazenamento) e comunicações (equipamentos de rede) (GENG, 2015).
+                </p>
+
+                <p>
+                    Coletivamente, estes equipamentos processam, armazenam e transmitem dados digitais e utilizam para isto
+                    equipamentos especializados de conversão e backup de energia para manter uma potência confiável e de alta qualidade,
+                    bem como equipamentos de controle ambiental para manter a temperatura e umidade adequadas para os equipamentos de
+                    tecnologia da informação e comunicação. (GENG, 2015, p. 4, tradução nossa).
+                </p>
+
+
+                </br>
+                <h3><b></b>MICROCONTROLADOR ARDUÍNO</b></h3>
+                <p>
+                    O Arduino é um microcontrolador de código aberto que pode ser facilmente programado, apagado e
+                    reprogramado a qualquer instante. Introduzido em 2005, a plataforma Arduino foi projetada para fornecer uma maneira
+                    barata e fácil para hobby, estudantes e profissionais criarem dispositivos que interagem com o ambiente usando sensores
+                    e atuadores. (LOUIS, 2016, pag. 21, tradução nossa). McRoberts (2011) afirma que o Arduino pode ser usado para
+                    desenvolver objetos interativos independentes ou ser conectado a um computador, a uma rede ou até mesmo a internet
+                    para recuperar e enviar dados do Arduino e trabalhar com eles, por exemplo enviar um conjunto de dados recebidos de
+                    sensores para um site ou aplicação, para serem exibidos no formato de um gráfico.
+                </p>
+
+                <p>
+                    A plataforma utiliza-se de uma camada simples de software implementada na placa, que é um bootloader, e uma
+                    interface amigável no computador que utiliza a linguagem Processing, baseada na linguagem C/C++, a qual é também
+                    open source. Neste ambiente de desenvolvimento, são disponibilizadas bibliotecas que permitem o interfaceamento com
+                    outros dispositivos de hardware, permitindo o completo desenvolvimento de aplicações simples ou complexas em
+                    qualquer área. (SOUZA et. al., 2011, p.2).
+                </p>
+
+                <p>
+                    A plataforma Arduino possui uma Interface de Desenvolvimento - IDE multiplataforma, isto é, há a possibilidade
+                    de utilizar a IDE com sistemas operacionais distintos, como, Windows, Linux, Mac OS. Esta característica facilita o
+                    desenvolvimento dos algoritmos, podendo ser escritos, alterados e enviados ao Arduino de qualquer Sistema Operacional
+                    suportado (MARCHESAN, 2012 p. 31).
+                </p>
+
+                <p>
+                    Segundo Evans et al. (2013), existem várias versões do Arduino, porém todas baseadas na tecnologia Atmel
+                    AVR. Ele é um microcontrolador RISC de chip único com uma arquitetura Harvard modificada de 8-bits, desenvolvido
+                    em 1996 pela Atmel (SOUZA; 2014).A primeira placa foi baseada no ATmega8 rodando a uma velocidade de clock de 16
+                    MHz com 8 KB de memória flash; mais tarde placas como o Arduino NG plus e o Diecimila foram equipadas com o
+                    ATmega168 e 16 KB de memória flash. As versões mais recentes do Arduino, Duemilanove e Uno, usam o ATmega328
+                    têm 32 KB de memória flash. Para projetos que exigem mais E/S e memória, há o Arduino Mega1280 com 128 KB de
+                    memória e o Arduino Mega2560 com 256 KB de memória. O Mega oferece uma funcionalidade de entrada-saída
+                    significativamente maior em comparação com o Arduino padrão, então com o aumento da memória, é ideal para projetos
+                    maiores, que controlam muitos LEDs, possuem um grande número de entradas e saídas, ou precisam mais de uma porta
+                    serial de hardware. As placas têm 54 pinos de entrada-saída digitais, 14 dos quais podem fornecer saída analógica PWM,
+                    e 16 analógicos pinos de entrada (Figura 2).
+                </p>
+
+            </div>
+
+            <!-- google anuncios -->
+            <div class="col-md-3">
+                <p>
+                    Segundo Evans et al. (2013), existem várias versões do Arduino, porém todas baseadas na tecnologia Atmel
+                    AVR. Ele é um microcontrolador RISC de chip único com uma arquitetura Harvard modificada de 8-bits, desenvolvido
+                    em 1996 pela Atmel (SOUZA; 2014).A primeira placa foi baseada no ATmega8 rodando a uma velocidade de clock de 16
+                    MHz com 8 KB de memória flash; mais tarde placas como o Arduino NG plus e o Diecimila foram equipadas com o
+                    ATmega168 e 16 KB de memória flash. As versões mais recentes do Arduino, Duemilanove e Uno, usam o ATmega328
+                    têm 32 KB de memória flash. Para projetos que exigem mais E/S e memória, há o Arduino Mega1280 com 128 KB de
+                    memória e o Arduino Mega2560 com 256 KB de memória. O Mega oferece uma funcionalidade de entrada-saída
+                    significativamente maior em comparação com o Arduino padrão, então com o aumento da memória, é ideal para projetos
+                    maiores, que controlam muitos LEDs, possuem um grande número de entradas e saídas, ou precisam mais de uma porta
+                    serial de hardware. As placas têm 54 pinos de entrada-saída digitais, 14 dos quais podem fornecer saída analógica PWM,
+                    e 16 analógicos pinos de entrada (Figura 2).
+                </p>
+            </div>
+
+        </div>
+
+        <!-- youtube video -->
+        <div class="" style="margin-top:2%;">
+            <iframe width="820" height="415"
+                    src="https://www.youtube.com/embed/tgbNymZ7vqY">
+            </iframe>
+        </div>
+
+        <!-- Git hub -->
+        <div class="" style="margin-top:4%;">
+            <a class="row" href="/" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" class="bi bi-github col-md-2" viewBox="0 0 16 16">
+                    <path fill="#000000" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                </svg>
+                <p class="col-md-2">GITHUB REPOSITORY</p>
+            </a>
+        </div>
+
+
+        <!-- comments seccion -->
+
+
     </div>
+
+
+
+
+
+
 </section>
+
+
+
 </html>

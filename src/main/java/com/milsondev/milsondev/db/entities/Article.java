@@ -59,6 +59,8 @@ public class Article {
     private int views;
     private int likes;
 
+    private int readingTime;
+
     public String fortmadetData = getFormatedDate();
 
     private String getFormatedDate(){

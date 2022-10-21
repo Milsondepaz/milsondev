@@ -1,4 +1,13 @@
-
+.share button {
+  padding: 0.5rem;
+  margin:1rem 2rem 1rem 0;
+  background:none;
+  border:none;
+}
+.share button svg {height:30px;width:30px;}
+.share button:hover {
+color:red;
+}
 
 
 /* Zoom In #1 */
