@@ -63,6 +63,8 @@ public class Article {
 
     public String fortmadetData = getFormatedDate();
 
+    //private List<Comment> commentList;
+
     private String getFormatedDate(){
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime( FormatStyle.SHORT )
                 .withLocale( Locale.getDefault() )
