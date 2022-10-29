@@ -33,7 +33,7 @@ public class ArticleController {
     @RequestMapping(value = "/article/{fileName}", method = RequestMethod.GET)
     public ModelAndView openArticle(@PathVariable String fileName) {
         Article article = articleService.getArticleByFileName(fileName).get();
-        ModelAndView mv = new ModelAndView( article.getPath()+ fileName);
+        ModelAndView mv = new ModelAndView( article.getPath()+ fileName+".html");
         article.setViews(article.getViews() + 1);
         articleService.articleUpdate(article);
         mv.addObject("article", article);

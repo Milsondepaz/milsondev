@@ -53,7 +53,7 @@ public class ArticleService {
     }
 
     public void saveArticle(Article article) throws IOException {
-        article.setFileName( article.getTitle().toLowerCase().replaceAll(" ", "-") + ".html");
+        article.setFileName( article.getTitle().toLowerCase().replaceAll(" ", "-"));
         article.setListTags(convertToTagList(article.getTags()));
         repository.save(article);
     }
