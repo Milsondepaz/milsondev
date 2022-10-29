@@ -11,13 +11,9 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.thymeleaf.Thymeleaf;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Controller
 @RequestMapping
@@ -39,7 +35,7 @@ public class ArticleController {
         Article article = articleService.getArticleByFileName(fileName).get();
         ModelAndView mv = new ModelAndView( article.getPath()+ fileName);
         article.setViews(article.getViews() + 1);
-        articleService.articleUpdateNumbersOfViews(article);
+        articleService.articleUpdate(article);
         mv.addObject("article", article);
         return mv;
     }
@@ -51,6 +47,18 @@ public class ArticleController {
         User user = userService.getUser();
         mv.addObject("article", article);
         mv.addObject("userName", user.getUserName());
+        return mv;
+    }
+
+
+    // like
+    @RequestMapping(value = "/like/{fileName}", method = RequestMethod.GET)
+    public ModelAndView addLike(@PathVariable String fileName) {
+        Article article = articleService.getArticleByFileName(fileName).get();
+        article.setLikes(article.getLikes() + 1);
+        articleService.articleUpdate(article);
+        ModelAndView mv = new ModelAndView( article.getPath()+ fileName);
+        mv.addObject("article", article);
         return mv;
     }
 

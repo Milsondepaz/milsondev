@@ -19,7 +19,12 @@
     <link th:href="@{/styles/navbar.css}" rel="stylesheet" />
     <link th:href="@{/styles/card.css}" rel="stylesheet" />
 
+    <link th:href="@{/styles/prism.css}" rel="stylesheet" />
+
+
+    <!--
     <link th:href="@{/styles/dracula.css}" rel="stylesheet" />
+    -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/>
@@ -243,30 +248,24 @@
                     sensores para um site ou aplicação, para serem exibidos no formato de um gráfico.
                 </p>
 
-                <div class="container-code">
+                <div class="container-code" style="width: 100%">
+
+                <div class="code-wrapper">
                     <div class="language">
                         <p>example.js</p>
                     </div>
-                <div class="code-wrapper">
                 <pre>
-                    <code id="code">
-function fibonacci(num) {
-    var num1 = 0;
-    var num2 = 1;
-    var sum;
-    var i = 0;
-    for (i = 0; i < num; i++) {
-        sum = num1 + num2;
-        num1 = num2;
-        num2 = sum;
+                    <code id="code" class="language-java">
+    @GetMapping("/")
+    public ModelAndView home() {
+        ModelAndView mv = new ModelAndView("index");
+        mv.addObject("student", studentService.getStudentById(1L).get());
+        return mv;
     }
-    return num2;
-}
-console.log(fibonacci(15));
                     </code>
                 </pre>
-                    <button id="copy-button">Copy</button>
-                    <span id="copy-success">Code copied</span>
+                    <button id="copy-button">COPY</button>
+                    <span id="copy-success">code copied</span>
                 </div>
                 </div>
 
@@ -331,7 +330,23 @@ console.log(fibonacci(15));
 
         <div class="row" style="margin-top:5%;">
             <div class="col-12">
-                <a href="" data-toggle="tooltip" title="Like It" data-placement="bottom" class="like cursor"><i class="fa fa-thumbs-o-up" style="font-size:20px; margin-right:3px;"></i>Like</a>
+
+                <!--
+                <a class="btn btn-link btn-xs" th:href="@{/edit/{fileName}(fileName=${article.fileName})}" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                    </svg>
+                </a>
+                -->
+
+                <a th:href="@{/like/{fileName}(fileName=${article.fileName})}"
+                   data-toggle="tooltip"
+                   title="Like It"
+                   data-placement="bottom"
+                   class="like cursor">
+                    <i class="fa fa-thumbs-o-up" style="font-size:20px; margin-right:3px;"></i>Like</a>
+
+
                 <a href="" class="btn btn-dark" style="margin-right:1%; margin-left:2%">
                     <i class="bi bi-github" style="margin-right:7px;"></i>Repository
                 </a>
@@ -450,9 +465,12 @@ console.log(fibonacci(15));
         }
 </script>
 
-
+<!--
 <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
+-->
+<script src="/js/prism.js"></script>
+
 
 </body>
 
