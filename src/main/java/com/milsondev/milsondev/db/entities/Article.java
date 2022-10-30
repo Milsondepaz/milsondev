@@ -15,8 +15,6 @@ import javax.validation.constraints.*;
 
 
 @Data
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -41,6 +39,8 @@ public class Article {
 
     private String liveLink;
 
+    private String youtubeLink;
+
     @Column(name="listTags")
     @ElementCollection(targetClass=String.class)
     private List<String> listTags = new ArrayList<>();
@@ -62,8 +62,6 @@ public class Article {
     private int readingTime;
 
     public String fortmadetData = getFormatedDate();
-
-    //private List<Comment> commentList;
 
     private String getFormatedDate(){
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime( FormatStyle.SHORT )

@@ -1,11 +1,11 @@
 package com.milsondev.milsondev.service;
 
 import com.milsondev.milsondev.db.entities.Article;
+import com.milsondev.milsondev.db.entities.Comment;
 import com.milsondev.milsondev.db.entities.paging.Paged;
 import com.milsondev.milsondev.db.entities.paging.Paging;
 import com.milsondev.milsondev.db.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -23,10 +23,6 @@ public class ArticleService {
 
     @Autowired
     private ArticleRepository repository;
-
-
-    @Autowired
-    private ResourceLoader resourceLoader;
 
     public List<Article> getPageableArticleList() {
         Pageable firstPageWithTreeElements = PageRequest.of(0, 3);
@@ -71,11 +67,18 @@ public class ArticleService {
         articleDB.setSourceCode(article.getSourceCode());
         articleDB.setLiveLink(article.getLiveLink());
         articleDB.setPath(article.getPath());
+        articleDB.setYoutubeLink(article.getYoutubeLink());
+        articleDB.setReadingTime(article.getReadingTime());
         repository.save(articleDB);
     }
 
     public Optional<Article> getArticleByFileName(String fileName) {
         return repository.findByFileName(fileName);
+    }
+
+    public String getArticleFileNameById(Long id) {
+        Optional<Article> article = repository.findById(id);
+        return article.get().getFileName();
     }
 
     public void articleUpdate(Article article) {

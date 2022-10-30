@@ -1,8 +1,10 @@
 package com.milsondev.milsondev.controller;
 
 import com.milsondev.milsondev.db.entities.Article;
+import com.milsondev.milsondev.db.entities.Comment;
 import com.milsondev.milsondev.db.entities.User;
 import com.milsondev.milsondev.service.ArticleService;
+import com.milsondev.milsondev.service.CommentService;
 import com.milsondev.milsondev.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping
@@ -24,6 +28,9 @@ public class ArticleController {
 
     @Autowired
     private ArticleService articleService;
+
+    @Autowired
+    private CommentService commentService;
 
     //private List<String> defaulTagsList = Arrays.asList("custom login", "securty ", "spring boot", "spring security", "template", "thymeleaf");
     //private List<String> emptyTagList = new ArrayList<>();
@@ -37,6 +44,8 @@ public class ArticleController {
         article.setViews(article.getViews() + 1);
         articleService.articleUpdate(article);
         mv.addObject("article", article);
+        List<Comment> comments = commentService.getCommentByArticle_Id(article.getId());
+        mv.addObject("comments", comments);
         return mv;
     }
 
@@ -50,16 +59,12 @@ public class ArticleController {
         return mv;
     }
 
-
-    // like
     @RequestMapping(value = "/like/{fileName}", method = RequestMethod.GET)
-    public ModelAndView addLike(@PathVariable String fileName) {
+    public String addLike(@PathVariable String fileName) {
         Article article = articleService.getArticleByFileName(fileName).get();
         article.setLikes(article.getLikes() + 1);
         articleService.articleUpdate(article);
-        ModelAndView mv = new ModelAndView( article.getPath()+ fileName);
-        mv.addObject("article", article);
-        return mv;
+        return "redirect:/article/"+fileName;
     }
 
     @RequestMapping(value = "/enable_disable/{id}", method = RequestMethod.GET)
@@ -81,11 +86,8 @@ public class ArticleController {
         model.addAttribute("userName", user.getUserName());
         model.addAttribute("defaulTagsList", defaulTagsList);
         model.addAttribute("article", new Article());
-
-        // mv.addObject("listTag", emptyTagList);
         return "new-article";
     }
-
 
     //Java Spring Boot Validation Thymeleaf
     @RequestMapping(value = "/add-new-article", method = RequestMethod.POST)
@@ -114,9 +116,27 @@ public class ArticleController {
             mv.addObject("mensagem_erro", "Please fill out all necessary fields correctly!");
             return mv;
         }
+
         articleService.updateArticleInfo(article);
         mv.addObject("mensagem", "New article was been successfully updated!");
 
         return mv;
+    }
+
+
+    @RequestMapping(value = "/post-comment", method = RequestMethod.POST)
+    public String addComment(@Valid @ModelAttribute("comment") Comment comment,
+                                   Errors errors, RedirectAttributes attributes) throws IOException {
+
+        String fileName = articleService.getArticleFileNameById(comment.getArticle_id());
+
+        if (errors.hasErrors()){
+            attributes.addFlashAttribute("mensagem_erro", "Please fill out all necessary fields correctly!");
+            return "redirect:/article/"+fileName;
+        }
+
+       commentService.saveComment(comment);
+
+       return "redirect:/article/"+fileName;
     }
 }

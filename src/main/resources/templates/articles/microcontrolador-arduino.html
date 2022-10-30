@@ -78,6 +78,11 @@
 
     <!-- init flag language  -->
     <div class="languages" style="padding-right: 1%; padding-left: 10%;">
+        <div class="flag-usa">
+            <a href="#home">
+                <img src="../img/usa.png">
+            </a>
+        </div>
         <div class="flag-angola">
             <a href="#home">
                 <img src="../img/angola.png">
@@ -134,7 +139,11 @@
                             <path fill="#000000" d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
                         </svg>
                     </a>
+
+
                     </div>
+
+
                 </div>
             </div>
             <div class="row">
@@ -308,11 +317,14 @@
                     e 16 analógicos pinos de entrada (Figura 2).
                 </p>
             </div>
+
         </div>
 
         <!-- youtube video -->
-        <div class="" style="margin-top:2%;" th:if= "${article.youtubeLink != ''}">
-            <iframe width="820" height="415" th:src="${article.youtubeLink}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="" style="margin-top:2%;">
+            <iframe width="820" height="415"
+                    src="https://www.youtube.com/embed/tgbNymZ7vqY">
+            </iframe>
         </div>
 
         <div class="row" style="margin-top:5%;">
@@ -320,13 +332,14 @@
                 <a th:href="@{/like/{fileName}(fileName=${article.fileName})}" data-toggle="tooltip" title="Like It" data-placement="bottom" class="like cursor">
                     <i class="fa fa-thumbs-o-up" style="font-size:20px; margin-right:3px;"></i>Like</a>
 
-                <a th:if= "${article.sourceCode != ''}" th:href="${article.sourceCode}" target="_blank"
+                <a th:href="${article.sourceCode}" target="_blank"
                    class="btn btn-dark" style="margin-right:1%; margin-left:2%">
                     <i class="bi bi-github" style="margin-right:7px;"></i>Repository
                 </a>
 
-                <a th:if= "${article.liveLink != ''}" th:href="${article.liveLink}" target="_blank"
+                <a th:href="${article.liveLink}" target="_blank"
                    class="btn btn-success" style="margin-right:1%; margin-left:1%">Test it Online</a>
+
             </div>
 
             <div style="margin-top:1%; margin-bottom:3px">
