@@ -38,15 +38,18 @@ public class ArticleController {
     String defaulTagsList = "custom login; securty; spring boot; spring security; template; thymeleaf";
 
     @RequestMapping(value = "/article/{fileName}", method = RequestMethod.GET)
-    public ModelAndView openArticle(@PathVariable String fileName) {
+    public String openArticle(@PathVariable String fileName, Comment comment, Model model) {
         Article article = articleService.getArticleByFileName(fileName).get();
-        ModelAndView mv = new ModelAndView( article.getPath()+ fileName+".html");
         article.setViews(article.getViews() + 1);
         articleService.articleUpdate(article);
-        mv.addObject("article", article);
+        model.addAttribute("article", article);
+
         List<Comment> comments = commentService.getCommentByArticle_Id(article.getId());
-        mv.addObject("comments", comments);
-        return mv;
+        model.addAttribute("comments", comments);
+
+        return  article.getPath()+ fileName+".html";
+
+        //return mv;
     }
 
     @RequestMapping(value = "/edit/{fileName}", method = RequestMethod.GET)
@@ -126,17 +129,22 @@ public class ArticleController {
 
     @RequestMapping(value = "/post-comment", method = RequestMethod.POST)
     public String addComment(@Valid @ModelAttribute("comment") Comment comment,
-                                   Errors errors, RedirectAttributes attributes) throws IOException {
+                                   Errors errors, Model model) throws IOException {
 
         String fileName = articleService.getArticleFileNameById(comment.getArticle_id());
+        Article article = articleService.getArticleByFileName(fileName).get();
+        model.addAttribute("article", article);
+        List<Comment> comments = commentService.getCommentByArticle_Id(article.getId());
+        model.addAttribute("comments", comments);
 
         if (errors.hasErrors()){
-            attributes.addFlashAttribute("mensagem_erro", "Please fill out all necessary fields correctly!");
-            return "redirect:/article/"+fileName;
+            model.addAttribute("message", "Unable to post comment!");
+            model.addAttribute("comment", comment);
+        } else {
+            commentService.saveComment(comment);
         }
 
-       commentService.saveComment(comment);
+        return article.getPath()+ fileName+".html";
 
-       return "redirect:/article/"+fileName;
     }
 }

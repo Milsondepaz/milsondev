@@ -364,13 +364,15 @@
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <label>Name</label>
-                                                <input type="text" class="form-control" name="author" placeholder="Name">
+                                                <p th:if="${#fields.hasErrors('author')}" th:errors="*{author}" style="color: red;"></p>
+                                                <input type="text" class="form-control" name="author" placeholder="Name" th:value="${comment.author}">
                                                 <input type="hidden" name="article_id" th:value="${article.id}">
                                             </div>
                                         </div>
                                         <div class="row mt-2">
                                             <div class="col-md">
-                                                <textarea class="form-control shadow-none textarea" name="review"></textarea>
+                                                <textarea class="form-control shadow-none textarea" name="review" th:inline="text">[[${comment.review}]]</textarea>
+                                                <p th:if="${#fields.hasErrors('review')}" th:errors="*{review}" style="color: red;"></p>
                                             </div>
                                         </div>
                                     </div>
