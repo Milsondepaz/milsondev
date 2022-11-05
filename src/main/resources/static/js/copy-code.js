@@ -19,11 +19,14 @@ document-addEventListener('DOMContentLoaded', () => {
 
         copySuccess.classList.add('show-message');
 
+        var showtext = [[${article.url}]];
+        console.log(showtext);
+
         setTimeout(() => {
                     copySuccess.classList.remove('show-message');
                      }, 2000);
+        };
 
-    };
+        copyButton.addEventListener('click', copyTextHandler);
 
-    copyButton.addEventListener('click', copyTextHandler);
 });

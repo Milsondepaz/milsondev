@@ -53,6 +53,8 @@ public class Article {
 
     private String path = "./articles/";
 
+    private String url;
+
     private Instant createdUpdateOn = Instant.now();
 
     private boolean published = false;

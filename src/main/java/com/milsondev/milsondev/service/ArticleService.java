@@ -49,8 +49,10 @@ public class ArticleService {
     }
 
     public void saveArticle(Article article) throws IOException {
-        article.setFileName( article.getTitle().toLowerCase().replaceAll(" ", "-"));
+        final String fileName = article.getTitle().toLowerCase().replaceAll(" ", "-");
+        article.setFileName(fileName);
         article.setListTags(convertToTagList(article.getTags()));
+        article.setUrl("https://www.milsondev.de/article/"+fileName);
         repository.save(article);
     }
 

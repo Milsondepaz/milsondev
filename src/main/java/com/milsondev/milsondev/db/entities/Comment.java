@@ -29,10 +29,10 @@ public class Comment {
     private Long id;
     private Long article_id;
 
-    @NotBlank(message = "Write your comment")
+    @NotBlank(message = "Name is mandatory")
     private String author;
 
-    @NotBlank(message = "Enter your Name")
+    @NotBlank(message = "Write a comment")
     private String review;
     private Instant data = Instant.now();
 
