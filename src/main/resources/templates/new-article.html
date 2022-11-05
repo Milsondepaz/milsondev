@@ -41,9 +41,20 @@
                                         <label>Description</label>
                                         <textarea class="form-control" rows="4" name="description" placeholder="Description"></textarea>
                                     </div>
-                                    <div class="col-md-12 mt-2">
+
+                                    <div class="col-md-6 mt-2">
                                         <label>Tags</label>
                                         <input type="text" class="form-control" name="tags" th:value="${defaulTagsList}">
+                                    </div>
+
+                                    <div class="col-md-5 mt-2">
+                                        <label>Youtube Link</label>
+                                        <input type="text" class="form-control" name="youtubeLink" placeholder="YouTube Link">
+                                    </div>
+
+                                    <div class="col-md-1 mb-2 mt-2">
+                                        <label>Time</label>
+                                        <input type="number" class="form-control" name="readingTime" min="1" th:value="${readingTime}">
                                     </div>
 
                                     <div class="col-md-6 mb-2 mt-2">

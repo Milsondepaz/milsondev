@@ -20,7 +20,6 @@
     <link th:href="@{/styles/card.css}" rel="stylesheet" />
 
     <link th:href="@{/styles/prism.css}" rel="stylesheet" />
-    <link th:href="@{/styles/share-on-social-media.css}" rel="stylesheet" />
 
 
     <!--
@@ -79,6 +78,11 @@
 
     <!-- init flag language  -->
     <div class="languages" style="padding-right: 1%; padding-left: 10%;">
+        <div class="flag-usa">
+            <a href="#home">
+                <img src="../img/usa.png">
+            </a>
+        </div>
         <div class="flag-angola">
             <a href="#home">
                 <img src="../img/angola.png">
@@ -92,7 +96,55 @@
     <div class="container">
         <div class="container">
             <div class="row">
+
+                <div class="row">
                     <h1 class="col-md-8" th:text="${article.title}"></h1>
+                    <div class="col-md-3">
+
+                        <!-- facebook-->
+                        <div class="fb-share-button" data-toggle="tooltip" title="Share on Facebook" data-placement="bottom"
+                             data-href="https://www.milsondev.de/article/java-spring-boot-validation-thymeleaf.html"
+                             data-layout="button_count">
+                        </div>
+
+                        <!-- Twitter -->
+                        <a class="btnShare btn btn-link btn-xs"  target="_blank" data-toggle="tooltip" title="Share on Twitter" data-placement="bottom"
+                           href="http://twitter.com/share?text=Im Sharing on Twitter&url=https://www.milsondev.de/article/java-spring-boot-validation-thymeleaf.html=programming,milsondev"
+                           data-image="../img/milson.png" data-title="Article Title" data-desc="Some description for this article"
+                           data-href="https://www.milsondev.de">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+                            <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+                        </svg>
+                    </a>
+
+                        <!-- LinkedIn -->
+                    <a class="btn btn-link btn-xs"  target="_blank" data-toggle="tooltip" title="Share on LinkedIn" data-placement="bottom"
+                       href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.milsondev.de/article/java-spring-boot-validation-thymeleaf.html&title=Create">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                        </svg>
+                    </a>
+
+                        <a class="btn btn-link btn-xs"  target="_blank" data-toggle="tooltip" title="Share on WhatsApp" data-placement="bottom"
+                       href="whatsapp://send?text=https://www.milsondev.de/article/java-spring-boot-validation-thymeleaf.html" data-action="share/whatsapp/share">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                            <path fill="#32CD32" d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                        </svg>
+                    </a>
+
+
+                    <a class="btn btn-link btn-xs"  target="_blank" data-toggle="tooltip" title="Copy link" data-placement="bottom" id="copy-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+                            <path fill="#000000" d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
+                            <path fill="#000000" d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
+                        </svg>
+                    </a>
+
+
+                    </div>
+
+
+                </div>
             </div>
             <div class="row">
                 <div class="col-sm-6 col-md-1">
@@ -118,7 +170,9 @@
         </div>
 
         <div class="row mt-4">
+
             <div class="col-md-8" style="margin-right:7%;">
+
                 <p> <b>Resumo:</b> O termo Internet das Coisas (Internet of Things – IoT) vem sendo adotado como a convergência de
                     várias tecnologias de automação tais como sistemas embarcados, sistemas de comunicação e hardware e que
                     possibilita a integração de dispositivos, sensores e atuadores à rede internet. O DC Alerta é um sistema que
@@ -245,36 +299,47 @@
 
             </div>
 
-            <!-- google adds -->
+
+
+            <!-- google anuncios -->
             <div class="col-md-3">
-                <div class="col-12" style="margin-bottom: 15%">
-                    <a th:if= "${article.sourceCode != ''}" th:href="${article.sourceCode}" target="_blank"
-                       class="btn btn-dark" style="margin-right:1%; margin-left:2%">
-                        <i class="bi bi-github" style="margin-right:7px;"></i>Go to Repo
-                    </a>
-                    <a  th:if= "${article.liveLink != ''}" th:href="${article.liveLink}" target="_blank"
-                       class="btn btn-success" style="margin-right:1%; margin-left:1%">
-                        <i class="bi bi-hand-index-thumb" style="margin-right:7px;"></i>Test it Run</a>
-                </div>
-                    <div class="social-btns" id="social-network">
-                        <a class="btn facebook" href="" ><i class="fa fa-facebook"></i></a>
-                        <a class="btn twitter" href=""><i class="fa fa-twitter"></i></a>
-                        <a class="btn whatsapp" href=""><i class="fa fa-whatsapp"></i></a>
-                        <a class="btn linkedin" href=""><i class="fa fa-linkedin"></i></a>
-                        <a class="btn copyLink" href="" data-toggle="tooltip" title="Copy Link" data-placement="bottom"><i class="fa fa-link"></i></a>
-                    </div>
+                <p>
+                    Segundo Evans et al. (2013), existem várias versões do Arduino, porém todas baseadas na tecnologia Atmel
+                    AVR. Ele é um microcontrolador RISC de chip único com uma arquitetura Harvard modificada de 8-bits, desenvolvido
+                    em 1996 pela Atmel (SOUZA; 2014).A primeira placa foi baseada no ATmega8 rodando a uma velocidade de clock de 16
+                    MHz com 8 KB de memória flash; mais tarde placas como o Arduino NG plus e o Diecimila foram equipadas com o
+                    ATmega168 e 16 KB de memória flash. As versões mais recentes do Arduino, Duemilanove e Uno, usam o ATmega328
+                    têm 32 KB de memória flash. Para projetos que exigem mais E/S e memória, há o Arduino Mega1280 com 128 KB de
+                    memória e o Arduino Mega2560 com 256 KB de memória. O Mega oferece uma funcionalidade de entrada-saída
+                    significativamente maior em comparação com o Arduino padrão, então com o aumento da memória, é ideal para projetos
+                    maiores, que controlam muitos LEDs, possuem um grande número de entradas e saídas, ou precisam mais de uma porta
+                    serial de hardware. As placas têm 54 pinos de entrada-saída digitais, 14 dos quais podem fornecer saída analógica PWM,
+                    e 16 analógicos pinos de entrada (Figura 2).
+                </p>
             </div>
+
         </div>
 
         <!-- youtube video -->
-        <div class="" style="margin-top:2%;" th:if= "${article.youtubeLink != ''}">
-            <iframe width="820" height="415" th:src="${article.youtubeLink}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="" style="margin-top:2%;">
+            <iframe width="820" height="415"
+                    src="https://www.youtube.com/embed/tgbNymZ7vqY">
+            </iframe>
         </div>
 
         <div class="row" style="margin-top:5%;">
             <div class="col-12">
                 <a th:href="@{/like/{fileName}(fileName=${article.fileName})}" data-toggle="tooltip" title="Like It" data-placement="bottom" class="like cursor">
                     <i class="fa fa-thumbs-o-up" style="font-size:20px; margin-right:3px;"></i>Like</a>
+
+                <a th:href="${article.sourceCode}" target="_blank"
+                   class="btn btn-dark" style="margin-right:1%; margin-left:2%">
+                    <i class="bi bi-github" style="margin-right:7px;"></i>Repository
+                </a>
+
+                <a th:href="${article.liveLink}" target="_blank"
+                   class="btn btn-success" style="margin-right:1%; margin-left:1%">Test it Online</a>
+
             </div>
 
             <div style="margin-top:1%; margin-bottom:3px">
@@ -304,6 +369,7 @@
                                 </tr>
                                 </div>
 
+
                                 <div>
                                     <form action="#" th:action="@{/post-comment}" method="post" th:object="${comment}">
                                     <div class="d-flex flex-row align-items-start">
@@ -311,15 +377,13 @@
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <label>Name</label>
-                                                <p th:if="${#fields.hasErrors('author')}" th:errors="*{author}" style="color: red;"></p>
-                                                <input type="text" class="form-control" name="author" placeholder="Name" th:value="${comment.author}">
+                                                <input type="text" class="form-control" name="author" placeholder="Name">
                                                 <input type="hidden" name="article_id" th:value="${article.id}">
                                             </div>
                                         </div>
                                         <div class="row mt-2">
                                             <div class="col-md">
-                                                <textarea class="form-control shadow-none textarea" name="review" th:inline="text">[[${comment.review}]]</textarea>
-                                                <p th:if="${#fields.hasErrors('review')}" th:errors="*{review}" style="color: red;"></p>
+                                                <textarea class="form-control shadow-none textarea" name="review"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -360,62 +424,16 @@
     </div>
 </footer>
 
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
 <script src="/js/copy-code.js"></script>
 
-<!-- share on social networks -->
-<script  th:inline="javascript">
-    var params = "menubar=no,toolbar=no,status=no,width=570,height=570";
-    var url = [[${article.url}]];
 
-    var text = [[${article.title}]];
-    var hash_tags = "java,milsondev,springboot,programming";
 
-    var facebook = document.querySelector('.facebook');
-    var twitter = document.querySelector('.twitter');
-    var copyLink = document.querySelector('.copyLink');
-    var whatsapp = document.querySelector('.whatsapp');
-    var linkedin = document.querySelector('.linkedin');
-
-    //facebook
-    facebook.addEventListener('click', function(ev) {
-        let shareUrl = `http://www.facebook.com/sharer/sharer.php?u=${url}`;
-        window.open(shareUrl,"NewWindow" , params);
-    });
-
-    //twitter
-    twitter.addEventListener('click', function(ev) {
-        let shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}&hashtags=${hash_tags}`;
-        window.open(shareUrl,"NewWindow" , params);
-    });
-
-    //linkedin
-    linkedin.addEventListener('click', function(ev) {
-        let shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${text}`;
-        window.open(shareUrl,"NewWindow" , params);
-    });
-
-    //whatsapp
-    whatsapp.addEventListener('click', function(ev) {
-        let shareUrl = `https://api.whatsapp.com/send?&text=${url}`;
-        window.open(shareUrl,"NewWindow" , params);
-    });
-
-    //copyLink
-    copyLink.addEventListener('click', function(ev) {
-        var text = [[${article.url}]];
-        var input = document.createElement('input');
-            input.setAttribute('value', text);
-            document.body.appendChild(input);
-            input.select();
-            var result = document.execCommand('copy');
-            document.body.removeChild(input);
-    return result;
-    });
-</script>
 
 <!-- tooltip -->
 <script>
@@ -435,11 +453,23 @@
         }(document, 'script', 'facebook-jssdk'));
 </script>
 
+
+<script>
+        function copyToClipboard(element) {
+        var $temp = $("blabla");
+        $("body").append($temp);
+        $temp.val($(element).text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+        }
+</script>
+
 <!--
 <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 -->
 <script src="/js/prism.js"></script>
+
 
 </body>
 
