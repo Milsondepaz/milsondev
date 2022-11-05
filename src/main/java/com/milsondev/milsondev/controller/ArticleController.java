@@ -133,19 +133,16 @@ public class ArticleController {
 
         String fileName = articleService.getArticleFileNameById(comment.getArticle_id());
         Article article = articleService.getArticleByFileName(fileName).get();
-
+        model.addAttribute("article", article);
+        List<Comment> comments = commentService.getCommentByArticle_Id(article.getId());
+        model.addAttribute("comments", comments);
 
         if (errors.hasErrors()){
             model.addAttribute("message", "Unable to post comment!");
             model.addAttribute("comment", comment);
         } else {
             commentService.saveComment(comment);
-            model.addAttribute("comment", new Comment());
         }
-
-        model.addAttribute("article", article);
-        List<Comment> comments = commentService.getCommentByArticle_Id(article.getId());
-        model.addAttribute("comments", comments);
 
         return article.getPath()+ fileName+".html";
 
