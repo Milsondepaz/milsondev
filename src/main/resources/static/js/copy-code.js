@@ -4,8 +4,6 @@ document-addEventListener('DOMContentLoaded', () => {
     const copyButton = document.getElementById('copy-button');
     const copySuccess = document.getElementById('copy-success');
 
-    const copyLink = document.getElementById('copy-link');
-
     const copyTextHandler = () => {
         const text = codeBlock.innerText;
 
@@ -18,9 +16,6 @@ document-addEventListener('DOMContentLoaded', () => {
         document.body.removeChild(element);
 
         copySuccess.classList.add('show-message');
-
-        var showtext = [[${article.url}]];
-        console.log(showtext);
 
         setTimeout(() => {
                     copySuccess.classList.remove('show-message');
