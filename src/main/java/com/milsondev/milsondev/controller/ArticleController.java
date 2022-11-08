@@ -46,10 +46,14 @@ public class ArticleController {
 
         List<Comment> comments = commentService.getCommentByArticle_Id(article.getId());
         model.addAttribute("comments", comments);
+        model.addAttribute("comment", comment);
 
         return  article.getPath()+ fileName+".html";
 
         //return mv;
+
+        //comment
+        // home layout
     }
 
     @RequestMapping(value = "/edit/{fileName}", method = RequestMethod.GET)
@@ -126,25 +130,31 @@ public class ArticleController {
         return mv;
     }
 
-
     @RequestMapping(value = "/post-comment", method = RequestMethod.POST)
-    public String addComment(@Valid @ModelAttribute("comment") Comment comment,
-                                   Errors errors, Model model) throws IOException {
-
-        String fileName = articleService.getArticleFileNameById(comment.getArticle_id());
-        Article article = articleService.getArticleByFileName(fileName).get();
-        model.addAttribute("article", article);
-        List<Comment> comments = commentService.getCommentByArticle_Id(article.getId());
-        model.addAttribute("comments", comments);
+    public String postComment (@Valid @ModelAttribute("comment") Comment comment,
+                             Errors errors, Model model) throws IOException {
 
         if (errors.hasErrors()){
             model.addAttribute("message", "Unable to post comment!");
             model.addAttribute("comment", comment);
         } else {
             commentService.saveComment(comment);
+            //model.addAttribute("comment", new Comment());
         }
 
-        return article.getPath()+ fileName+".html";
+        String fileName = articleService.getArticleFileNameById(comment.getArticle_id());
+        Article article = articleService.getArticleByFileName(fileName).get();
+        model.addAttribute("fileName", fileName);
+
+        //model.addAttribute("article", article);
+        //List<Comment> comments = commentService.getCommentByArticle_Id(article.getId());
+        //model.addAttribute("comments", comments);
+
+
+        //return article.getPath()+ fileName+".html";
+
+        return "redirect:/article/"+fileName;
 
     }
+
 }

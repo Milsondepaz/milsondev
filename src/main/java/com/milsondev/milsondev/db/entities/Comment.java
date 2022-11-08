@@ -33,6 +33,7 @@ public class Comment {
     private String author;
 
     @NotBlank(message = "Write a comment")
+    @Column(columnDefinition = "TEXT")
     private String review;
     private Instant data = Instant.now();
 
