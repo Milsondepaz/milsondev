@@ -25,7 +25,7 @@ import javax.validation.Valid;
 
 // add photo profile -salvar no banco
 
-// article page - share on Linkedin, facebook, whatsApp
+// article page - share on Linkedin, facebook, whatsApp - done
 
 // melhorar o layout da home
 

@@ -71,3 +71,25 @@ volumes:
 
 ##remove all volumes
 #docker volume rm $(docker volume ls -q --filter dangling=true)
+
+## to conect postgress contanair database to postgress admin the host name is 0.0.0.0
+
+## service postgresql status
+## service postgresql start
+## service postgresql start
+
+#http://localhost:15672/
+
+### start and restart postgres locally
+## service postgresql status
+## service postgresql start
+## service postgresql start
+
+# install rabbitMQ locally
+#https://www.rabbitmq.com/install-debian.html#apt-quick-start-packagecloud
+# https://gist.github.com/vashuteotia123/ac31f6805d81c113be0fe03768903aaf
+
+#install restart rabbitMQ locally
+# sudo systemctl start rabbitmq-server
+# sudo systemctl stop rabbitmq-server.service
+# sudo systemctl status rabbitmq-server

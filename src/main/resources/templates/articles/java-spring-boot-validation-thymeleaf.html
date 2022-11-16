@@ -104,34 +104,60 @@
 <section  style=" margin-bottom: 11%; padding-top:2%;">
     <div class="container">
         <div class="container">
-            <div class="row">
+
+            <div class="row" style=" padding-bottom: 2%; padding-top:2%;">
                     <h1 class="col-md-8" th:text="${article.title}"></h1>
+                <small class="">Tags:
+                    <tr th:each="tag : ${article.listTags}">
+                        <a href="#" th:text="${tag}" style="margin-right:2%;" >
+                        </a>
+                    </tr>
+                </small>
             </div>
-            <div class="row">
-                <div class="col-sm-6 col-md-1">
-                        <img src="../img/milson.png" width= "100" height="100"; style="border-radius: 50%; border:1px groove #545565;">
+
+            <div class="row" style=" padding-bottom: 1%;">
+                <small> Published on <span th:text="${article.fortmadetData}"></span></small>
+            </div>
+
+            <div class="row col-md-10"  style=" padding-bottom: 2%; padding-top:2%;">
+                        <img src="../img/img-article.png" height="400" width="50" style="border-radius: 2%;" >
+            </div>
+
+
+
+            <div class="row" style=" padding-bottom: 2%; padding-top:2%;">
+
+                <div class="row">
+                    <div class="col-md-10" >
+                        <hr>
+                    </div>
                 </div>
-                <div class="col-sm-6 col-md-7" style="margin-top:1%; margin-left:1%; margin-bottom:2%">
-                    <small>By <a th:href="@{../profile/{author}(author=${article.author})}" th:text="${article.author}"></a> </small>
-                   <div class="">
-                       <small> <span th:text="${article.readingTime}" style=" font-weight: bold; "></span> min read
-                           | Viewed: <span th:text="${article.views}" style=" font-weight: bold; "></span>
-                           | Likes: <span th:text="${article.likes}" style=" font-weight: bold; "></span>
-                           | Update on: <span th:text="${article.fortmadetData}" style=" font-weight: bold; "></span>
+
+                <div class="col-sm-6 col-md-1">
+                    <img src="../img/milson.png" width= "70" height="70"; style="border-radius: 50%; border:1px groove #545565;">
+                </div>
+
+                <div class="col-sm-6 col-md-7">
+                    <small><a th:href="@{../profile/{author}(author=${article.author})}" th:text="${article.author}"></a> </small>
+                   <div class="" style=" padding-bottom: 1%; padding-top:1%;">
+                       <small>
+                           <h6 style=" font-weight: bold; ">Java Jr. Software Engineer</h6>
                        </small>
                    </div>
-                        <small class="">Tags:
-                        <tr th:each="tag : ${article.listTags}">
-                            <a href="#" th:text="${tag}" style="margin-right:2%;" >
-                            </a>
-                        </tr>
-                    </small>
                 </div>
+
+                <div class="row">
+                    <div class="col-md-10" >
+                        <hr>
+                    </div>
+                </div>
+
+
             </div>
         </div>
 
         <div class="row mt-4">
-            <div class="col-md-8" style="margin-right:7%;">
+            <div class="col-md-10" style="margin-right:8%;">
                 <p> <b>Resumo:</b> O termo Internet das Coisas (Internet of Things – IoT) vem sendo adotado como a convergência de
                     várias tecnologias de automação tais como sistemas embarcados, sistemas de comunicação e hardware e que
                     possibilita a integração de dispositivos, sensores e atuadores à rede internet. O DC Alerta é um sistema que
@@ -269,13 +295,7 @@
                        class="btn btn-success" style="margin-right:1%; margin-left:1%">
                         <i class="bi bi-hand-index-thumb" style="margin-right:7px;"></i>Test it Run</a>
                 </div>
-                    <div class="social-btns" id="social-network">
-                        <a class="btn facebook" href="" ><i class="fa fa-facebook"></i></a>
-                        <a class="btn twitter" href=""><i class="fa fa-twitter"></i></a>
-                        <a class="btn whatsapp" href=""><i class="fa fa-whatsapp"></i></a>
-                        <a class="btn linkedin" href=""><i class="fa fa-linkedin"></i></a>
-                        <a class="btn copyLink" href="" data-toggle="tooltip" title="Copy Link" data-placement="bottom"><i class="fa fa-link"></i></a>
-                    </div>
+
             </div>
         </div>
 
@@ -284,15 +304,30 @@
             <iframe width="820" height="415" th:src="${article.youtubeLink}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
-        <div class="row" style="margin-top:5%;">
-            <div class="col-12">
-                <a th:href="@{/like/{fileName}(fileName=${article.fileName})}" data-toggle="tooltip" title="Like It" data-placement="bottom" class="like cursor">
-                    <i class="fa fa-thumbs-o-up" style="font-size:20px; margin-right:3px;"></i>Like</a>
+        <div style="margin-top:5%; margin-bottom:1px">
+            <hr>
+        </div>
+
+        <div class="row" style="margin-top:2%;">
+
+            <div class="row">
+                <div class="col-1">
+                    <a th:href="@{/like/{fileName}(fileName=${article.fileName})}" data-toggle="tooltip" title="Like It" data-placement="bottom" class="like cursor">
+                        <i class="fa fa-thumbs-o-up" style="font-size:20px; margin-right:3px;"></i>Like</a>
+                </div>
+
+                <div class="col-4" style="align: right">
+                    <div class="social-btns" id="social-network" style="align: right">
+                        <a class="btn facebook" href="" ><i class="fa fa-facebook"></i></a>
+                        <a class="btn twitter" href=""><i class="fa fa-twitter"></i></a>
+                        <a class="btn whatsapp" href=""><i class="fa fa-whatsapp"></i></a>
+                        <a class="btn linkedin" href=""><i class="fa fa-linkedin"></i></a>
+                        <a class="btn copyLink" href="" data-toggle="tooltip" title="Copy Link" data-placement="bottom"><i class="fa fa-link"></i></a>
+                    </div>
+                </div>
+
             </div>
 
-            <div style="margin-top:1%; margin-bottom:3px">
-                <hr>
-            </div>
 
             <!-- comments seccion -->
             <div class="container mt-5">
@@ -324,15 +359,15 @@
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <label>Name</label>
-                                                <p th:if="${#fields.hasErrors('author')}" th:errors="*{author}" style="color: red;"></p>
                                                 <input type="text" class="form-control" name="author" placeholder="Name" th:value="${comment.author}">
                                                 <input type="hidden" name="article_id" th:value="${article.id}">
+                                                <p th:if= "${errorCommentAuthor != ''}" th:text="${errorCommentAuthor}" style="color: red;"></p>
                                             </div>
                                         </div>
                                         <div class="row mt-2">
                                             <div class="col-md">
                                                 <textarea class="form-control shadow-none textarea" name="review" th:inline="text">[[${comment.review}]]</textarea>
-                                                <p th:if="${#fields.hasErrors('review')}" th:errors="*{review}" style="color: red;"></p>
+                                                <p th:if= "${errorCommentTextArea != ''}" th:text="${errorCommentTextArea}" style="color: red;"></p>
                                             </div>
                                         </div>
                                     </div>

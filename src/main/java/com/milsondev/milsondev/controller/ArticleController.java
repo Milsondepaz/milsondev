@@ -16,7 +16,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -32,6 +31,11 @@ public class ArticleController {
     @Autowired
     private CommentService commentService;
 
+    private boolean commentHasError = false;
+    private Comment userComment = new Comment();
+
+    private Errors errors2;
+
     //private List<String> defaulTagsList = Arrays.asList("custom login", "securty ", "spring boot", "spring security", "template", "thymeleaf");
     //private List<String> emptyTagList = new ArrayList<>();
 
@@ -40,20 +44,29 @@ public class ArticleController {
     @RequestMapping(value = "/article/{fileName}", method = RequestMethod.GET)
     public String openArticle(@PathVariable String fileName, Comment comment, Model model) {
         Article article = articleService.getArticleByFileName(fileName).get();
+        comment = userComment;
         article.setViews(article.getViews() + 1);
         articleService.articleUpdate(article);
         model.addAttribute("article", article);
 
         List<Comment> comments = commentService.getCommentByArticle_Id(article.getId());
         model.addAttribute("comments", comments);
+
+        if (commentHasError){
+            if (errors2.hasFieldErrors("review")){
+                model.addAttribute("errorCommentTextArea", "Write your comment");
+            }else {
+                model.addAttribute("errorCommentAuthor", "Enter your name");
+            }
+            commentHasError = false;
+        } else {
+            comment = new Comment();
+        }
+
         model.addAttribute("comment", comment);
 
         return  article.getPath()+ fileName+".html";
 
-        //return mv;
-
-        //comment
-        // home layout
     }
 
     @RequestMapping(value = "/edit/{fileName}", method = RequestMethod.GET)
@@ -133,25 +146,18 @@ public class ArticleController {
     @RequestMapping(value = "/post-comment", method = RequestMethod.POST)
     public String postComment (@Valid @ModelAttribute("comment") Comment comment,
                              Errors errors, Model model) throws IOException {
-
         if (errors.hasErrors()){
-            model.addAttribute("message", "Unable to post comment!");
-            model.addAttribute("comment", comment);
+            commentHasError = true;
+            errors2 = errors;
         } else {
             commentService.saveComment(comment);
-            //model.addAttribute("comment", new Comment());
         }
+
+        userComment = comment;
 
         String fileName = articleService.getArticleFileNameById(comment.getArticle_id());
         Article article = articleService.getArticleByFileName(fileName).get();
         model.addAttribute("fileName", fileName);
-
-        //model.addAttribute("article", article);
-        //List<Comment> comments = commentService.getCommentByArticle_Id(article.getId());
-        //model.addAttribute("comments", comments);
-
-
-        //return article.getPath()+ fileName+".html";
 
         return "redirect:/article/"+fileName;
 
