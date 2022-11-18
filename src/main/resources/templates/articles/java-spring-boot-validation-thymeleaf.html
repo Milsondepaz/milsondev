@@ -116,7 +116,13 @@
             </div>
 
             <div class="row" style=" padding-bottom: 1%;">
-                <small> Published on <span th:text="${article.fortmadetData}"></span></small>
+
+                <div class="">
+                    <small>Published on <span th:text="${article.fortmadetData}" style=" font-weight: bold; margin-right: 20px; "></span>
+                        Views <span th:text="${article.views}" style=" font-weight: bold; margin-right: 20px;"></span>
+                        Likes <span th:text="${article.likes}" style=" font-weight: bold; "></span>
+                    </small>
+                </div>
             </div>
 
             <div class="row col-md-10"  style=" padding-bottom: 2%; padding-top:2%;">
@@ -139,8 +145,8 @@
 
                 <div class="col-sm-6 col-md-7">
                     <small><a th:href="@{../profile/{author}(author=${article.author})}" th:text="${article.author}"></a> </small>
-                   <div class="" style=" padding-bottom: 1%; padding-top:1%;">
-                       <small>
+                   <div class="row" style="padding-bottom: 1%; padding-top:1%;">
+                       <small class="col">
                            <h6 style=" font-weight: bold; ">Java Jr. Software Engineer</h6>
                        </small>
                    </div>
@@ -149,10 +155,15 @@
                 <div class="row">
                     <div class="col-md-10" >
                         <hr>
+                        <div class="social-btns" id="social-network" style="text-align: center; margin-top: 60px;">
+                            <a class="btn facebook" href="" data-toggle="tooltip" title="Share on Facebook" ><i class="fa fa-facebook"></i></a>
+                            <a class="btn twitter" href="" data-toggle="tooltip" title="Share on Twitter" ><i class="fa fa-twitter"></i></a>
+                            <a class="btn whatsapp" href="" data-toggle="tooltip" title="Share on Whatsapp" ><i class="fa fa-whatsapp"></i></a>
+                            <a class="btn linkedin" href="" data-toggle="tooltip" title="Share on LinkeIn" ><i class="fa fa-linkedin"></i></a>
+                            <a class="btn copyLink" href="" data-toggle="tooltip" title="Copy Link" data-placement="bottom"><i class="fa fa-link"></i></a>
+                        </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
 
@@ -312,20 +323,14 @@
 
             <div class="row">
                 <div class="col-1">
-                    <a th:href="@{/like/{fileName}(fileName=${article.fileName})}" data-toggle="tooltip" title="Like It" data-placement="bottom" class="like cursor">
+                    <a th:href="@{/like/{fileName}(fileName=${article.fileName})}" class="like cursor">
                         <i class="fa fa-thumbs-o-up" style="font-size:20px; margin-right:3px;"></i>Like</a>
                 </div>
 
-                <div class="col-4" style="align: right">
-                    <div class="social-btns" id="social-network" style="align: right">
-                        <a class="btn facebook" href="" ><i class="fa fa-facebook"></i></a>
-                        <a class="btn twitter" href=""><i class="fa fa-twitter"></i></a>
-                        <a class="btn whatsapp" href=""><i class="fa fa-whatsapp"></i></a>
-                        <a class="btn linkedin" href=""><i class="fa fa-linkedin"></i></a>
-                        <a class="btn copyLink" href="" data-toggle="tooltip" title="Copy Link" data-placement="bottom"><i class="fa fa-link"></i></a>
-                    </div>
+                <div class="col-2 like cursor">
+                    <a href="#" class="like cursor">
+                        <i class="fa-regular fa-comment" style="font-size:20px; margin-right:3px;"></i>Comment</a>
                 </div>
-
             </div>
 
 
@@ -333,50 +338,53 @@
             <div class="container mt-5">
                 <div class="d-flex justify-content-center row">
                         <div class="d-flex flex-column comment-section">
-                            <div class="p-2">
 
-                                <div th:if="${!comments.empty}">
-                                <tr th:each = "comment: ${comments}">
-                                <div class="bg-white" style="padding-bottom:15px;" >
-                                    <div class="d-flex flex-row user-info" >
+                            <div>
+                                <form action="#" th:action="@{/post-comment}" method="post" th:object="${comment}">
+                                    <div class="d-flex flex-row align-items-start">
                                         <img class="rounded-circle mr-2" src="../img/avatar.png" width="40" height="40" style="margin-right:1%;">
-                                        <div class="d-flex flex-column justify-content-start ml-2">
-                                            <span class="d-block font-weight-bold name"><b th:text="${comment.author}"> </b></span>
-                                            <span class="date text-black-50" th:text="${comment.formateDate}"></span>
+                                        <div class="col">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>Name</label>
+                                                    <input type="text" class="form-control" name="author" placeholder="Name" th:value="${comment.author}">
+                                                    <input type="hidden" name="article_id" th:value="${article.id}">
+                                                    <p th:if= "${errorCommentAuthor != ''}" th:text="${errorCommentAuthor}" style="color: red;"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-md">
+                                                    <textarea class="form-control shadow-none textarea" name="review" th:inline="text">[[${comment.review}]]</textarea>
+                                                    <p th:if= "${errorCommentTextArea != ''}" th:text="${errorCommentTextArea}" style="color: red;"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                            <div class="mt-1 text-right">
+                                                <button class="btn btn-primary mb-2" type="submit" >Post comment</button>
+                                            </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="mt-2">
-                                        <p class="comment-text" th:text="${comment.review}"></p>
+                                </form>
+                            </div>
+
+                            <div class="p-2">
+                                <div th:if="${!comments.empty}">
+                                <tr th:each = "comment: ${comments}">
+                                <div class="bg-white" style="padding-bottom:15px; " >
+                                    <div class="d-flex flex-row user-info" >
+                                        <img class="rounded-circle mr-2" src="../img/avatar.png" width="40" height="40" style="margin-right:1%;">
+                                        <div class="d-flex flex-column justify-content-start ml-2" style="background-color:
+                                        #DCDCDC; border: 1px solid Gainsboro;  padding: 10px;  border-radius: 15px;">
+                                            <span class="d-block font-weight-bold name" style="margin:5px;"><b th:text="${comment.author}"> </b></span>
+                                            <span class="date text-black-50" style="margin-left:5px; margin-right:5px;" th:text="${comment.formateDate}"></span>
+                                            <div class="">
+                                                <p class="comment-text" style="margin:5px;" th:text="${comment.review}"></p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 </tr>
-                                </div>
-
-                                <div>
-                                    <form action="#" th:action="@{/post-comment}" method="post" th:object="${comment}">
-                                    <div class="d-flex flex-row align-items-start">
-                                    <div class="col">
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <label>Name</label>
-                                                <input type="text" class="form-control" name="author" placeholder="Name" th:value="${comment.author}">
-                                                <input type="hidden" name="article_id" th:value="${article.id}">
-                                                <p th:if= "${errorCommentAuthor != ''}" th:text="${errorCommentAuthor}" style="color: red;"></p>
-                                            </div>
-                                        </div>
-                                        <div class="row mt-2">
-                                            <div class="col-md">
-                                                <textarea class="form-control shadow-none textarea" name="review" th:inline="text">[[${comment.review}]]</textarea>
-                                                <p th:if= "${errorCommentTextArea != ''}" th:text="${errorCommentTextArea}" style="color: red;"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mt-3 text-right">
-                                    <button class="btn btn-primary mb-2" type="submit" >Post comment</button>
-                                </div>
-                                    </form>
                                 </div>
 
                             </div>
