@@ -43,16 +43,11 @@ public class MilsonDevController {
 
     private static final Logger log = LoggerFactory.getLogger(MilsonDevController.class);
 
-
-
     @GetMapping("/")
     public String index(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
                               @RequestParam(value = "size", required = false, defaultValue = "4") int size, Model model ) {
         model.addAttribute("user", userService.getUser());
         model.addAttribute("articleList", articleService.getPage(pageNumber, size));
-
-        log.trace("Hello {}", size);
-
         return "index";
     }
 
