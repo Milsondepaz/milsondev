@@ -1,5 +1,6 @@
 package com.milsondev.milsondev.controller;
 
+import com.milsondev.milsondev.db.entities.Article;
 import com.milsondev.milsondev.db.entities.Subscriber;
 import com.milsondev.milsondev.service.ArticleService;
 import com.milsondev.milsondev.service.SubscriberService;
@@ -7,6 +8,7 @@ import com.milsondev.milsondev.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 // adicionar jQuery
@@ -43,11 +46,34 @@ public class MilsonDevController {
 
     private static final Logger log = LoggerFactory.getLogger(MilsonDevController.class);
 
+    /*
     @GetMapping("/")
     public String index(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
                               @RequestParam(value = "size", required = false, defaultValue = "4") int size, Model model ) {
         model.addAttribute("user", userService.getUser());
         model.addAttribute("articleList", articleService.getPage(pageNumber, size));
+        return "index";
+    }
+     */
+
+    @GetMapping("/")
+    public String viewHomePage(Model model) {
+        return findPaginated(1,  model);
+    }
+
+    @GetMapping("/page/{pageNo}")
+    public String findPaginated(@PathVariable (value = "pageNo") int pageNo, Model model) {
+        int pageSize = 5;
+
+        Page<Article> page = articleService.findPaginated(pageNo, pageSize);
+        List<Article> articleList = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+
+
+        model.addAttribute("articleList", articleList);
         return "index";
     }
 

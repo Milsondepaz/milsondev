@@ -21,7 +21,7 @@
     <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                <tr th:each="article : ${articleList.page}">
+                <tr th:each="article : ${articleList}">
                     <div class="card" style="background-color:#DCDCDC; margin-bottom:3%; padding-left:1%; padding-right:1%;">
                         <div class="card bgc-white my-2 py-3 shadow-sm" style="text-align: left; padding-left:3%; padding-right:3%;  padding-bottom:1%">
                             <a class="" th:href="@{article/{fileName}(fileName=${article.fileName})}">
@@ -43,27 +43,28 @@
                 </tr>
 
                 <!-- pagination-->
-                <nav aria-label="Page navigation" class="paging justify-content-center" >
-                    <ul class="pagination justify-content-center" th:if="${articleList.page.totalPages > 1}">
-                        <li class="page-item" th:classappend="${!articleList.paging.isPrevEnabled()? 'disabled' : ''}">
-                            <a class="page-link" th:href="@{'/?pageNumber=' + ${articleList.paging.pageNumber - 1}}"
-                               tabindex="-1">Previous</a>
-                        </li>
-                        <th:block th:each="item : ${articleList.paging.getItems()}">
-                            <li class="page-item" th:classappend="${item.index == articleList.paging.pageNumber? 'active' : ''}"
-                                th:if="${item.pageItemType.name() == 'PAGE'}">
-                                <a class="page-link" th:href="@{'/?pageNumber=' + ${item.index}}"
-                                   th:text="${item.index}"></a>
-                            </li>
-                            <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
-                                <a class="page-link" href="#">...</a>
-                            </li>
-                        </th:block>
-                        <li class="page-item" th:classappend="${!articleList.paging.isNextEnabled()? 'disabled' : ''}">
-                            <a class="page-link" th:href="@{'/?pageNumber=' + ${articleList.paging.pageNumber + 1}}">Next</a>
-                        </li>
-                    </ul>
-                </nav>
+                    <div th:if = "${totalPages > 1}">
+                        <div class = "row col-sm-10">
+                            <div class = "col-sm-2">
+                                Total Articles: [[${totalItems}]]
+                            </div>
+                            <div class = "col-sm-1">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+					</span>
+                            </div>
+                            <div class = "col-sm-1">
+                                <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}}">Next</a>
+                                <span th:unless="${currentPage < totalPages}">Next</span>
+                            </div>
+
+                            <div class="col-sm-1">
+                                <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}}">Last</a>
+                                <span th:unless="${currentPage < totalPages}">Last</span>
+                            </div>
+                        </div>
+                    </div>
                 <!--end pagination-->
                 </div>
 

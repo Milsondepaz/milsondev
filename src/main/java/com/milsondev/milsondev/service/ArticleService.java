@@ -1,14 +1,12 @@
 package com.milsondev.milsondev.service;
 
 import com.milsondev.milsondev.db.entities.Article;
-import com.milsondev.milsondev.db.entities.Comment;
-import com.milsondev.milsondev.db.entities.paging.Paged;
-import com.milsondev.milsondev.db.entities.paging.Paging;
 import com.milsondev.milsondev.db.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -24,8 +22,8 @@ public class ArticleService {
     @Autowired
     private ArticleRepository repository;
 
-    public List<Article> getPageableArticleList() {
-        Pageable firstPageWithTreeElements = PageRequest.of(0, 3);
+    public List<Article> getPageableArticleList(int pageNumber, int size) {
+        Pageable firstPageWithTreeElements = PageRequest.of(pageNumber, size);
         return repository.findAll(firstPageWithTreeElements).toList();
     }
 
@@ -87,10 +85,21 @@ public class ArticleService {
         repository.save(article);
     }
 
+    /*
     public Paged<Article> getPage(int pageNumber, int size) {
-        PageRequest request = PageRequest.of(pageNumber - 1, size);
+        PageRequest request = PageRequest.of(pageNumber-1, size-1);
         Page<Article> articlePage = repository.findAllCustom(request);
         return new Paged<>(articlePage, Paging.of(articlePage.getTotalPages(), pageNumber, size));
     }
+     */
+
+    public Page<Article> findPaginated(int pageNo, int pageSize) {
+        final String fieldOne = "createdUpdateOn";
+        Sort sort = Sort.by(fieldOne).descending();
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+        return this.repository.findAll(pageable);
+    }
+
+
 
 }
