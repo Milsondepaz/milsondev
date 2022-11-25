@@ -24,18 +24,17 @@
                 <tr th:each="article : ${articleList}">
                     <div class="card" style="background-color:#DCDCDC; margin-bottom:3%; padding-left:1%; padding-right:1%;">
                         <div class="card bgc-white my-2 py-3 shadow-sm" style="text-align: left; padding-left:3%; padding-right:3%;  padding-bottom:1%">
+
                             <a class="" th:href="@{article/{fileName}(fileName=${article.fileName})}">
                                 <h4 th:text="${article.title}"></h4>
                             </a>
 
-                
-
-                            <div>
-                                <small class=""> <p th:text="${article.listTags}" style="margin-right:2%;" >  </p></small>
-                            </div>
+                            <small class="">
+                                <span th:each="tag : ${article.listTags}"> <a th:href="#{tag}" th:text="${tag}"></a></span>
+                            </small>
 
                             <div class="" style="overflow: hidden; text-overflow: ellipsis; display:
-                            -webkit-box; -webkit-line-clamp: 4; line-clamp: 4; -webkit-box-orient: vertical;">
+                            -webkit-box; -webkit-line-clamp: 4; line-clamp: 4; -webkit-box-orient: vertical; text-align: justify;">
                                 <p th:text="${article.description}"></p>
                             </div>
                         </div>

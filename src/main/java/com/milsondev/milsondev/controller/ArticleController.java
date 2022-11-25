@@ -41,6 +41,13 @@ public class ArticleController {
 
     String defaulTagsList = "custom login; securty; spring boot; spring security; template; thymeleaf";
 
+
+    @RequestMapping(value = "/page/article/{fileName}", method = RequestMethod.GET)
+    public String openArticle2(@PathVariable String fileName) {
+        return "redirect:/article/"+fileName;
+    }
+
+
     @RequestMapping(value = "/article/{fileName}", method = RequestMethod.GET)
     public String openArticle(@PathVariable String fileName, Comment comment, Model model) {
         Article article = articleService.getArticleByFileName(fileName).get();
