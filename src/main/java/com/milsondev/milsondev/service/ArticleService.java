@@ -100,8 +100,13 @@ public class ArticleService {
     public Page<Article> findPaginatedAndFilter(int pageNo, int pageSize, String searchedWord) {
         final String fieldOne = "createdUpdateOn";
         Sort sort = Sort.by(fieldOne).descending();
-        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
         List<Article> articleList = repository.findArticleCustom(searchedWord);
+
+        if (articleList.size() < pageSize) {
+            pageSize = articleList.size();
+        }
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+
         Page<Article> page = new PageImpl<>(articleList.subList(pageNo - 1, pageSize), pageable, articleList.size());
         return page;
     }
