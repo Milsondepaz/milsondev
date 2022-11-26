@@ -22,4 +22,14 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
             countQuery = "SELECT count(*) FROM article",
             nativeQuery = true)
     Page<Article> findAllCustom(Pageable pageable);
+
+    //@Query(value = "SELECT * FROM article a where  a.title ilike %:searchedWord%", nativeQuery = true)
+    //@Query(value = "SELECT * FROM article a where  a.title ilike %?1%", countQuery = "SELECT count(*) FROM article", nativeQuery = true)
+    //@Query(value = "SELECT * FROM article a \n-- #pageable\n",   countQuery = "SELECT count(*) FROM article",          nativeQuery = true)
+
+
+    @Query(value = "SELECT * FROM article a where  a.title ilike %?1%", nativeQuery = true)
+    List<Article> findArticleCustom( String searchTerm);
+
+
 }

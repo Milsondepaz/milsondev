@@ -12,9 +12,12 @@
 
             <div class="container-fluid" style="margin-bottom: 2%; text-align: right; padding-right: 4%" >
                 <div class="" style="text-align: right; ">
-                    <label for="site-search">Search in the site:</label>
-                    <input type="search" id="site-search" name="q">
-                    <button>Search</button>
+                    <form action="#" th:action="@{/search}" method="get" th:object="${Search}">
+                        <label>Search in the site:</label>
+                        <input type="text"  name="searchedWord">
+                        <button type="submit">Search</button>
+                    </form>
+                    <h6 th:text="${searchResult}"></h6>
                 </div>
             </div>
 

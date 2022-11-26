@@ -1,6 +1,7 @@
 package com.milsondev.milsondev.controller;
 
 import com.milsondev.milsondev.db.entities.Article;
+import com.milsondev.milsondev.db.entities.Search;
 import com.milsondev.milsondev.db.entities.Subscriber;
 import com.milsondev.milsondev.service.ArticleService;
 import com.milsondev.milsondev.service.SubscriberService;
@@ -61,6 +62,25 @@ public class MilsonDevController {
         return findPaginated(1,  model);
     }
 
+    @GetMapping("/search")
+    public String search(@ModelAttribute("Search") Search Search, Model model) {
+
+        int pageSize = 5;
+        int pageNo = 1;
+
+        Page<Article> page = articleService.findPaginatedAndFilter(pageNo, pageSize, Search.getSearchedWord());
+        List<Article> articleList = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+
+        model.addAttribute("searchResult", "Your search has "+ page.getTotalElements() + " results...");
+
+        model.addAttribute("articleList", articleList);
+        return "index";
+    }
+
     @GetMapping("/page/{pageNo}")
     public String findPaginated(@PathVariable (value = "pageNo") int pageNo, Model model) {
         int pageSize = 5;
@@ -71,7 +91,6 @@ public class MilsonDevController {
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
-
 
         model.addAttribute("articleList", articleList);
         return "index";

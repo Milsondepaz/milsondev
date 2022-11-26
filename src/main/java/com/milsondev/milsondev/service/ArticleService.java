@@ -3,10 +3,7 @@ package com.milsondev.milsondev.service;
 import com.milsondev.milsondev.db.entities.Article;
 import com.milsondev.milsondev.db.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -98,6 +95,15 @@ public class ArticleService {
         Sort sort = Sort.by(fieldOne).descending();
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
         return this.repository.findAll(pageable);
+    }
+
+    public Page<Article> findPaginatedAndFilter(int pageNo, int pageSize, String searchedWord) {
+        final String fieldOne = "createdUpdateOn";
+        Sort sort = Sort.by(fieldOne).descending();
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+        List<Article> articleList = repository.findArticleCustom(searchedWord);
+        Page<Article> page = new PageImpl<>(articleList.subList(pageNo - 1, pageSize), pageable, articleList.size());
+        return page;
     }
 
 
