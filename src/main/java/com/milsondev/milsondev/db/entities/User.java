@@ -14,9 +14,9 @@ import java.util.Collection;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "usuario")
 @ToString
+@Entity
+@Table(name =  "tb_user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
 
     @Id
@@ -33,6 +33,15 @@ public class User {
     @NotBlank(message = "Password is mandatory")
     @Column(unique=true)
     private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles;
 
     private String repeatPassword;
 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Milson Antonio - Java Software Engineer</title>
+</head>
+
+<section layout:fragment="content" class="container-fluid" id="articles" style="margin-top: 2%; padding-bottom:10%;">
+
+
+    <div class="container">
+            <div class="row">
+
+                    <div class="row" style="text-align: center;" >
+                        <h1 style="font-size:110px">OOPS!</h1>
+                        <h4  th:if= "${errorBadRequest != ''}" th:text="${errorBadRequest}"></h4>
+                        <h4  th:if= "${errorNotFound != ''}" th:text="${errorNotFound}"></h4>
+                        <h4  th:if= "${errorForbidden != ''}" th:text="${errorForbidden}"></h4>
+                        <h4  th:if= "${errorInternalServer != ''}" th:text="${errorInternalServer}"></h4>
+                        <a class="mt-4 text-center" href="/">
+                            <button class="btn btn-success" style="width: 178px;">Go Home</button>
+                        </a>
+                    </div>
+
+
+            </div>
+    </div>
+</section>
+</html>

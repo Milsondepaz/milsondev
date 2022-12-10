@@ -13,24 +13,40 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="card my-3">
-                    <form action="#" th:action="@{/login}" method="post" th:object="${user}" class="card-body cardbody-color p-lg-5">
+
+
+                    <form action="#" th:action="@{/login}" method="post" class="card-body cardbody-color p-lg-5">
+
+                    <!-- error message -->
+                    <div th:if="${param.error}">
+                        <div class="alert alert-danger">Invalid username or password.</div>
+                    </div>
+
+                    <!-- logout message -->
+                    <div th:if="${param.logout}">
+                        <div class="alert alert-info">You have been logged out.</div>
+                    </div>
+
                         <div class="text-center">
                             <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
                                  width="150px" alt="profile">
                         </div>
                         <div class="mb-4">
-                            <label>User Name</label>
-                            <input type="text" class="form-control" name="userName" placeholder="User Name">
+                            <label>Enter Email ID</label>
+                            <input type="text" class = "form-control" id ="username" name = "username"
+                                   placeholder="Enter Email ID" autofocus="autofocus">
                         </div>
+
                         <div class="mb-4">
                             <label>Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="**********">
+                             <input type="password" id="password" name="password" class="form-control" placeholder="**************" />
                         </div>
 
                         <div class="mt-4 text-center">
-                            <button type="submit" class="btn btn-primary" style="width: 178px;"> Login  </button>
+                            <input type="submit" name="login-submit" id="login-submit" class="form-control btn btn-primary" value="Log In" style="width: 178px;" />
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>

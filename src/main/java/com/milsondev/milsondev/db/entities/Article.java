@@ -18,7 +18,7 @@ import javax.validation.constraints.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "article")
+@Table(name = "tb_article")
 public class Article {
 
     @Id

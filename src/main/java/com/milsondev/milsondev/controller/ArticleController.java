@@ -5,7 +5,7 @@ import com.milsondev.milsondev.db.entities.Comment;
 import com.milsondev.milsondev.db.entities.User;
 import com.milsondev.milsondev.service.ArticleService;
 import com.milsondev.milsondev.service.CommentService;
-import com.milsondev.milsondev.service.UserService;
+import com.milsondev.milsondev.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +23,7 @@ import java.util.List;
 public class ArticleController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @Autowired
     private ArticleService articleService;

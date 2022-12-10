@@ -3,6 +3,7 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       layout:decorate="~{layout}">
 <head>
     <title>Milson Antonio - Java Software Engineer</title>
@@ -12,7 +13,10 @@
     <div class="container" style="text-align: right; margin-top: 2%">
         <h5>Welcome, <a th:href="@{profile/{author}(author=${userName})}" th:text="${userName}" target="_blank"></a></h5>
         <a href="/edit-profile" class="col-md-1" style="text-align: right; padding-left:2%">Edit profile</a>
-        <a href="/logout" class="col-md-1" style="text-align: right; padding-left:2%">Logout</a>
+        <!--<a href="/logout" >Logout</a>-->
+        <span sec:authorize="isAuthenticated()" class="col-md-1" style="text-align: right; padding-left:2%">
+            <a th:href="@{/logout}">Logout</a>
+        </span>
     </div>
 
     <div class=" container panel panel-default" style=" margin-top: 2%">

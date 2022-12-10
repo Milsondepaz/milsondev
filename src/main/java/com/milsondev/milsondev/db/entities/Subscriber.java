@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "subscriber")
+@Table(name = "tb_subscriber")
 @ToString
 public class Subscriber {
     @Id

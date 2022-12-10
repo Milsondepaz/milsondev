@@ -12,7 +12,7 @@ import java.util.Locale;
 
 @Data
 @Entity
-@Table(name = "comment")
+@Table(name = "tb_comment")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Comment {

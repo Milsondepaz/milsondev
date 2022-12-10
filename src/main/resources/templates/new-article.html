@@ -3,6 +3,7 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       layout:decorate="~{layout}">
 <head>
     <title>Milson Antonio - Java Software Engineer</title>
@@ -12,7 +13,9 @@
     <div class="container" style="text-align: right; margin-top: 2%">
         <h5>Welcome, <a href="/profile" th:text="${userName}"></a></h5>
             <a href="/admin" class="col-md-1" style="text-align: right; margin-right: 1%" >Back</a>
-            <a href="/logout" class="col-md-1" style="text-align: right;">Logout</a>
+        <span sec:authorize="isAuthenticated()" class="col-md-1" style="text-align: right; padding-left:2%">
+            <a th:href="@{/logout}">Logout</a>
+        </span>
     </div>
 
 
@@ -71,7 +74,6 @@
                     </article>
                 </div>
                 </div>
-
                         <div class="mt-3">
                             <button type="submit" class="btn btn-primary" style="width: 178px; margin-left: 5%;">Save</button>
                         </div>

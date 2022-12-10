@@ -2,7 +2,7 @@ package com.milsondev.milsondev.controller;
 
 import com.milsondev.milsondev.db.entities.User;
 import com.milsondev.milsondev.service.ArticleService;
-import com.milsondev.milsondev.service.UserService;
+import com.milsondev.milsondev.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +18,7 @@ import javax.validation.Valid;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    UserServiceImpl userService;
 
     @Autowired
     ArticleService articleService;
@@ -40,7 +40,7 @@ public class UserController {
             return "redirect:/sign-up";
         }
 
-        userService.saveUser(user);
+        userService.save(user);
         attributes.addFlashAttribute("mensagem", "You have successfully registered, click to ");
 
         return "redirect:/sign-up";
