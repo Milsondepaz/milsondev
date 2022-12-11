@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 import java.time.Instant;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,32 +83,33 @@ public class ArticleService {
         repository.save(article);
     }
 
-    /*
-    public Paged<Article> getPage(int pageNumber, int size) {
-        PageRequest request = PageRequest.of(pageNumber-1, size-1);
-        Page<Article> articlePage = repository.findAllCustom(request);
-        return new Paged<>(articlePage, Paging.of(articlePage.getTotalPages(), pageNumber, size));
-    }
-     */
-
     public Page<Article> findPaginated(int pageNo, int pageSize) {
-        final String fieldOne = "createdUpdateOn";
-        Sort sort = Sort.by(fieldOne).descending();
-        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
-        return this.repository.findAll(pageable);
+        List<Article> articleList = repository.findAllPublishedTrue();
+        Page<Article> page = new PageImpl<>(Collections.emptyList());
+        if (!articleList.isEmpty()) {
+            if (articleList.size() < pageSize) {
+                pageSize = articleList.size();
+            }
+            final String fieldOne = "createdUpdateOn";
+            Sort sort = Sort.by(fieldOne).descending();
+            Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+            page = new PageImpl<>(articleList.subList(pageNo - 1, pageSize), pageable, articleList.size());
+        }
+        return page;
     }
 
     public Page<Article> findPaginatedAndFilter(int pageNo, int pageSize, String searchedWord) {
         final String fieldOne = "createdUpdateOn";
         Sort sort = Sort.by(fieldOne).descending();
         List<Article> articleList = repository.findArticleCustom(searchedWord);
-
-        if (articleList.size() < pageSize) {
-            pageSize = articleList.size();
+        Page<Article> page = new PageImpl<>(Collections.emptyList());
+        if (!articleList.isEmpty()) {
+            if (articleList.size() < pageSize) {
+                pageSize = articleList.size();
+            }
+            Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+            page = new PageImpl<>(articleList.subList(pageNo - 1, pageSize), pageable, articleList.size());
         }
-        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
-
-        Page<Article> page = new PageImpl<>(articleList.subList(pageNo - 1, pageSize), pageable, articleList.size());
         return page;
     }
 

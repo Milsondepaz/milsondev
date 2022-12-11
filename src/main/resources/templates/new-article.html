@@ -11,7 +11,7 @@
 
 <section layout:fragment="content" style=" padding-bottom:20%;">
     <div class="container" style="text-align: right; margin-top: 2%">
-        <h5>Welcome, <a href="/profile" th:text="${userName}"></a></h5>
+        <h5>Welcome, <a th:href="@{/profile/{author}(author=${userName})}" th:text="${userName}" target="_blank"></a></h5>
             <a href="/admin" class="col-md-1" style="text-align: right; margin-right: 1%" >Back</a>
         <span sec:authorize="isAuthenticated()" class="col-md-1" style="text-align: right; padding-left:2%">
             <a th:href="@{/logout}">Logout</a>
@@ -28,7 +28,7 @@
 
 
         <div class="container">
-            <form action="#" th:action="@{/add-new-article}" method="post" th:object="${article}">
+            <form action="#" th:action="@{/admin/add-new-article}" method="post" th:object="${article}">
                 <div class="container">
                 <div class="row">
                 <div class="col-md-26 mt-5">

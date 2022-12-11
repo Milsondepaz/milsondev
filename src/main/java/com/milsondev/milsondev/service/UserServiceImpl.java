@@ -5,8 +5,10 @@ import com.milsondev.milsondev.db.entities.Role;
 import com.milsondev.milsondev.db.entities.User;
 import com.milsondev.milsondev.db.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,7 +23,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService{
 
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
@@ -39,10 +41,11 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
-		User user = userRepository.findByEmail(userEmail);
-		if(user == null) {
+		Optional<User> userOptional = userRepository.findByEmail(userEmail);
+		if(!userOptional.isPresent()) {
 			throw new UsernameNotFoundException("User credentials was not found...");
 		}
+		User user = userOptional.get();
 		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));		
 	}
 	
@@ -51,13 +54,12 @@ public class UserServiceImpl implements UserService{
 	}
 
 	public User getUser() {
-		Optional<User> userOptional = userRepository.findById(1L);
-		User user = new User();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Optional<User> userOptional = userRepository.findByEmail(auth.getName());
 		if(!userOptional.isPresent()) {
-			return user;
+			throw new UsernameNotFoundException("User credentials was not found...");
 		}
-		user = userRepository.findById(1L).get();
-		return user;
+		return userRepository.findByEmail(auth.getName()).get();
 	}
 
 	public User updateUser(User user) {

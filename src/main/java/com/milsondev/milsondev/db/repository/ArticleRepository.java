@@ -18,18 +18,14 @@ import java.util.Optional;
 public interface ArticleRepository extends JpaRepository<Article, Long> {
     Optional<Article> findByFileName(String htmlPage);
        @Query(
-            value = "SELECT * FROM article a where a.published = true \n-- #pageable\n",
+            value = "SELECT * FROM tb_article a where a.published = true \n-- #pageable\n",
             countQuery = "SELECT count(*) FROM article",
             nativeQuery = true)
     Page<Article> findAllCustom(Pageable pageable);
 
-    //@Query(value = "SELECT * FROM article a where  a.title ilike %:searchedWord%", nativeQuery = true)
-    //@Query(value = "SELECT * FROM article a where  a.title ilike %?1%", countQuery = "SELECT count(*) FROM article", nativeQuery = true)
-    //@Query(value = "SELECT * FROM article a \n-- #pageable\n",   countQuery = "SELECT count(*) FROM article",          nativeQuery = true)
-
-
-    @Query(value = "SELECT * FROM article a where  a.title ilike %?1%", nativeQuery = true)
+    @Query(value = "SELECT * FROM tb_article a where a.published = true and  a.title ilike %?1%", nativeQuery = true)
     List<Article> findArticleCustom( String searchTerm);
 
-
+    @Query(value = "SELECT * FROM tb_article a where  a.published = true", nativeQuery = true)
+    List<Article> findAllPublishedTrue();
 }

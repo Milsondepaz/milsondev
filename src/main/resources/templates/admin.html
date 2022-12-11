@@ -11,9 +11,8 @@
 
 <section layout:fragment="content" style="padding-bottom:20%">
     <div class="container" style="text-align: right; margin-top: 2%">
-        <h5>Welcome, <a th:href="@{profile/{author}(author=${userName})}" th:text="${userName}" target="_blank"></a></h5>
-        <a href="/edit-profile" class="col-md-1" style="text-align: right; padding-left:2%">Edit profile</a>
-        <!--<a href="/logout" >Logout</a>-->
+        <h5>Welcome, <a th:href="@{/profile/{author}(author=${userName})}" th:text="${userName}" target="_blank"></a></h5>
+        <a href="/admin/edit-user-profile" class="col-md-1" style="text-align: right; padding-left:2%">Edit user profile</a>
         <span sec:authorize="isAuthenticated()" class="col-md-1" style="text-align: right; padding-left:2%">
             <a th:href="@{/logout}">Logout</a>
         </span>
@@ -24,7 +23,7 @@
             <h4 class="panel-title aw-titulo-panel" style="background-color: silver; padding-bottom: 2%; padding-top: 1%; margin-left: 1%;">Articles...</h4>
         </div>
         <div class="" style="margin-bottom: 2%; text-align: left;">
-            <a class="mt-4 text-left" href="/new-article">
+            <a class="mt-4 text-left" href="/admin/new-article">
                 <button type="submit" class="btn btn-primary" style="width: 178px;">New</button>
             </a>
         </div>
@@ -47,7 +46,7 @@
                     <tr th:each = "article: ${articleList}">
                         <td class ="text-center col-md-1" th:text="${article.id}"></td>
                         <td>
-                            <a class="" th:href="@{article/{fileName}(fileName=${article.fileName})}" target="_blank">
+                            <a class="" th:href="@{/admin/article/{fileName}(fileName=${article.fileName})}" target="_blank">
                                 <div style="text-align: left"><span th:text="${article.title}"> </span></div>
                             </a>
                         </td>
@@ -56,7 +55,7 @@
                         <td class ="text-center col-md-1" th:text="${article.likes}"></td>
 
                         <td class ="text-center col-md-1">
-                            <a class="btn btn-link btn-xs" th:href="@{enable_disable/{id}(id=${article.id})}" >
+                            <a class="btn btn-link btn-xs" th:href="@{/admin/enable-disable/{id}(id=${article.id})}" >
                                 <svg th:if="${article.published}"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-toggle2-on" viewBox="0 0 16 16">
                                     <path d="M7 5H3a3 3 0 0 0 0 6h4a4.995 4.995 0 0 1-.584-1H3a2 2 0 1 1 0-4h3.416c.156-.357.352-.692.584-1z"/>
                                     <path d="M16 8A5 5 0 1 1 6 8a5 5 0 0 1 10 0z"/>
@@ -69,15 +68,14 @@
                         </td>
 
                         <td class ="text-center col-md-1">
-                            <a class="btn btn-link btn-xs" th:href="@{/edit/{fileName}(fileName=${article.fileName})}" target="_blank">
+                            <a class="btn btn-link btn-xs" th:href="@{/admin/edit-article/{fileName}(fileName=${article.fileName})}" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                             </svg>
                             </a>
                         </td>
-                        <!-- class="btn btn-link btn-xs" th:href="@{/{codigo}(codigo = ${titulo.codigo})}" -->
                         <td class ="text-center col-md-1">
-                            <a class="btn btn-link btn-xs" th:href="@{/{id}(id=${article.id})}">
+                            <a class="btn btn-link btn-xs" th:href="@{/admin/{id}(id=${article.id})}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                                 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -93,7 +91,6 @@
                 </table>
             </div>
         </div>
-        <!--<div th:replace="DialogoConfirmacaoExclusao"></div> -->
     </div>
 </section>
 <html/>

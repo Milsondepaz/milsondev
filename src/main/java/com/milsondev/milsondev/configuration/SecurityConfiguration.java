@@ -44,11 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers(HttpMethod.GET,"/edit-profile/**",
-						"/profile/**",
-						"/update-user",
-						"/admin"
-						)
+				.antMatchers(HttpMethod.GET,"/admin/**")
 				.authenticated()
 				.antMatchers(
 				 "/registration**",
