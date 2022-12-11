@@ -2,6 +2,7 @@ package com.milsondev.milsondev.controller;
 
 import com.milsondev.milsondev.db.entities.User;
 import com.milsondev.milsondev.service.ArticleService;
+import com.milsondev.milsondev.service.SubscriberService;
 import com.milsondev.milsondev.service.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,22 +22,22 @@ public class AdminUserController {
 
     private final UserServiceImpl userService;
     private final ArticleService articleService;
+    private final SubscriberService subscriberService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AdminUserController.class);
 
     @Autowired
-    public AdminUserController(final ArticleService articleService, final UserServiceImpl userService){
+    public AdminUserController(final ArticleService articleService, final UserServiceImpl userService, SubscriberService subscriberService){
         this.articleService = articleService;
         this.userService = userService;
+        this.subscriberService = subscriberService;
     }
 
     @GetMapping("")
     public ModelAndView admin(Model model) {
         ModelAndView mv = new ModelAndView("admin");
         mv.addObject("articleList", articleService.getArticleList());
-
-
-
+        mv.addObject("subscriberList", subscriberService.getSubscriberList());
         User user = userService.getUser();
         mv.addObject("userName", user.getUserName());
         return mv;

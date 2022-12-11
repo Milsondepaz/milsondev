@@ -12,7 +12,7 @@
 <section layout:fragment="content" style="padding-bottom:20%">
     <div class="container" style="text-align: right; margin-top: 2%">
         <h5>Welcome, <a th:href="@{/profile/{author}(author=${userName})}" th:text="${userName}" target="_blank"></a></h5>
-        <a href="/admin/edit-user-profile" class="col-md-1" style="text-align: right; padding-left:2%">Edit user profile</a>
+        <a href="/admin/edit-user-profile" class="col-md-1" style="text-align: right; padding-left:2%">Edit my user profile</a>
         <span sec:authorize="isAuthenticated()" class="col-md-1" style="text-align: right; padding-left:2%">
             <a th:href="@{/logout}">Logout</a>
         </span>
@@ -20,77 +20,171 @@
 
     <div class=" container panel panel-default" style=" margin-top: 2%">
         <div class="panel-heading" style="background-color: silver;">
-            <h4 class="panel-title aw-titulo-panel" style="background-color: silver; padding-bottom: 2%; padding-top: 1%; margin-left: 1%;">Articles...</h4>
+            <h4 class="panel-title aw-titulo-panel" style="background-color: silver; padding-bottom: 2%; padding-top: 1%; margin-left: 1%;">Admin Area...</h4>
         </div>
-        <div class="" style="margin-bottom: 2%; text-align: left;">
-            <a class="mt-4 text-left" href="/admin/new-article">
-                <button type="submit" class="btn btn-primary" style="width: 178px;">New</button>
-            </a>
-        </div>
-        <div class="panel-body" >
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                        <th class ="text-center col-md-1">#</th>
-                        <th>Title</th>
-                        <th class ="text-center col-md-2">Create/Update on</th>
-                        <th class ="text-center col-md-1">Views</th>     <!-- open-->
-                        <th class ="text-center col-md-1">Likes</th>     <!-- edit-->
-                        <th class ="text-center col-md-1">Disable|Enable</th>     <!-- disable-->
-                        <th class ="text-center col-md-1">Edit</th>     <!-- delete-->
-                        <th class ="text-center col-md-1">Delete</th>     <!-- delete-->
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each = "article: ${articleList}">
-                        <td class ="text-center col-md-1" th:text="${article.id}"></td>
-                        <td>
-                            <a class="" th:href="@{/admin/article/{fileName}(fileName=${article.fileName})}" target="_blank">
-                                <div style="text-align: left"><span th:text="${article.title}"> </span></div>
-                            </a>
-                        </td>
-                        <td class ="text-center col-md-1" th:text="${article.fortmadetData}"></td>
-                        <td class ="text-center col-md-1" th:text="${article.views}"></td>
-                        <td class ="text-center col-md-1" th:text="${article.likes}"></td>
 
-                        <td class ="text-center col-md-1">
-                            <a class="btn btn-link btn-xs" th:href="@{/admin/enable-disable/{id}(id=${article.id})}" >
-                                <svg th:if="${article.published}"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-toggle2-on" viewBox="0 0 16 16">
-                                    <path d="M7 5H3a3 3 0 0 0 0 6h4a4.995 4.995 0 0 1-.584-1H3a2 2 0 1 1 0-4h3.416c.156-.357.352-.692.584-1z"/>
-                                    <path d="M16 8A5 5 0 1 1 6 8a5 5 0 0 1 10 0z"/>
-                                </svg>
-                                <svg th:unless="${article.published}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-toggle2-off" viewBox="0 0 16 16">
-                                    <path d="M9 11c.628-.836 1-1.874 1-3a4.978 4.978 0 0 0-1-3h4a3 3 0 1 1 0 6H9z"/>
-                                    <path d="M5 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0 1A5 5 0 1 0 5 3a5 5 0 0 0 0 10z"/>
-                                </svg>
-                            </a>
-                        </td>
-
-                        <td class ="text-center col-md-1">
-                            <a class="btn btn-link btn-xs" th:href="@{/admin/edit-article/{fileName}(fileName=${article.fileName})}" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                            </svg>
-                            </a>
-                        </td>
-                        <td class ="text-center col-md-1">
-                            <a class="btn btn-link btn-xs" th:href="@{/admin/{id}(id=${article.id})}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                            </svg>
-                            </a>
-                        </td>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="6" th:if= "${#lists.isEmpty(articleList)}">You still have no post in your Blog.</td>
-                    </tr>
-                    </tbody>
-                </table>
+        <!-- start tab -->
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Articles</button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Subscribers</button>
+                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Visitors</button>
             </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+                <div class="" style="margin-bottom: 2%; margin-top: 2%; text-align: left;">
+                    <a class="mt-4 text-left" href="/admin/new-article">
+                        <button type="submit" class="btn btn-primary" style="width: 178px;">New</button>
+                    </a>
+                </div>
+
+                <!-- start first tab -->
+                <div class="panel-body" >
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th class ="text-center col-sm">#</th>
+                                <th>Title</th>
+                                <th class ="text-center col-md-1">Author</th>
+                                <th class ="text-center col-md-1">Date</th>
+                                <th class ="text-center col-sm">Views</th>
+                                <th class ="text-center col-sm">Likes</th>
+                                <th class ="text-center col-sm">Show</th>
+                                <th class ="text-center col-sm">Edit</th>
+                                <th class ="text-center col-sm">Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each = "article: ${articleList}">
+                                <td class ="text-center col-sm" th:text="${article.id}"></td>
+                                <td>
+                                    <a class="" th:href="@{/admin/article/{fileName}(fileName=${article.fileName})}" target="_blank">
+                                        <div style="text-align: left"><span th:text="${article.title}"> </span></div>
+                                    </a>
+                                </td>
+                                <td class ="text-center col-md-1">Milson</td>
+                                <td class ="text-center col-md-1" th:text="${article.fortmadetDataShort}"></td>
+                                <td class ="text-center col-sm" th:text="${article.views}"></td>
+                                <td class ="text-center col-sm" th:text="${article.likes}"></td>
+
+                                <td class ="text-center col-sm">
+                                    <a class="btn btn-link btn-xs" th:href="@{/admin/enable-disable/{id}(id=${article.id})}" >
+                                        <svg th:if="${article.published}"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-toggle2-on" viewBox="0 0 16 16">
+                                            <path d="M7 5H3a3 3 0 0 0 0 6h4a4.995 4.995 0 0 1-.584-1H3a2 2 0 1 1 0-4h3.416c.156-.357.352-.692.584-1z"/>
+                                            <path d="M16 8A5 5 0 1 1 6 8a5 5 0 0 1 10 0z"/>
+                                        </svg>
+                                        <svg th:unless="${article.published}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-toggle2-off" viewBox="0 0 16 16">
+                                            <path d="M9 11c.628-.836 1-1.874 1-3a4.978 4.978 0 0 0-1-3h4a3 3 0 1 1 0 6H9z"/>
+                                            <path d="M5 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0 1A5 5 0 1 0 5 3a5 5 0 0 0 0 10z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+
+                                <td class ="text-center col-sm">
+                                    <a class="btn btn-link btn-xs" th:href="@{/admin/edit-article/{fileName}(fileName=${article.fileName})}" target="_blank">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                                <td class ="text-center col-sm">
+                                    <a class="btn btn-link btn-xs" th:href="@{/admin/{id}(id=${article.id})}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" th:if= "${#lists.isEmpty(articleList)}">You still have no post in your Blog.</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- end first tab -->
+
+            <!-- start second tab -->
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+                <div class="" style="margin-bottom: 2%; margin-top: 2%; text-align: left;">
+
+                    <a class="mt-4 text-left" href="/admin/export-subscriber-to-csv">
+                        <button type="submit" class="btn btn-primary" style="width: 178px;">Export to CSV</button>
+                    </a>
+
+                    <!--
+                    <a class="mt-4 text-left" href="/admin/export-subscriber-to-pdf" style="padding-left: 1%;">
+                        <button type="submit" class="btn btn-primary" style="width: 178px;">Export to PDF</button>
+                    </a>
+                    -->
+
+                </div>
+
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th class ="text-center col-sm">#</th>
+                                <th>Email</th>
+                                <th class ="text-center col-md-2">Date</th>
+                                <th class ="text-center col-sm">Active | Inactive</th>
+                                <th class ="text-center col-sm">Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each = "subscriber: ${subscriberList}">
+                                <td class ="text-center col-sm" th:text="${subscriber.id}"></td>
+                                <td>
+                                    <div style="text-align: left"><span th:text="${subscriber.email}"> </span></div>
+                                </td>
+                                <td class ="text-center col-md-2" th:text="${subscriber.fortmadetData}"></td>
+
+                                <td class ="text-center col-sm">
+                                    <a class="btn btn-link btn-xs" th:href="@{/admin/enable-disable-subscriber/{id}(id=${subscriber.id})}" >
+                                        <svg th:if="${subscriber.active}"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-toggle2-on" viewBox="0 0 16 16">
+                                            <path d="M7 5H3a3 3 0 0 0 0 6h4a4.995 4.995 0 0 1-.584-1H3a2 2 0 1 1 0-4h3.416c.156-.357.352-.692.584-1z"/>
+                                            <path d="M16 8A5 5 0 1 1 6 8a5 5 0 0 1 10 0z"/>
+                                        </svg>
+                                        <svg th:unless="${subscriber.active}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-toggle2-off" viewBox="0 0 16 16">
+                                            <path d="M9 11c.628-.836 1-1.874 1-3a4.978 4.978 0 0 0-1-3h4a3 3 0 1 1 0 6H9z"/>
+                                            <path d="M5 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0 1A5 5 0 1 0 5 3a5 5 0 0 0 0 10z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+
+                                <td class ="text-center col-sm">
+                                    <a class="btn btn-link btn-xs" th:href="@{/admin/delete-subscriber/{id}(id=${subscriber.id})}" target="_blank">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" th:if= "${#lists.isEmpty(articleList)}">You still have no post in your Blog.</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- end second tab -->
+
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
         </div>
+
+        <!-- end tab -->
+
+
     </div>
 </section>
 <html/>

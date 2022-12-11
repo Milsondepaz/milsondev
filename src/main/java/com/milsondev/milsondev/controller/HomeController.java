@@ -5,6 +5,7 @@ import com.milsondev.milsondev.db.entities.Search;
 import com.milsondev.milsondev.db.entities.Subscriber;
 import com.milsondev.milsondev.service.ArticleService;
 import com.milsondev.milsondev.service.SubscriberService;
+import com.milsondev.milsondev.service.VisitorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,26 +24,31 @@ import java.util.List;
 public class HomeController {
     private final ArticleService articleService;
     private final SubscriberService subscriberService;
+    private final VisitorService visitorService;
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
     /*
     Subscribers
     Subscribers- ver
+    Subscribers- ver - export to csv
     Export Subscriber via csv
+
     IP - visitors
     IP - visitors - ver
+
     Upload imagens for profile picture
     Upload imagens for article cover
      */
 
     @Autowired
-    public HomeController(final ArticleService articleService, final SubscriberService subscriberService) {
+    public HomeController(final ArticleService articleService, final SubscriberService subscriberService, final VisitorService visitorService) {
         this.articleService = articleService;
         this.subscriberService = subscriberService;
+        this.visitorService = visitorService;
     }
 
     @GetMapping("/")
-    public String viewHomePage(Model model) {
+    public String viewHomePage(Model model) throws Exception {
         LOGGER.info("Log - Home");
         return findPaginated(1,  model);
     }
@@ -63,9 +69,10 @@ public class HomeController {
     }
 
     @GetMapping("/page/{pageNo}")
-    public String findPaginated(@PathVariable (value = "pageNo") int pageNo, Model model) {
+    public String findPaginated(@PathVariable (value = "pageNo") int pageNo, Model model) throws Exception {
         int pageSize = 5;
         Page<Article> page = articleService.findPaginated(pageNo, pageSize);
+        visitorService.saveVisitor();
         List<Article> articleList = page.getContent();
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
@@ -78,12 +85,16 @@ public class HomeController {
     @RequestMapping(value = "/subscribe", method = RequestMethod.POST)
     public String subscribe(@Valid @ModelAttribute("subscriber") Subscriber subscriber, Errors errors, RedirectAttributes attributes) {
         if (errors.hasErrors()){
-            attributes.addFlashAttribute("mensagem_erro", "Invalid email address!");
+            attributes.addFlashAttribute("mensagemSubscriberError", "You have successfully subscribed!");
             return "redirect:/";
         }
         subscriberService.addSubscriber(subscriber);
-        attributes.addFlashAttribute("mensagem", "You have successfully subscribed!");
+        attributes.addFlashAttribute("mensagemSubscriberSuccess", "You have successfully subscribed!");
         LOGGER.info("Log - Subscriber: " + subscriber.getEmail());
         return "redirect:/";
     }
+
+
+
+
 }

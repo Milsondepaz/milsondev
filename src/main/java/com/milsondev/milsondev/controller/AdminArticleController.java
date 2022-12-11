@@ -5,6 +5,7 @@ import com.milsondev.milsondev.db.entities.Comment;
 import com.milsondev.milsondev.db.entities.User;
 import com.milsondev.milsondev.service.ArticleService;
 import com.milsondev.milsondev.service.CommentService;
+import com.milsondev.milsondev.service.SubscriberService;
 import com.milsondev.milsondev.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,6 @@ public class AdminArticleController {
         this.userService = userService;
         this.articleService = articleService;
     }
-
 
     @RequestMapping(value = "/article/{fileName}", method = RequestMethod.GET)
     public String openArticleFromAdmin(@PathVariable String fileName) {

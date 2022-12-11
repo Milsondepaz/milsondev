@@ -65,12 +65,23 @@ public class Article {
 
     public String fortmadetData = getFormatedDate();
 
+    public String fortmadetDataShort = getFormatedDateShort();
+
     private String getFormatedDate(){
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime( FormatStyle.SHORT )
                 .withLocale( Locale.getDefault() )
                 .withZone( ZoneId.systemDefault() );
        return formatter.format(getCreatedUpdateOn());
     }
+
+    private String getFormatedDateShort(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime( FormatStyle.SHORT )
+                .withLocale( Locale.getDefault() )
+                .withZone( ZoneId.systemDefault() );
+        return formatter.format(getCreatedUpdateOn()).substring(0, 10);
+    }
+
+
 
 
 
