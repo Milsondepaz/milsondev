@@ -31,15 +31,27 @@ public class LocationService {
 
         Visitor visitor = new Visitor();
 
-        visitor.setCity(response.getCity().toString());
+        visitor.setCity(formatCountryAndCity(response.getCity().toString()));
         visitor.setZipCode(response.getPostal().getCode());
-        visitor.setCountry(response.getCountry().toString());
+        visitor.setCountry(formatCountryAndCity(response.getCountry().toString()));
         visitor.setLatitude(response.getLocation().getLatitude().toString());
         visitor.setLongitude(response.getLocation().getLongitude().toString());
-
+        visitor.setIp(ip);
         return visitor;
 
     }
+
+
+
+    private String formatCountryAndCity (String str) {
+        String [] strArray = str.split("pt-BR");
+        String [] strArray2 = strArray[1].split(":");
+        return strArray2[3].substring(1, strArray2[3].length()-6);
+    }
+
+
+
+
 
     private String getIp() throws IOException {
         URL whatIsMyIp = new URL("http://checkip.amazonaws.com");

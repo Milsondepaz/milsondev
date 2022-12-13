@@ -101,7 +101,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="6" th:if= "${#lists.isEmpty(articleList)}">You still have no post in your Blog.</td>
+                                <td colspan="6" th:if= "${#lists.isEmpty(articleList)}">Theres no article to show list yet.</td>
                             </tr>
                             </tbody>
                         </table>
@@ -118,13 +118,6 @@
                     <a class="mt-4 text-left" href="/admin/export-subscriber-to-csv">
                         <button type="submit" class="btn btn-primary" style="width: 178px;">Export to CSV</button>
                     </a>
-
-                    <!--
-                    <a class="mt-4 text-left" href="/admin/export-subscriber-to-pdf" style="padding-left: 1%;">
-                        <button type="submit" class="btn btn-primary" style="width: 178px;">Export to PDF</button>
-                    </a>
-                    -->
-
                 </div>
 
                 <div class="panel-body">
@@ -170,7 +163,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="6" th:if= "${#lists.isEmpty(articleList)}">You still have no post in your Blog.</td>
+                                <td colspan="6" th:if= "${#lists.isEmpty(subscriberList)}">Theres no any subscriber yet.</td>
                             </tr>
                             </tbody>
                         </table>
@@ -179,7 +172,54 @@
             </div>
             <!-- end second tab -->
 
-            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+            <!-- start third tab -->
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+                <div class="" style="margin-bottom: 2%; margin-top: 2%; text-align: left;">
+                    <a class="mt-4 text-left" href="#">
+                        <button type="submit" class="btn btn-primary" style="width: 178px;">Export to CSV</button>
+                    </a>
+                </div>
+
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th class ="text-center col-sm">#</th>
+                                <th class ="text-center col-sm">Country</th>
+                                <th class ="text-center col-sm">City</th>
+                                <th class ="text-center col-sm">Data</th>
+                                <th class ="text-center col-sm">Nr</th>
+                                <th class ="text-center col-sm">Zip Code</th>
+                                <th class ="text-center col-sm">IP</th>
+                                <th class ="text-center col-sm">Latitude</th>
+                                <th class ="text-center col-sm">Longitude</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each = "visitor: ${visitorList}">
+                                <td class ="text-center col-sm" th:text="${visitor.id}"></td>
+                                <td class ="text-center col-sm" th:text="${visitor.country}"></td>
+                                <td class ="text-center col-sm" th:text="${visitor.city}"></td>
+                                <td class ="text-center col-sm" th:text="${visitor.formatData}"></td>
+                                <td class ="text-center col-sm" th:text="${visitor.countVisitDay}"></td>
+                                <td class ="text-center col-sm" th:text="${visitor.zipCode}"></td>
+                                <td class ="text-center col-sm" th:text="${visitor.ip}"></td>
+                                <td class ="text-center col-sm" th:text="${visitor.latitude}"></td>
+                                <td class ="text-center col-sm" th:text="${visitor.longitude}"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" th:if= "${#lists.isEmpty(subscriberList)}">Theres no any subscriber yet.</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- end third tab -->
         </div>
 
         <!-- end tab -->

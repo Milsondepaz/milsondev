@@ -4,6 +4,7 @@ import com.milsondev.milsondev.db.entities.User;
 import com.milsondev.milsondev.service.ArticleService;
 import com.milsondev.milsondev.service.SubscriberService;
 import com.milsondev.milsondev.service.UserServiceImpl;
+import com.milsondev.milsondev.service.VisitorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +25,18 @@ public class AdminUserController {
     private final ArticleService articleService;
     private final SubscriberService subscriberService;
 
+    private final VisitorService visitorService;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(AdminUserController.class);
 
     @Autowired
-    public AdminUserController(final ArticleService articleService, final UserServiceImpl userService, SubscriberService subscriberService){
+    public AdminUserController(final ArticleService articleService, final UserServiceImpl userService,
+                               SubscriberService subscriberService, VisitorService visitorService){
         this.articleService = articleService;
         this.userService = userService;
         this.subscriberService = subscriberService;
+        this.visitorService = visitorService;
+
     }
 
     @GetMapping("")
@@ -38,6 +44,7 @@ public class AdminUserController {
         ModelAndView mv = new ModelAndView("admin");
         mv.addObject("articleList", articleService.getArticleList());
         mv.addObject("subscriberList", subscriberService.getSubscriberList());
+        mv.addObject("visitorList", visitorService.getVisitorList());
         User user = userService.getUser();
         mv.addObject("userName", user.getUserName());
         return mv;

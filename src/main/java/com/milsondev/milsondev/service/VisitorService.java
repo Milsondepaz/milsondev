@@ -1,7 +1,5 @@
 package com.milsondev.milsondev.service;
 
-import com.milsondev.milsondev.controller.HomeController;
-import com.milsondev.milsondev.db.entities.Subscriber;
 import com.milsondev.milsondev.db.entities.Visitor;
 import com.milsondev.milsondev.db.repository.VisitorRepository;
 import com.milsondev.milsondev.location.LocationService;
@@ -11,14 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VisitorService {
     private final VisitorRepository visitorRepository;
     private final LocationService locationService;
-
     private static final Logger LOGGER = LoggerFactory.getLogger(VisitorService.class);
-
 
     @Autowired
     public VisitorService (final VisitorRepository visitorRepository, final LocationService locationService){
@@ -29,7 +26,15 @@ public class VisitorService {
     public void saveVisitor () throws Exception {
         Visitor visitor = locationService.getIPLocation();
         LOGGER.info("Log - Visitor " + visitor.toString());
-        visitorRepository.save(visitor);
+        Optional<Visitor> optionalVisitor = visitorRepository.findCustom(visitor.getIp(), visitor.formatData);
+        if (!optionalVisitor.isPresent()){
+            visitor.setCountVisitDay(1);
+            visitorRepository.save(visitor);
+        }else {
+            Visitor visitorDB = optionalVisitor.get();
+            visitorDB.setCountVisitDay(visitorDB.getCountVisitDay()+1);
+            visitorRepository.save(visitorDB);
+        }
     }
 
     public List<Visitor> getVisitorList() {
