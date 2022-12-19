@@ -82,6 +82,7 @@ public class HomeController {
         return "index";
     }
 
+    /*
     @RequestMapping(value = "/subscribe", method = RequestMethod.POST)
     public String subscribe(@Valid @ModelAttribute("subscriber") Subscriber subscriber, Errors errors, RedirectAttributes attributes) {
         if (errors.hasErrors()){
@@ -93,6 +94,15 @@ public class HomeController {
         LOGGER.info("Log - Subscriber: " + subscriber.getEmail());
         return "redirect:/";
     }
+     */
+
+    @RequestMapping(value = "/subscribe", method = RequestMethod.GET)
+    public String getResources(@RequestParam(required = false) String email) {
+        String x = email;
+        System.out.println(email);
+        return "Porras";
+    }
+
 
 
 
