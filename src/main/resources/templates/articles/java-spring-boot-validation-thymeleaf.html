@@ -1,110 +1,19 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
-
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css} "/>
-    <link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet" />
-    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/6.1.0/css/all.css} "/>
-    <link href="https://twitter.com/intent/tweet"/>
-
-    <link th:href="@{/styles/imagemalogoefect.css}" rel="stylesheet" />
-    <link th:href="@{/styles/code-style.css}" rel="stylesheet" />
-    <link th:href="@{/styles/navbar.css}" rel="stylesheet" />
-    <link th:href="@{/styles/card.css}" rel="stylesheet" />
-
-    <link th:href="@{/styles/prism.css}" rel="stylesheet" />
-    <link th:href="@{/styles/share-on-social-media.css}" rel="stylesheet" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
-    <link rel="icon" type="image/ico" th:href="@{../static/favicon.ico}">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-
     <title th:text="${article.title}"></title>
-
 </head>
 <body>
-
-<!--
-<nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" style="background-color: #737373">
-    <div class="container">
-        <div class="container" style="padding-left: 15%">
-            <div class="hover01 column">
-                <a class="navbar-brand js-scroll" href="/">
-                    <figure>
-                        <img src="../img/ma-logo.png">
-                    </figure>
-                </a>
-            </div>
-        </div>
-        <div class="navbar-collapse collapse justify-content-end">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll active" href="#home" style="font-weight: bold; font-size: 110%;">HOME</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll" href="#about" style="font-weight: bold; font-size: 110%;">ABOUT</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll" href="#articles" style="color:font-weight: bold; font-size: 110%;">ARTICLES</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="languages" style="padding-right: 1%; padding-left: 10%;">
-        <div class="flag-angola">
-            <a href="#home">
-                <img src="../img/angola.png">
-            </a>
-        </div>
-    </div>
-</nav>
--->
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#737373;">
-    <div class="container">
-        <a href="../" class="navbar-brand">
-            <figure>
-                <img src="../img/ma-logo.png">
-            </figure>
-        </a>
-        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll active" href="#home" style="color: white; font-weight: bold; font-size: 110%;">HOME</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll" href="#about" style="color: white; font-weight: bold; font-size: 110%;">ABOUT</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll" href="#articles" style="color: white; font-weight: bold; font-size: 110%;">ARTICLES</a>
-                </li>
-            </ul>
-        </div>
-        <div class="flag-angola">
-            <a href="#home">
-                <img src="../img/angola.png">
-            </a>
-        </div>
-    </div>
-</nav>
-
-<section  style=" margin-bottom: 11%; padding-top:2%;">
+<section layout:fragment="content" style=" margin-bottom: 11%; padding-top:2%;">
     <div class="container">
         <div class="container">
-
             <div class="row" style=" padding-bottom: 2%; padding-top:2%;">
                     <h1 class="col-md-8" th:text="${article.title}"></h1>
                 <small class="">Tags:
@@ -114,35 +23,29 @@
                     </tr>
                 </small>
             </div>
-
             <div class="row" style=" padding-bottom: 1%;">
-
                 <div class="">
                     <small>Published on <span th:text="${article.fortmadetData}" style=" font-weight: bold; margin-right: 20px; "></span>
                         Views <span th:text="${article.views}" style=" font-weight: bold; margin-right: 20px;"></span>
                         Likes <span th:text="${article.likes}" style=" font-weight: bold; "></span>
+
+
+
                     </small>
                 </div>
             </div>
-
             <div class="row col-md-10"  style=" padding-bottom: 2%; padding-top:2%;">
                         <img src="../img/img-article.png" height="400" width="50" style="border-radius: 2%;" >
             </div>
-
-
-
             <div class="row" style=" padding-bottom: 2%; padding-top:2%;">
-
                 <div class="row">
                     <div class="col-md-10" >
                         <hr>
                     </div>
                 </div>
-
                 <div class="col-sm-6 col-md-1">
                     <img src="../img/milson.png" width= "70" height="70"; style="border-radius: 50%; border:1px groove #545565;">
                 </div>
-
                 <div class="col-sm-6 col-md-7">
                     <small><a th:href="@{../profile/{author}(author=${article.author})}" th:text="${article.author}"></a> </small>
                    <div class="row" style="padding-bottom: 1%; padding-top:1%;">
@@ -151,7 +54,6 @@
                        </small>
                    </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-10" >
                         <hr>
@@ -166,7 +68,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row mt-4">
             <div class="col-md-10" style="margin-right:8%;">
                 <p> <b>Resumo:</b> O termo Internet das Coisas (Internet of Things – IoT) vem sendo adotado como a convergência de
@@ -349,6 +250,10 @@
                                                     <label>Name</label>
                                                     <input type="text" class="form-control" name="author" placeholder="Name" th:value="${comment.author}">
                                                     <input type="hidden" name="article_id" th:value="${article.id}">
+
+                                                    <input type="hidden"  id="url" name="url" th:value="${article.url}"/>
+                                                    <input type="hidden"  id="title" name="title" th:value="${article.title}"/>
+
                                                     <p th:if= "${errorCommentAuthor != ''}" th:text="${errorCommentAuthor}" style="color: red;"></p>
                                                 </div>
                                             </div>
@@ -394,63 +299,12 @@
         </div>
     </div>
 </section>
-
-<footer class="bottom" style="background-color:#26272b; padding-top: 2%;">
-    <div class="container" style="text-align:center; padding-top:2%;">
-        <section class="text-center">
-            <form id="login-form">
-                <input type="email" id="email" placeholder="Enter Your Email" style="width: 250px;">
-                <button type="submit" id="bth-login" class="btn btn-danger">Subscribe  <i class="fa fa-envelope"></i></button>
-            </form>
-
-            <!-- start alert -->
-            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-                <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                </symbol>
-                <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
-                </symbol>
-                <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                </symbol>
-            </svg>
-            <div class="container alert alert-success alert-dismissible fade show"
-                 role="alert" style="width: 500px; text-align:center; margin-top:1%;"
-                 th:if= "${mensagemSubscriberSuccess != null}">
-                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/>
-                    <span th:text="${mensagemSubscriberSuccess}"></span>
-                </svg>
-                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-            </div>
-
-            <div class="container alert alert-danger alert-dismissible fade show"
-                 role="alert" style="width: 500px; text-align:center; margin-top:1%;"
-                 th:if= "${mensagemSubscriberError != null}">
-                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/>
-                    <span th:text="${mensagemSubscriberError}"></span>
-                </svg>
-                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <!-- end alert -->
-
-        </section>
-    </div>
-    <div class="container" style="text-align:center">
-        <div class="text-center" style="text-align:center; margin-top:2%;">
-            <H5 class="copyright-text" style="margin-bottom:1%; color: white;">THANKS FOR VISITING</H5>
-            <img src="../img/coracao.png">
-        </div>
-    </div>
-</footer>
+</body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
-<script src="/js/copy-code.js"></script>
-<script src="/js/subscriber.js"></script>
-<script th:src="@{/js/jquery-2.1.4.min.js}"></script>
 
 
 
@@ -512,23 +366,5 @@
     });
 </script>
 
-<!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-        fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-</script>
-
-<!--
-<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
--->
-<script src="/js/prism.js"></script>
-
 </body>
-
 </html>

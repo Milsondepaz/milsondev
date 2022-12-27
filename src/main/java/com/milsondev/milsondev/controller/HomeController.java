@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -82,26 +83,16 @@ public class HomeController {
         return "index";
     }
 
-    /*
-    @RequestMapping(value = "/subscribe", method = RequestMethod.POST)
-    public String subscribe(@Valid @ModelAttribute("subscriber") Subscriber subscriber, Errors errors, RedirectAttributes attributes) {
-        if (errors.hasErrors()){
-            attributes.addFlashAttribute("mensagemSubscriberError", "You have successfully subscribed!");
-            return "redirect:/";
-        }
-        subscriberService.addSubscriber(subscriber);
-        attributes.addFlashAttribute("mensagemSubscriberSuccess", "You have successfully subscribed!");
-        LOGGER.info("Log - Subscriber: " + subscriber.getEmail());
-        return "redirect:/";
-    }
-     */
 
-    @RequestMapping(value = "/subscribe", method = RequestMethod.GET)
-    public String getResources(@RequestParam(required = false) String email) {
-        String x = email;
-        System.out.println(email);
-        return "Porras";
+    @PostMapping(value = "/subscribe")
+    public ResponseEntity<Subscriber> subscribe(Subscriber subscriber) {
+        subscriberService.addSubscriber(subscriber);
+        LOGGER.info("Log - Subscriber: " + subscriber.getEmail());
+        return ResponseEntity.ok().build();
     }
+
+
+
 
 
 

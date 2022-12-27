@@ -46,7 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers(HttpMethod.GET,"/admin/**")
 				.authenticated()
-				.antMatchers(
+				.antMatchers("/subscribe",
 				 "/registration**",
 						"/static**",
 	                "/js/**",
@@ -64,7 +64,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.clearAuthentication(true)
 		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 		.logoutSuccessUrl("/login?logout")
-		.permitAll();
+		.permitAll()
+				.and()
+				.csrf().disable().cors();
 	}
 
 
