@@ -1,0 +1,15 @@
+<div class="" th:each = "comment: ${comments}" id="comments">
+    <div class="bg-white" style="padding-bottom:15px;">
+        <div class="d-flex flex-row user-info" >
+            <img class="rounded-circle mr-2" src="../img/avatar.png" width="40" height="40" style="margin-right:1%;">
+            <div class="d-flex flex-column justify-content-start ml-2" style="background-color:
+                                        #DCDCDC; border: 1px solid Gainsboro;  padding: 10px;  border-radius: 15px;">
+                <span class="d-block font-weight-bold name" style="margin:5px;"><b th:text="${comment.author}"> </b></span>
+                <span class="date text-black-50" style="margin-left:5px; margin-right:5px;" th:text="${comment.formateDate}"></span>
+                <div class="">
+                    <p class="comment-text" style="margin:5px;" th:text="${comment.review}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

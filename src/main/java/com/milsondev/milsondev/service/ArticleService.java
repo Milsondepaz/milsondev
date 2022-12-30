@@ -2,6 +2,9 @@ package com.milsondev.milsondev.service;
 
 import com.milsondev.milsondev.db.entities.Article;
 import com.milsondev.milsondev.db.repository.ArticleRepository;
+import com.milsondev.milsondev.exceptions.ArticleNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,8 @@ public class ArticleService {
 
     @Autowired
     private ArticleRepository repository;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ArticleService.class);
 
     public List<Article> getPageableArticleList(int pageNumber, int size) {
         Pageable firstPageWithTreeElements = PageRequest.of(pageNumber, size);
@@ -79,7 +84,8 @@ public class ArticleService {
         return article.get().getFileName();
     }
 
-    public void articleUpdate(Article article) {
+    public void articleIncrementView(Article article) {
+        article.setViews(article.getViews() + 1);
         repository.save(article);
     }
 
@@ -114,5 +120,11 @@ public class ArticleService {
     }
 
 
-
+    public Integer incrementLikes(Long idArticle)  {
+        Article article = repository.findById(idArticle).orElseThrow(ArticleNotFoundException::new);
+        article.setLikes(article.getLikes()+1);
+        repository.save(article);
+        LOGGER.info("Log - Article like: " + article.getTitle() + "number of likes "+ article.getLikes());
+        return article.getLikes();
+    }
 }

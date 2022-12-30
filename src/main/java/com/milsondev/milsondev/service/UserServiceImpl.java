@@ -62,6 +62,15 @@ public class UserServiceImpl implements UserService{
 		return userRepository.findByEmail(auth.getName()).get();
 	}
 
+	public Long getAuthenticatedUserId() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Optional<User> userOptional = userRepository.findByEmail(auth.getName());
+		if(!userOptional.isPresent()) {
+			throw new UsernameNotFoundException("User credentials was not found...");
+		}
+		return userRepository.findByEmail(auth.getName()).get().getId();
+	}
+
 	public User updateUser(User user) {
 		return userRepository.save(user);
 	}
@@ -70,6 +79,14 @@ public class UserServiceImpl implements UserService{
 
 	public User getUserbyName(String userName){
 		return userRepository.findByUserName(userName);
+	}
+
+	public User getUserbyId(Long id){
+		Optional<User> userOptional = userRepository.findById(id);
+		if(!userOptional.isPresent()) {
+			throw new UsernameNotFoundException("User not found...");
+		}
+		return userOptional.get();
 	}
 	
 }

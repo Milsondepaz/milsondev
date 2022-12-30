@@ -1,6 +1,7 @@
 package com.milsondev.milsondev.db.entities;
 
 import lombok.*;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -42,6 +43,8 @@ public class User {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
+
+
 
     private String repeatPassword;
 

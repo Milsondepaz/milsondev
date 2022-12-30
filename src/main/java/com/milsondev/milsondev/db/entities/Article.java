@@ -1,6 +1,8 @@
 package com.milsondev.milsondev.db.entities;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -26,6 +28,12 @@ public class Article {
     private Long id;
 
     private String author;
+
+    @Column(name="id_author")
+    private Long idAuthor;
+
+    @Column(name="id_image")
+    private Long idImage;
 
     //@NotBlank(message = "Title is mandatory")
     private String title;
@@ -60,6 +68,9 @@ public class Article {
     private boolean published = false;
     private int views;
     private int likes;
+
+    @Transient
+    private MultipartFile imageFile;
 
     private int readingTime;
 

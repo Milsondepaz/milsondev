@@ -1,12 +1,8 @@
 package com.milsondev.milsondev.controller;
 
 import com.milsondev.milsondev.db.entities.Article;
-import com.milsondev.milsondev.db.entities.Comment;
 import com.milsondev.milsondev.db.entities.User;
-import com.milsondev.milsondev.service.ArticleService;
-import com.milsondev.milsondev.service.CommentService;
-import com.milsondev.milsondev.service.SubscriberService;
-import com.milsondev.milsondev.service.UserServiceImpl;
+import com.milsondev.milsondev.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,19 +13,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminArticleController {
     private final UserServiceImpl userService;
     private final ArticleService articleService;
+    private final ImageService imageService;
     private String defaulTagsList = "custom login; securty; spring boot; spring security; template; thymeleaf";
 
     @Autowired
-    public AdminArticleController (final UserServiceImpl userService, final ArticleService articleService, final CommentService commentService) {
+    public AdminArticleController (final UserServiceImpl userService, final ArticleService articleService, ImageService imageService) {
         this.userService = userService;
         this.articleService = articleService;
+        this.imageService = imageService;
     }
 
     @RequestMapping(value = "/article/{fileName}", method = RequestMethod.GET)
@@ -78,10 +75,17 @@ public class AdminArticleController {
             return "redirect:/admin/new-article";
         }
 
-        User user = userService.getUser();
-        article.setAuthor(user.getUserName());
+        // se esse linhar nao passar com sucesso lancar excessao e cancelar tudo // colocar dentro dum try
+        Long idImage = imageService.uploadImage((article.getImageFile()));
+        article.setIdImage(idImage);
+
+        Long userId = userService.getAuthenticatedUserId();
+        article.setIdAuthor(userId);
+
         articleService.saveArticle(article);
+
         attributes.addFlashAttribute("mensagem", "New article was been successfully saved!");
+
         return "redirect:/admin/new-article";
     }
 
@@ -102,5 +106,7 @@ public class AdminArticleController {
 
         return mv;
     }
+
+
 
 }

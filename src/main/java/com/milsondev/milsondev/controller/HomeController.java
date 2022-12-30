@@ -4,20 +4,25 @@ import com.milsondev.milsondev.db.entities.Article;
 import com.milsondev.milsondev.db.entities.Search;
 import com.milsondev.milsondev.db.entities.Subscriber;
 import com.milsondev.milsondev.service.ArticleService;
+import com.milsondev.milsondev.service.ImageService;
 import com.milsondev.milsondev.service.SubscriberService;
 import com.milsondev.milsondev.service.VisitorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -26,26 +31,35 @@ public class HomeController {
     private final ArticleService articleService;
     private final SubscriberService subscriberService;
     private final VisitorService visitorService;
+    private final ImageService imageService;
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
     /*
-    Subscribers
-    Subscribers- ver
-    Subscribers- ver - export to csv
-    Export Subscriber via csv
-
-    IP - visitors
-    IP - visitors - ver
-
     Upload imagens for profile picture
     Upload imagens for article cover
+
+    colocar a imagem do cover do artico na tabela artigo
+    colocar a imagem do author na tabela do author
+    fazer isso via ajax
+    animar botao like via ajax
+    colocar os botos de partilhar e copia link no fim do artigo
+    diminuir espaco entre mini-profile do author e texto
+    refatorar
+    colocar loggs
+    colocar excessoes
+    docker-compose
+    colocar no ar (azure)
+    testar
+    escrever testes
      */
 
     @Autowired
-    public HomeController(final ArticleService articleService, final SubscriberService subscriberService, final VisitorService visitorService) {
+    public HomeController(final ArticleService articleService, final SubscriberService subscriberService,
+                          final VisitorService visitorService, final ImageService imageService) {
         this.articleService = articleService;
         this.subscriberService = subscriberService;
         this.visitorService = visitorService;
+        this.imageService=imageService;
     }
 
     @GetMapping("/")
@@ -90,12 +104,6 @@ public class HomeController {
         LOGGER.info("Log - Subscriber: " + subscriber.getEmail());
         return ResponseEntity.ok().build();
     }
-
-
-
-
-
-
 
 
 }

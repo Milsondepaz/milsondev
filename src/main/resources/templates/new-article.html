@@ -28,7 +28,7 @@
 
 
         <div class="container">
-            <form action="#" th:action="@{/admin/add-new-article}" method="post" th:object="${article}">
+            <form action="#" th:action="@{/admin/add-new-article}" method="post" th:object="${article}" enctype="multipart/form-data">
                 <div class="container">
                 <div class="row">
                 <div class="col-md-26 mt-5">
@@ -36,7 +36,12 @@
                         <article class="card-body">
                             <div class="form-group">
                                 <div class="row">
+
                                     <div class="col-md-12">
+                                        <input type="file" accept="image/png, image/jpeg" name="imageFile" class="form-control-file" id="input-image" required>
+                                    </div>
+
+                                    <div class="col-md-12 mt-2">
                                         <label>Title</label>
                                         <input type="text" class="form-control" name="title" placeholder="Title">
                                     </div>
