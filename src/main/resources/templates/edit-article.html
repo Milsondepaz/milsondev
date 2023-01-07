@@ -35,9 +35,15 @@
                     <article class="card-body">
                         <div class="form-group">
                             <div class="row">
+
                                 <div class="col-md-12">
+                                    <input type="file" accept="image/*" name="multipartFile" class="form-control-file" id="multipartFile"
+                                           th:field="*{multipartFile}" value="${multipartFile}" required>
+                                </div>
+
+                                <div class="col-md-12 mt-2">
                                     <label>Title</label>
-                                    <input type="text" class="form-control" name="title" placeholder="Title" th:field="*{title}">
+                                    <input type="text" class="form-control" name="title" placeholder="Title" id="title" th:field="*{title}">
                                     <input type="hidden" th:field="*{id}" name="id">
                                 </div>
                                 <div class="col-md-12 mt-2">

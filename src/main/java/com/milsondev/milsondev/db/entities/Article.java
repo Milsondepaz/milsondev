@@ -1,6 +1,7 @@
 package com.milsondev.milsondev.db.entities;
 
 import lombok.*;
+import org.hibernate.annotations.Type;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
@@ -11,9 +12,6 @@ import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
-import javax.validation.constraints.*;
-
 
 
 @Data
@@ -70,7 +68,21 @@ public class Article {
     private int likes;
 
     @Transient
-    private MultipartFile imageFile;
+    private MultipartFile multipartFile;
+
+    @Transient
+    private String articleCoverImageBase64;
+
+    @Column(name="image_data_type", nullable = false)
+    private String articleCoverImageDataType;
+
+    @Column(name="image_original_file_name", nullable = false)
+    private String articleCoverImageOriginalFileName;
+
+    @Lob
+    @Type(type = "org.hibernate.type.ImageType")
+    @Column(name="image_data_byte", nullable = false)
+    private byte[] articleCoverImageDataByte;
 
     private int readingTime;
 

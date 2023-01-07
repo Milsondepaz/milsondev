@@ -27,7 +27,8 @@ $("#form-subscriber").submit(function (evt)  {
 
 
 //implement like
-$('#like').click(function(){
+$('#like').click(function(evt){
+    evt.preventDefault();
     var id = $("#id").val();
       $.ajax({
         type: "POST",
@@ -115,6 +116,5 @@ function showCommentsListUpdated(idArticle){
                 $(this).append(response);
             })
         }
-    })
+    });
 }
-

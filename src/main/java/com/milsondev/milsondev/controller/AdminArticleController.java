@@ -4,6 +4,8 @@ import com.milsondev.milsondev.db.entities.Article;
 import com.milsondev.milsondev.db.entities.User;
 import com.milsondev.milsondev.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -36,7 +39,7 @@ public class AdminArticleController {
 
     @RequestMapping(value = "/edit-article/{fileName}", method = RequestMethod.GET)
     public ModelAndView editArticle(@PathVariable String fileName) {
-        Article article = articleService.getArticleByFileName(fileName).get();
+        Article article = articleService.getArticleByFileName(fileName);
         ModelAndView mv = new ModelAndView("edit-article");
         User user = userService.getUser();
         mv.addObject("article", article);
@@ -45,17 +48,30 @@ public class AdminArticleController {
     }
 
 
+    /*  --- ajax --
+    @RequestMapping(value = "/enable-disable/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Boolean> enableDisable(@PathVariable long id) {
+        boolean value = articleService.changeStateOfArticle(id);
+        return ResponseEntity.ok(value);
+    }
+     */
+
+
+
     @RequestMapping(value = "/enable-disable/{id}", method = RequestMethod.GET)
     public String enableDisable(@PathVariable long id) {
         articleService.changeStateOfArticle(id);
         return "redirect:/admin";
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String deleteArticle(@PathVariable long id) {
+
+
+    @RequestMapping(value = "/delete-article/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Long> deleteArticle(@PathVariable long id) {
         articleService.deleteArticleById(id);
-        return "redirect:/admin";
+        return ResponseEntity.ok(id);
     }
+
 
     @GetMapping("/new-article")
     public String newArticle(Model model) {
@@ -74,10 +90,6 @@ public class AdminArticleController {
             attributes.addFlashAttribute("mensagem_erro", "Please fill out all necessary fields correctly!");
             return "redirect:/admin/new-article";
         }
-
-        // se esse linhar nao passar com sucesso lancar excessao e cancelar tudo // colocar dentro dum try
-        Long idImage = imageService.uploadImage((article.getImageFile()));
-        article.setIdImage(idImage);
 
         Long userId = userService.getAuthenticatedUserId();
         article.setIdAuthor(userId);

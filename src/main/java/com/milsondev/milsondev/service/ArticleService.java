@@ -3,18 +3,19 @@ package com.milsondev.milsondev.service;
 import com.milsondev.milsondev.db.entities.Article;
 import com.milsondev.milsondev.db.repository.ArticleRepository;
 import com.milsondev.milsondev.exceptions.ArticleNotFoundException;
+import com.milsondev.milsondev.util.ImageUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.mock.web.MockMultipartFile;
+
 
 import java.io.*;
 import java.time.Instant;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Service
@@ -38,7 +39,7 @@ public class ArticleService {
         repository.deleteById(id);
     }
 
-    public void changeStateOfArticle (long id) {
+    public boolean changeStateOfArticle (long id) {
         Article article = repository.findById(id).get();
         boolean valor = article.isPublished();
         if (article.isPublished() == false){
@@ -46,15 +47,25 @@ public class ArticleService {
         } else {
             article.setPublished(false);
         }
-        repository.save(article);
+        return repository.save(article).isPublished();
     }
 
     public void saveArticle(Article article) throws IOException {
+        repository.save(articleSetAttributesBeforeSave(article));
+    }
+
+    private Article articleSetAttributesBeforeSave(Article article) throws IOException {
+
         final String fileName = article.getTitle().toLowerCase().replaceAll(" ", "-");
         article.setFileName(fileName);
         article.setListTags(convertToTagList(article.getTags()));
         article.setUrl("https://www.milsondev.de/article/"+fileName);
-        repository.save(article);
+
+        article.setArticleCoverImageDataByte(ImageUtils.compressImage(article.getMultipartFile().getBytes()));
+        article.setArticleCoverImageDataType(article.getMultipartFile().getContentType());
+        article.setArticleCoverImageOriginalFileName(article.getMultipartFile().getOriginalFilename());
+
+        return article;
     }
 
     public List<String> convertToTagList(String tags) {
@@ -75,8 +86,30 @@ public class ArticleService {
         repository.save(articleDB);
     }
 
-    public Optional<Article> getArticleByFileName(String fileName) {
-        return repository.findByFileName(fileName);
+    public Article getArticleByFileName(String fileName) {
+        Optional<Article> optionalArticle = repository.findByFileName(fileName);
+
+        if(optionalArticle.isEmpty()){
+            LOGGER.error("Error not found");
+        }
+
+        return articleSetAttributesBeforeSendToController(optionalArticle.get());
+    }
+
+    private Article articleSetAttributesBeforeSendToController(Article article) {
+        article.setArticleCoverImageBase64(convertByteToImageBase64(article));
+        article.setMultipartFile(createMultipartFile(article));
+        return article;
+    }
+
+    private String convertByteToImageBase64 (Article article){
+       return "data:" + article.getArticleCoverImageDataType() + ";base64," + Base64.getEncoder().encodeToString(ImageUtils.decompressImage(article.getArticleCoverImageDataByte()));
+    }
+
+    private MultipartFile createMultipartFile(Article article){
+        return new MockMultipartFile(article.getArticleCoverImageOriginalFileName(),
+                article.getArticleCoverImageOriginalFileName(),
+                article.getArticleCoverImageDataType(), article.getArticleCoverImageDataByte());
     }
 
     public String getArticleFileNameById(Long id) {

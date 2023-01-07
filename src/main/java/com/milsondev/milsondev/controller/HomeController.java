@@ -49,7 +49,6 @@ public class HomeController {
     colocar excessoes
     docker-compose
     colocar no ar (azure)
-    testar
     escrever testes
      */
 

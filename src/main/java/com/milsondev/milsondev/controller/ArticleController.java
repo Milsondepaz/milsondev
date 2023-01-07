@@ -60,14 +60,13 @@ public class ArticleController {
 
     @RequestMapping(value = "/article/{fileName}", method = RequestMethod.GET)
     public String openArticle(@PathVariable String fileName, Comment comment, Model model) throws IOException {
-        Article article = articleService.getArticleByFileName(fileName).get();
+        Article article = articleService.getArticleByFileName(fileName);
 
         articleService.articleIncrementView(article);
 
         model.addAttribute("article", article);
         model.addAttribute("user", userService.getUserbyId(article.getIdAuthor()));
         model.addAttribute("comments", commentService.getCommentList(article.getId()));
-        model.addAttribute("articleImage", imageService.downloadImageBase64(article.getIdImage()));
 
         return  article.getPath()+ fileName+".html";
     }
